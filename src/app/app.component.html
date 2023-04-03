@@ -26,6 +26,24 @@
         </button>
       </div>
     </div>
-    <app-footer></app-footer>
   </div>
+  <div class="container" id="cards-servicios">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let item of data">
+        <div class="imgage-item" >
+          <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}">
+            <h3 id="titulo_servicios">{{item.nombre}}</h3>
+            <p>{{item.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center" id="boton-ver-servicios">
+    <div class="row">
+      <div class="col align-self-center">
+        <button type="button" class="btn btn-outline-light">Ver Servicios</button>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </body>
