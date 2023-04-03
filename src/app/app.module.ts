@@ -7,6 +7,11 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,11 @@ import { FooterComponent } from './common/footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
