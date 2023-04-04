@@ -1,5 +1,6 @@
  /// <reference types="google.maps" />
-
+import {addDoc, Firestore, collection, getDocs} from '@angular/fire/firestore';
+import { getStorage, ref } from '@angular/fire/storage';
 import { Component } from '@angular/core';
 
 
@@ -9,7 +10,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent {
-
+  public data: any = [];
+  constructor(public firestore: Firestore) {
+    this.getData()
+  }
+  
+  addData(value: string){
+    const dbInstance = collection(this.firestore, 'contacto');
+    addDoc(dbInstance, {nombre: value})
+    .then(() => {
+      alert('Data added successfully')
+    })
+    .catch((error) => {
+      alert(error.message)
+    }
+  )}
+  getData(){
+    const dbInstance = collection(this.firestore, 'contacto');
+    getDocs(dbInstance)
+    .then((response) => {
+      this.data = [...response.docs.map((item) => {
+        return {...item.data(), id: item.id}
+      })]
+    })
+  }
 }
 /*
 

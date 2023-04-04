@@ -3,7 +3,11 @@
 }
 
 #descripcion-pagina{
-    font-family: 'futura-lt-w01-light', sans-serif;
+    margin-left: 7%;
+    margin-right: 7%;
+    text-align: center;
+    color:#0e0d0d;
+   
 }
 
 #cards-contacto {
@@ -12,36 +16,41 @@
 }
 
 #first-card {
-  background-color: #212121;
-  color: #ffffff;
-  font-family: 'futura-lt-w01-book', sans-serif;
+  background-color: #e5cff8;
+  color: #0e0d0d;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
+  
 }
 
 #second-card {
-  background-color: #e5ddbc;
+  background-color: #f7f8f3;
   color: #212121;
-  font-family: 'futura-lt-w01-book', sans-serif;
+  font-size: 1.2em;
+  font-family: 'Times New Roman', Times, serif;
+  ;
 }
 
 #third-card {
-  background-color: #212121;
-  color: #ffffff;
-  font-family: 'futura-lt-w01-book', sans-serif;
+  background-color:#e5cff8;
+  color: #0e0d0d;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
 }
 
 .card {
-  margin-right: 2.5%;
-  margin-left: 2.5%;
   border-radius: 0%;
-  height: 70vh;
   display: flex;
   margin-bottom: 5%;
+  border: none;
+  
 }
 
 .card-body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 p {
@@ -52,6 +61,9 @@ h3 {
   font-size: 25px;
   padding-bottom: 5%;
   padding-top: 5%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+
 }
 
 #formularioContacto {

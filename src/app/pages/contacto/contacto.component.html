@@ -1,19 +1,24 @@
 <div class="container-fluid text-center">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" >
       <h1 id="titulo-pagina">Contacto</h1>
-      <p id="descripcion-pagina">Descripción de la sección</p>
+      <div class="card"  id="descripcion-pagina">
+        <div class="card-body">
+          En BeautyCare nos importa mucho estar en contacto con nuestros clientes. Si tienes alguna duda, comentario o sugerencia, no dudes en ponerte en contacto con nosotros. 
+          Puedes contactarnos por teléfono o  por correo electrónico. Si prefieres, también puedes utilizar nuestro formulario de contacto en línea para hacernos llegar tus comentarios.  <br>Estaremos encantados de ayudarte.
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div class="container text-center" id="cards-contacto">
     <div class="card-group">
       <div class="card">
-        <div class="card-body" id="first-card" >
+        <div class="card-body" id="first-card">
             <h3>Teléfono</h3>
-            <p>+569 1234 5678</p>
+            <p>{{data[0].telefono}}</p>
             <h3>Email</h3>
-            <p>email@beautycare.com</p>
+            <p>{{data[0].email}}</p>
         </div>
       </div>
       <div class="card">
@@ -30,7 +35,7 @@
       <div class="card">
         <div class="card-body" id="third-card">
             <h3 id="titulo-tarjetas-contacto">Dirección</h3>
-            <p>Avenida Apoquindo 6415, Las Condes, RM</p>
+            <p>{{data[0].direccion}}</p>
         </div>
       </div>
     </div>
