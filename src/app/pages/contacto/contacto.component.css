@@ -1,0 +1,80 @@
+#titulo-pagina{
+    font-family: 'Playfair Display', serif;
+}
+
+#descripcion-pagina{
+    font-family: 'futura-lt-w01-light', sans-serif;
+}
+
+#cards-contacto {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#first-card {
+  background-color: #212121;
+  color: #ffffff;
+  font-family: 'futura-lt-w01-book', sans-serif;
+}
+
+#second-card {
+  background-color: #e5ddbc;
+  color: #212121;
+  font-family: 'futura-lt-w01-book', sans-serif;
+}
+
+#third-card {
+  background-color: #212121;
+  color: #ffffff;
+  font-family: 'futura-lt-w01-book', sans-serif;
+}
+
+.card {
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  border-radius: 0%;
+  height: 70vh;
+  display: flex;
+  margin-bottom: 5%;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+  margin: 0%;
+}
+
+h3 {
+  font-size: 25px;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+#formularioContacto {
+  max-width: 85%;
+  font-family: 'Playfair Display', serif;
+}
+
+.form-control {
+  border-radius: 0%;
+  border: 1px solid #212121;
+  font-family: 'futura-lt-w01-book', sans-serif;
+  margin-bottom: 1%;
+}
+
+.btn-primary {
+  background-color: #212121;
+  border: 1px solid #212121;
+  border-radius: 0%;
+  font-family: 'futura-lt-w01-book', sans-serif;
+  margin-bottom: 3%;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}

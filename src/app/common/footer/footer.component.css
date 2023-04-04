@@ -5,8 +5,8 @@ footer {
   }
   
   footer h1 {
-    font-family: 'Malibu';
-    font-size: 20px;
+    font-family: 'Dancing Script';
+    font-size: 30px;
     margin-bottom: 10px;
   }
   
@@ -19,20 +19,3 @@ footer {
     font-size: 16px;
     margin-bottom: 5px;
   }
-  
-  footer .contact-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  footer .contact-info p {
-    margin-right: 10px;
-  }
-  
-  footer .copyright {
-    font-size: 12px;
-    margin-top: 20px;
-    text-align: center;
-  }
-  
