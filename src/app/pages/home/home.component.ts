@@ -1,22 +1,18 @@
 import { Component } from '@angular/core';
 import {addDoc, Firestore, collection, getDocs} from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class NavbarComponent {
+export class HomeComponent {
+  title = 'Beautycare';
   public data: any = [];
-  constructor(public firestore: Firestore, private router: Router) {
+  constructor(public firestore: Firestore) {
     this.getData()
   }
-  
-  onClick(url: string){
-    this.router.navigate([url]);
-  }
-
   addData(value: string){
     const dbInstance = collection(this.firestore, 'categorias');
     addDoc(dbInstance, {nombre: value})
@@ -35,5 +31,5 @@ export class NavbarComponent {
         return {...item.data(), id: item.id}
       })]
     })
-  }  
+  }
 }

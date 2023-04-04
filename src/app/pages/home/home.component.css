@@ -1,0 +1,48 @@
+.container{
+    max-width: 85%;
+    
+}
+
+#carruselHome{
+    padding-left: 9.1%;
+    padding-right: 9.1%;
+}
+
+.carousel-item img{
+    height: 70vh;
+}
+
+#cards-servicios{
+    margin-top: 5%;
+    padding-top: 5%;
+    background-color: rgb(36, 36, 36);
+    max-width: 100%;
+    color: white;
+    
+}
+
+#cards-servicios img{
+    height: 50vh;
+    padding: 2%;
+}
+
+#titulo_servicios{
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+#boton-ver-servicios{
+    background-color: rgb(36, 36, 36);
+    max-width: 100%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+}
+
+.btn-outline-light {
+    --bs-btn-border-radius: 0%;
+  }
+
+#contenido{
+    width: 100%;
+}
