@@ -13,6 +13,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { HomeComponent } from './pages/home/home.component';
+import { DepilacionComponent } from './pages/servicios/depilacion/depilacion.component';
+import { PeluqueriaComponent } from './pages/servicios/peluqueria/peluqueria.component';
+import { ManicureComponent } from './pages/servicios/manicure/manicure.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { HomeComponent } from './pages/home/home.component';
     ContactoComponent,
     ServiciosComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    DepilacionComponent,
+    PeluqueriaComponent,
+    ManicureComponent
   ],
   imports: [
     BrowserModule,

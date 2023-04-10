@@ -1,7 +1,7 @@
  /// <reference types="google.maps" />
 import {addDoc, Firestore, collection, getDocs} from '@angular/fire/firestore';
 import { getStorage, ref } from '@angular/fire/storage';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 
 @Component({
@@ -9,33 +9,26 @@ import { Component } from '@angular/core';
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css']
 })
-export class ContactoComponent {
+export class ContactoComponent implements AfterViewInit {
   public data: any = [];
   constructor(public firestore: Firestore) {
     this.getData()
   }
+
+  ngAfterViewInit(): void {
+    initMap();
+  }
   
-  addData(value: string){
-    const dbInstance = collection(this.firestore, 'contacto');
-    addDoc(dbInstance, {nombre: value})
-    .then(() => {
-      alert('Data added successfully')
-    })
-    .catch((error) => {
-      alert(error.message)
-    }
-  )}
   getData(){
     const dbInstance = collection(this.firestore, 'contacto');
     getDocs(dbInstance)
     .then((response) => {
       this.data = [...response.docs.map((item) => {
-        return {...item.data(), id: item.id}
+        return {...item.data(), id: item.id};
       })]
     })
   }
 }
-/*
 
 let map;
 async function initMap(): Promise<void> {
@@ -46,9 +39,9 @@ async function initMap(): Promise<void> {
   map = new Map(
     document.getElementById("map") as HTMLElement,
     {
-      zoom: 10,
+      zoom: 15,
       center: position,
-      mapId: 'a5b0b2c5c0b2b2c'
+      mapId: 'bfcaf029ff1ccc3c'
     }
   );
 
@@ -58,7 +51,3 @@ async function initMap(): Promise<void> {
     title: "Apoquindo 6415"
   });
 }
-
-initMap();
-
-*/
