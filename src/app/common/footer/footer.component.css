@@ -6,13 +6,20 @@
   box-sizing: border-box;
 }
 
-
-
 footer {
     background-color: #bac0d9;
-    padding: 20px;
+    width: 100%;
+    padding: 10px 5%;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
   }
+  footer ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 30px;
+    vertical-align: text-top;
+}
   
   footer h1 {
     font-family: 'Dancing Script';
@@ -28,6 +35,20 @@ footer {
   }
   
   footer p {
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 3px;
   }
+/* @media (max-width: 500.98px) {
+  #copyderecho {
+   
+    margin: 1px 2px;  
+    font-size: 15px;
+
+  }
+}
+*/
+
+#copyderecho {
+  font-size: 0.8em;
+  margin: 10px 30px;
+}
