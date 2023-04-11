@@ -1,10 +1,17 @@
-footer {
-    background-image: url("../../../assets/images/fondo2.png") ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    padding-top: 3%;
+*{
+  margin: 0;
+  padding: 0;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 25px;
+  box-sizing: border-box;
+}
 
+
+
+footer {
+    background-color: #bac0d9;
+    padding: 20px;
+    text-align: center;
   }
   
   footer h1 {
@@ -14,8 +21,10 @@ footer {
   }
   
   footer img {
-    width: 100px;
-    margin-bottom: 20px;
+    
+    height: 100px;
+    width: auto;
+    border-radius: 100px;
   }
   
   footer p {

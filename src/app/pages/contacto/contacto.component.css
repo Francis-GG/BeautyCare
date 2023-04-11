@@ -1,12 +1,18 @@
 #titulo-pagina{
     font-family: 'Playfair Display', serif;
+    margin-top: 2%;
+    margin-bottom: 1%;
+   
 }
 
 #descripcion-pagina{
     margin-left: 7%;
     margin-right: 7%;
+    margin-bottom: auto;
     text-align: center;
     color:#0e0d0d;
+    padding: 0 18px;    
+
    
 }
 

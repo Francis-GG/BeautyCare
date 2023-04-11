@@ -1,41 +1,43 @@
-<div class="row">
-  <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
+        </div>
+        <div class="carousel-item">
+          <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
-      </div>
-      <div class="carousel-item">
-        <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-<div class="container" id="cards-servicios">
-<div class="row">
-  <div class="col-sm-4" *ngFor="let item of data">
-    <div class="image-item" >
-      <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}">
-        <h3 id="titulo_servicios">{{item.nombre}}</h3>
-        <p>{{item.descripcion}}</p>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
-</div>
-</div>
-<div class="container text-center" id="boton-ver-servicios">
-<div class="row">
-  <div class="col align-self-center">
-    <button type="button" class="btn btn-outline-light">Ver Servicios</button>
+  <div class="container" id="cards-servicios">
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let item of data">
+      <div class="image-item" >
+        <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}">
+          <h3 id="titulo_servicios">{{item.nombre}}</h3>
+          <p>{{item.descripcion}}</p>
+      </div>
+    </div>
   </div>
-</div>
+  </div>
+  <div class="container text-center" id="boton-ver-servicios">
+  <div class="row">
+    <div class="col align-self-center">
+      <button type="button" class="btn btn-outline-light">Ver Servicios</button>
+    </div>
+  </div>
+  </div>
 </div>
