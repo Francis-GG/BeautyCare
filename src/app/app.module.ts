@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatNativeDateModule } from '@angular/material/core'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
@@ -16,6 +16,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { DepilacionComponent } from './pages/servicios/depilacion/depilacion.component';
 import { PeluqueriaComponent } from './pages/servicios/peluqueria/peluqueria.component';
 import { ManicureComponent } from './pages/servicios/manicure/manicure.component';
+import { ReservasComponent } from './pages/reservas/reservas.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ManicureComponent } from './pages/servicios/manicure/manicure.component
     HomeComponent,
     DepilacionComponent,
     PeluqueriaComponent,
-    ManicureComponent
+    ManicureComponent,
+    ReservasComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,9 @@ import { ManicureComponent } from './pages/servicios/manicure/manicure.component
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    BrowserAnimationsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
