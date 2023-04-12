@@ -5,11 +5,7 @@ body{
 }
 
 .container{
-    max-width: 85%;
-    
-    
+    max-width: 100%;
+     
 }
 
-.carousel-item img{
-    height: 70vh;
-}
