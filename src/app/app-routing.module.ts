@@ -6,6 +6,7 @@ import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { DepilacionComponent } from './pages/servicios/depilacion/depilacion.component';
 import { PeluqueriaComponent } from './pages/servicios/peluqueria/peluqueria.component';
 import { ManicureComponent } from './pages/servicios/manicure/manicure.component';
+import { ReservasComponent } from './pages/reservas/reservas.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -25,6 +26,9 @@ const routes: Routes = [
   },
   { path: 'servicios/manicure',
     component: ManicureComponent
+  },
+  { path: 'reservas',
+    component: ReservasComponent
   },
 ];
 
