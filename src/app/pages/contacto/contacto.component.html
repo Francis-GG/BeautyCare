@@ -16,9 +16,9 @@
       <div class="card">
         <div class="card-body" id="first-card">
             <h3>Teléfono</h3>
-            <p>{{data[0].telefono}}</p>
+            <p>{{data[0]?.telefono}}</p>
             <h3>Email</h3>
-            <p>{{data[0].email}}</p>
+            <p>{{data[0]?.email}}</p>
         </div>
       </div>
       <div class="card">
@@ -35,7 +35,7 @@
       <div class="card">
         <div class="card-body" id="third-card">
             <h3 id="titulo-tarjetas-contacto">Dirección</h3>
-            <p>{{data[0].direccion}}</p>
+            <p>{{data[0]?.direccion}}</p>
         </div>
       </div>
     </div>
@@ -63,10 +63,12 @@
   </div>
   <div class="mb-3">
     <label for="formularioContacto" class="form-label">Déjanos un mensaje</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea title="Mensaje" placeholder="Escribe tu mensaje aquí..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
   <div class="col text-center">
     <button class="btn btn-primary" type="submit">Enviar</button>
   </div>
 </div>
-<div id="map"></div>
+<div class="container-fluid">
+  <div id="map"></div>
+</div>
