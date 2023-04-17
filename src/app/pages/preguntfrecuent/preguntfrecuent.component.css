@@ -1,0 +1,36 @@
+.faq-section {
+    background-color: #f7f7f7;
+    padding: 40px 20px;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .faq-item {
+    max-width: 700px;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .question {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .answer {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  
