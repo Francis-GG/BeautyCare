@@ -1,4 +1,4 @@
- .profile-card { 
+ /*.profile-card { 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,6 +64,17 @@
     background-color: #555;
   }
   /*ULTIMO */
+
+  .profile-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
   .profile-container {
     display: flex;
     flex-direction: column;
@@ -107,33 +118,31 @@
     border: 2px solid #2ecc71;
     color: #fff;
   }
-  
+  /*Esto ve la carta del perfil sube o baja*/
   .profile-info {
     width: 100%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  
     margin-bottom: 2rem;
   }
   
   .profile-info h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    margin-top: 3rem;
   }
-  
-  .profile-info label {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
+    
   .profile-info p {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+    color:rgba(0, 0, 0,)
   }
-  
+  /* boton de editar informacion del perfil */
   .edit-info-btn {
-    background-color: #2ecc71;
+    background-color: #08833bf5;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -141,21 +150,23 @@
     cursor: pointer;
     transition: all 0.3s ease;
   }
-  
   .edit-info-btn:hover {
     background-color: #27ae60;
   }
-  
-  .reservations-container {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 2rem;
+  .change-password{
+    background-color: #e9e2dc;
+    color: #020202;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
   }
-  
-  .reservations-container h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .change-password:hover{
+    background-color: #9aae27;
   }
+
   
   .reservation {
     display: flex;
@@ -167,7 +178,7 @@
     border-radius: 4px;
   }
   
-  .reservation-info {
+  /* .reservation-info {
     display: flex;
     align-items: center;
   }
@@ -179,24 +190,24 @@
   .reservation-date {
     font-size: 1.2rem;
     font-weight: bold;
-  }
+  } */
   
-  .reservation-status {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+
   
-  .cancel-reservation-btn {
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+
   
-  .cancel-reservation-btn:hover {
-    background-color: #c0392b;
+ 
+  
+ .profile-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
+
+    
   
