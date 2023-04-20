@@ -8,6 +8,7 @@ import { PeluqueriaComponent } from './pages/servicios/peluqueria/peluqueria.com
 import { ManicureComponent } from './pages/servicios/manicure/manicure.component';
 import { ReservasComponent } from './pages/reservas/reservas.component';
 import {PreguntfrecuentComponent} from './pages/preguntfrecuent/preguntfrecuent.component';
+import { PerfilClienteComponent} from './pages/perfil-cliente/perfil-cliente.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   { path: 'preguntfrecuent',
   component: PreguntfrecuentComponent
+  },
+  { path: 'perfil-cliente',
+  component: PerfilClienteComponent
   },
   { path: 'servicios',
     component: ServiciosComponent

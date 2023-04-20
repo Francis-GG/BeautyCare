@@ -53,6 +53,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { PreguntfrecuentComponent } from './pages/preguntfrecuent/preguntfrecuent.component';
+import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { PreguntfrecuentComponent } from './pages/preguntfrecuent/preguntfrecuen
     PeluqueriaComponent,
     ManicureComponent,
     ReservasComponent,
-    PreguntfrecuentComponent
+    PreguntfrecuentComponent,
+    PerfilClienteComponent
   ],
   imports: [
     BrowserModule,

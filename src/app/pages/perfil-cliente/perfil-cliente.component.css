@@ -1,0 +1,202 @@
+ .profile-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-avatar {
+    position: relative;
+  }
+  
+  .profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .profile-avatar .edit-avatar {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .profile-info {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .profile-info h2 {
+    margin: 0;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+  }
+  
+  .profile-actions {
+    margin-top: 20px;
+  }
+  
+  .profile-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .profile-actions button:hover {
+    background-color: #555;
+  }
+  /*ULTIMO */
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-container {
+    position: relative;
+  }
+  
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-avatar-btn:hover {
+    background-color: #2ecc71;
+    border: 2px solid #2ecc71;
+    color: #fff;
+  }
+  
+  .profile-info {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profile-info label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .profile-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .edit-info-btn {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-info-btn:hover {
+    background-color: #27ae60;
+  }
+  
+  .reservations-container {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  
+  .reservations-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .reservation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+  
+  .reservation-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reservation-info p {
+    margin-right: 1rem;
+  }
+  
+  .reservation-date {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .reservation-status {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .cancel-reservation-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cancel-reservation-btn:hover {
+    background-color: #c0392b;
+  }
+  
