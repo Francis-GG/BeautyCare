@@ -1,10 +1,10 @@
-<div class="container-fluid" id="perfil-reservas">
+<div class="container-fluid" >
   <div class="row">
     <div class="col-6">
       <div class="profile-card">
           <div class="profile-avatar">
             <img src="../../../assets/images/user.png" alt="Avatar">
-            <button class="edit-avatar">Editar Avatar</button>
+            <button class="edit-avatar">Editar Perfil</button>
           </div>
           <div class="profile-info">
             <h2>Nombre Apellido</h2>
@@ -18,27 +18,27 @@
       </div>
     </div>
     <div class="col-6">        
-      <div class="profile-card">
-        <h3>Mis Reservas</h3>
+      <div class="profile-card-reserva">
+        <h3 id="misreservas">Mis Reservas</h3>
         <div class="reservation">
           <h4>Reserva #1</h4>
-          <p class="service">Servicio: Masaje relajante</p>
-          <p class="date">Fecha: 22 de Mayo, 2023</p>
-          <p class="time">Hora: 10:00 AM</p>
+          <p class="service"><strong>Servicio:</strong> Masaje relajante</p>
+          <p class="date"><strong>Fecha:</strong> 22 de Mayo, 2023</p>
+          <p class="time"><strong>Hora:</strong> 10:00 AM</p>
           <button class="cancel-btn">Cancelar reserva</button>
         </div>
         <div class="reservation">
           <h4>Reserva #2</h4>
-          <p class="service">Servicio: Limpieza facial</p>
-          <p class="date">Fecha: 28 de Mayo, 2023</p>
-          <p class="time">Hora: 3:00 PM</p>
+          <p class="service"><strong>Servicio:</strong> Limpieza facial</p>
+          <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+          <p class="time"><strong>Hora:</strong> 3:00 PM</p>
           <button class="cancel-btn">Cancelar reserva</button>
         </div>
         <div class="reservation">
           <h4>Reserva #3</h4>
-          <p class="service">Servicio: Corte de pelo</p>
-          <p class="date">Fecha: 1 de Junio, 2023</p>
-          <p class="time">Hora: 11:00 AM</p>
+          <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
+          <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
+          <p class="time"><strong>Hora:</strong> 11:00 AM</p>
           <button class="cancel-btn">Cancelar reserva</button>
         </div>
       </div>
@@ -46,30 +46,59 @@
   </div>
 </div>
 
-<div class="profile-card">
-  <h3>Historial de Reservas</h3>
-  <div class="reservation">
-    <h4>Reserva #1</h4>
-    <p class="service">Servicio: Masaje relajante</p>
-    <p class="date">Fecha: 22 de Mayo, 2023</p>
-    <p class="time">Hora: 10:00 AM</p>
-    <button class="cancel-btn">Cancelar reserva</button>
-  </div>
-  <div class="reservation">
-    <h4>Reserva #2</h4>
-    <p class="service">Servicio: Limpieza facial</p>
-    <p class="date">Fecha: 28 de Mayo, 2023</p>
-    <p class="time">Hora: 3:00 PM</p>
-    <button class="cancel-btn">Cancelar reserva</button>
-  </div>
-  <div class="reservation">
-    <h4>Reserva #3</h4>
-    <p class="service">Servicio: Corte de pelo</p>
-    <p class="date">Fecha: 1 de Junio, 2023</p>
-    <p class="time">Hora: 11:00 AM</p>
-    <button class="cancel-btn">Cancelar reserva</button>
+
+<div class="col">
+  <div class="profile-card-reserva-historial">
+    <h3>Historial de Reservas Realizadas</h3>
+    <div class="reservation">
+      <h4>Reserva #1</h4>
+      <div class="details">
+        <p class="service"><strong>Servicio:</strong> Limpieza facial</p>
+        <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+        <p class="time"><strong>Hora:</strong> 3:00 PM</p>
+      </div>
+      <div class="comentarios">
+        <h5>Comentarios:</h5>
+        <div class="comentario"> 
+          <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
+          <span class="fecha">- 25 de Mayo, 2023</span>
+        </div>
+      </div>
+    </div>
+    <div class="reservation">
+      <h4>Reserva #2</h4>
+      <div class="details">
+        <p class="service"><strong>Servicio:</strong>Limpieza facial</p>
+        <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+        <p class="time">Hora: 3:00 PM</p>
+      </div>
+      <div class="comentarios">
+        <h5>Comentarios:</h5>
+        <div class="comentario">
+          <strong>Usuario:</strong> "Excelente servicio, lo recomiendo."
+          <span class="fecha">- 30 de Mayo, 2023</span>
+        </div>
+      </div>
+    </div>
+    <div class="reservation">
+      <h4>Reserva #3</h4>
+      <div class="details">
+        <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
+        <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
+        <p class="time"><strong>Hora:</strong> 11:00 AM</p>
+      </div>
+      <div class="comentarios">
+        <h5>Comentarios:</h5>
+        <div class="comentario">
+          <strong>Usuario:</strong> "No me gustó el resultado, esperaba algo mejor."
+          <span class="fecha">- 3 de Junio, 2023</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
  
   <!--<div class="profile-body">
       <h3>Mi información personal</h3>
