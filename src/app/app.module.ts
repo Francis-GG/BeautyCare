@@ -52,6 +52,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import {MatTreeModule} from '@angular/material/tree';
     DepilacionComponent,
     PeluqueriaComponent,
     ManicureComponent,
-    ReservasComponent
+    ReservasComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
