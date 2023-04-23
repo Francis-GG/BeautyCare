@@ -10,6 +10,54 @@ export class PerfilClienteComponent {
 }
 
 
+
+// <script>
+// // buscar los botones
+// var editAvatarBtn = document.querySelector('.edit-avatar');
+// var editInfoBtn = document.querySelector('.edit-info-btn');
+// var changePasswordBtn = document.querySelector('.change-password');
+
+// // buscar los modales
+// var editProfileModal = document.querySelector('#edit-profile-modal');
+// var editInfoModal = document.querySelector('#edit-info-modal');
+// var changePasswordModal = document.querySelector('#change-password-modal');
+
+// // buscar el botón para cerrar el modal
+// var closeBtns = document.querySelectorAll('.close');
+
+// // abrir los modales
+// editAvatarBtn.addEventListener('click', function() {
+//   editProfileModal.style.display = 'block';
+// });
+
+// editInfoBtn.addEventListener('click', function() {
+//   editInfoModal.style.display = 'block';
+// });
+
+// changePasswordBtn.addEventListener('click', function() {
+//   changePasswordModal.style.display = 'block';
+// });
+
+// // cerrar los modales
+// closeBtns.forEach(function(btn) {
+//   btn.addEventListener('click', function() {
+//     editProfileModal.style.display = 'none';
+//     editInfoModal.style.display = 'none';
+//     changePasswordModal.style.display = 'none';
+//   });
+// });
+
+// // cerrar el modal si se hace clic fuera del contenido
+// window.addEventListener('click', function(event) {
+//   if (event.target == editProfileModal || event.target == editInfoModal || event.target == changePasswordModal) {
+//     editProfileModal.style.display = 'none';
+//     editInfoModal.style.display = 'none';
+//     changePasswordModal.style.display = 'none';
+//   }
+// });
+// </script>
+
+
 /*// Variables globales para la imagen y el botón
 const avatarImg = document.querySelector('#avatarImg');
 const avatarBtn = document.querySelector('#avatarBtn');
