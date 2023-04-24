@@ -10,41 +10,11 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let item of data">
               <tr>
-                <td>Esmaltado permanente un tono</td>
-                <td class="descrip">Esmaltado en un solo tono con esmalte permanente.</td>
-                <td>$12.900</td>
-                <td><button>Reservar</button></td>
-              </tr>
-              <tr>
-                <td>Esmaltado permanente en degrade</td>
-                <td class="descrip">Esmaltado en degradé con esmalte permanente.</td>
-                <td>$14.900</td>
-                <td><button>Reservar</button></td>
-              </tr>
-              <tr>
-                <td>Esmaltado permanente con realce de base</td>
-                <td class="descrip">Esmaltado permanente con realce de la base de la uña.</td>
-                <td>$18.900</td>
-                <td><button>Reservar</button></td>
-              </tr>
-              <tr>
-                <td>Pedicure permanente</td>
-                <td class="descrip">Manicure que incluye tratamiento y esmaltado permanente en las uñas de los pies.</td>
-                <td>$16.900</td>
-                <td><button>Reservar</button></td>
-              </tr>
-              <tr>
-                <td>Esmaltado permanente full nails</td>
-                <td class="descrip">Esmaltado permanente en las uñas de manos y pies.</td>
-                <td>$20.900</td>
-                <td><button>Reservar</button></td>
-              </tr>
-              <tr>
-                <td>Manicure y pedicure</td>
-                <td class="descrip">Manicure y pedicure tradicional que incluye corte y limado de las uñas, tratamiento de las cutículas y aplicación de esmalte.</td>
-                <td>$28.900</td>
+                <td>{{item.servicio}}</td>
+                <td class="descrip">{{item.descripcion}}</td>
+                <td>{{item.precio}}</td>
                 <td><button>Reservar</button></td>
               </tr>
             </tbody>
