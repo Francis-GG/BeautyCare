@@ -10,9 +10,14 @@ export class AdminComponent {
   ngOnInit() {
     document.addEventListener('DOMContentLoaded', () => {
       const main = document.getElementsByTagName('main')[0];
-      const toggle = document.getElementsByClassName('mode-toggle')[0];
-      toggle.addEventListener('click', function() {
+      const modeToggle = document.getElementsByClassName('mode-toggle')[0];
+      const sidebar = document.getElementsByTagName('nav')[0];
+      const sidebarToggle = document.getElementsByClassName('sidebar-toggle')[0];
+      modeToggle.addEventListener('click', function() {
         main.classList.toggle('dark');
+      });
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('close');
       });
     });
     
