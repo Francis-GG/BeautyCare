@@ -53,6 +53,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { AdminComponent } from './pages/admin/admin.component';
+import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     PeluqueriaComponent,
     ManicureComponent,
     ReservasComponent,
-    AdminComponent
+    AdminComponent,
+    DepilacionAdminComponent
   ],
   imports: [
     BrowserModule,

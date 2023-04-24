@@ -8,6 +8,7 @@ import { PeluqueriaComponent } from './pages/servicios/peluqueria/peluqueria.com
 import { ManicureComponent } from './pages/servicios/manicure/manicure.component';
 import { ReservasComponent } from './pages/reservas/reservas.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   { path: 'admin',
     component: AdminComponent
+  },
+  { path: 'admin/depilacion',
+    component: DepilacionAdminComponent
   },
 ];
 
