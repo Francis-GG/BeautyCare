@@ -22,12 +22,19 @@ export class NavbarComponent implements AfterViewInit {
       console.error("Could not find subMenu element");
     }
   }
-
+  //Función que abre y cierra el menú
   toggleMenu() {
     const subMenu = document.getElementById("subMenu");
     if (subMenu) {
       subMenu.classList.toggle("open-menu");
     }
+    //Función que cierra el menú al hacer click fuera de él
+    document.addEventListener("mousedown", (e) => {
+      if (e.target !== subMenu && subMenu?.classList.contains("open-menu")) {
+        subMenu?.classList.toggle("open-menu");
+      }
+    });
+    
   }
 
   onClick(url: string){

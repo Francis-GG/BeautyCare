@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+main{
+    min-height: 100vh;
+    background-color: rgba(146, 48, 185, 0.53);
+    --primary-color: rgba(146, 48, 185, 0.53);
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #000; 
+    --logo-background: #FFF;
+    --menu-item-color: rgba(146, 48, 185, 1);
+
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-02: all 0.2s ease;
+
+}
+
+main.dark{
+    background-color: #222;
+    --primary-color: #3A3B3C;
+    --panel-color: #242526;
+    --text-color: #FFF;
+    --black-light-color: #c3c3c3;
+    --border-color: #4D4C4C;
+    --toggle-color: #FFF;
+    --box1-color: #3A3B3C;
+    --box2-color: #3A3B3C;
+    --box3-color: #3A3B3C;
+    --title-icon-color: #CCC; 
+    --logo-background: #242526;
+    --menu-item-color: #FFF;
+
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-02: all 0.2s ease;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    border-right: 2px solid var(--border-color);
+    transition: var(--tran-05);
+}
+
+nav.close{
+    width: 73px;
+}
+
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+    background-color: var(--logo-background);
+    transition: var(--tran-05);
+}
+nav .logo-image img{
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+nav .logo-name .logo_name{
+    margin-left: 14px;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-family: 'Dancing Script', cursive;
+    transition: var(--tran-05);
+}
+
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+nav .menu-items{
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}	
+
+.menu-items li{
+    list-style: none;
+}
+
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 50px;
+    position: relative;
+}
+
+.menu-items li a:hover:before{
+    content: '';
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: var(--menu-item-color);
+}
+
+.menu-items li a i{
+    min-width: 45px;
+    font-size: 24px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--black-light-color);
+}
+
+.menu-items li a .link-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--black-light-color);
+    transition: var(--tran-05);
+}
+
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-links,
+.logout-mode li a{
+    cursor: pointer;
+}
+
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--text-color);
+}
+
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.menu-items .mode{
+    display:flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.menu-items .mode-toggle{
+    position: absolute;
+    height: 50px;
+    min-width: 45px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.mode-toggle .switch{
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    width: 40px;
+    background-color: var(--toggle-color);
+    border-radius: 50px;
+}
+
+.switch:before{
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transition: var(--tran-03);
+}
+
+main.dark .switch:before{
+    left: 20px;
+}
+
+.dashboard{
+    position: relative;
+    width: calc(100% - 250px);
+    left: 250px;
+    height: 100vh;
+    background-color: var(--panel-color);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+}
+
+nav.close ~ .dashboard{
+    width: calc(100% - 73px);
+    left: 73px;
+}
+
+.dashboard .top{
+    display: flex;
+    position: fixed;
+    left: 250px;
+    width: calc(100% - 250px);
+    justify-content: space-between;
+    padding: 10px 14px;
+    top: 0;
+    background-color: var(--panel-color);
+    align-items: center;
+    transition: var(--tran-05);
+}
+
+nav.close ~ .dashboard .top{
+    width: calc(100% - 73px);
+    left: 73px;
+}
+
+.dashboard .top .sidebar-toggle{
+    font-size: 26px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.dashboard .top .search-box{
+    position: relative;
+    height: 45px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 30px;
+}
+
+.top .search-box input{
+    position: absolute;
+    border: 1px solid var(--border-color);
+    background-color: var(--panel-color);
+    padding: 0 25px 0 50px;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    outline: none;
+}
+
+.top .search-box i{
+    position: absolute;
+    left: 15px;
+    font-size: 22px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black-light-color)
+}
+
+.top img{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.dashboard .dash-content{
+    padding-top: 50px;
+}
+
+.dash-content .title{
+    display: flex;
+    align-items: center;
+    margin: 70px 0 30px 0;
+}
+
+.dash-content .title i{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    color: var(--title-icon-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.dash-content .title .text{
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+.dropdown.active > a {
+    color: var(--text-color);
+}
+
+.dropdown.active .link-name {
+    color: var(--text-color);
+}
+
+.dropdown-menu li a:hover .link-name {
+    color: var(--text-color);
+}
+
+.dropdown.active .dropdown-menu {
+    display: flex;
+}
+
+.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+.dropdown .dropdown-menu li {
+    margin: 0.5rem 0;
+}
+
+.dropdown .dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+}

@@ -1,8 +1,10 @@
+body{
+   background-image: url("../assets/images/fondo3.png") ;
+   background-repeat: no-repeat;
+   background-size: cover;     
+}
+
 .container{
-    background-image: url("../assets/images/fondo3.png") ;
-  
-   background-size: cover;
-   max-width: 100%;
-     
+    max-width: 100%;
 }
 

@@ -1,0 +1,66 @@
+<main>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
+            </div>
+            <span class="logo_name">BeautyCare</span>
+        </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a>
+                    <i class="uil uil-home"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li class="dropdown"><a>
+                    <i class="uil uil-server-alt"></i>
+                    <span class="link-name">Servicios</span>
+                    <i class="uil uil-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a><span class="link-name" routerLink="servicios/depilacion">Depilación</span></a></li>
+                    <li><a><span class="link-name" routerLink="servicios/peluqueria">Peluquería</span></a></li>
+                    <li><a><span class="link-name" routerLink="servicios/manicure">Manicure</span></a></li>
+                </ul>
+                </li>
+                <li><a>
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Reservas</span>
+                </a></li> 
+            </ul>
+            <ul class="logout-mode">
+                <li><a>
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+                <li class="mode"><a>
+                    <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+                <div class="mode-toggle">
+                <span class="switch"></span>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <img src="../../../assets/images/user.png" alt="Profile">
+        </div>
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-home"></i>
+                    <span class="text">{{ titleService.getTitle()}}</span>
+                </div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </section>
+</main>

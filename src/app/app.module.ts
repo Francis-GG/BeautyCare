@@ -55,6 +55,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import { PreguntfrecuentComponent } from './pages/preguntfrecuent/preguntfrecuent.component';
 import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { LoginComponent } from './pages/login/login.component';
     ReservasComponent,
     PreguntfrecuentComponent,
     PerfilClienteComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    DepilacionAdminComponent
   ],
   imports: [
     BrowserModule,
