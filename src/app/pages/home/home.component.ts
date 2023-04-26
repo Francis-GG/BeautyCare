@@ -13,16 +13,6 @@ export class HomeComponent {
   constructor(public firestore: Firestore) {
     this.getData()
   }
-  addData(value: string){
-    const dbInstance = collection(this.firestore, 'categorias');
-    addDoc(dbInstance, {nombre: value})
-    .then(() => {
-      alert('Data added successfully')
-    })
-    .catch((error) => {
-      alert(error.message)
-    }
-  )}
   getData(){
     const dbInstance = collection(this.firestore, 'categorias');
     getDocs(dbInstance)
