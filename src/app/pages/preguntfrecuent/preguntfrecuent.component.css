@@ -2,6 +2,9 @@
     background-color: #f7f7f7;
     padding: 40px 20px;
     background-image: url(../../../assets/images/fondo3.png);
+  
+      background-repeat: no-repeat;
+      background-size: cover;     
      
 }
    
