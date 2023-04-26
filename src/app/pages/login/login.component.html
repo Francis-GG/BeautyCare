@@ -26,18 +26,7 @@
         </div>
 
 
-        <script>
-            const wrapper = document.querySelector(".wrapper"),
-            signupHeader = document.querySelector(".singup header"),
-            loginHeader = document.querySelector(".login header");
-
-            loginHeader.addEventListener("Click", () => {
-                wrapper.classList.add("active");
-            });
-            signupHeader.addEventListener("Click", () => {
-                wrapper.classList.add("active");
-            });
-        </script>
+        
         
     </section>
 </body> -->
@@ -47,26 +36,26 @@
 <body>
     <section class="wrapper">
         <div class="form signup">
-            <header>Signup</header>
+            <header>Regístrate</header>
             <form action="#">
-                <input type="text" placeholder="Full name" required />
-                <input type="text" placeholder="Email address" required/>
-                <input type="password" placeholder="Password" required/>
+                <input type="text" placeholder="Nombre " required />
+                <input type="text" placeholder="Correo Electrónico" required/>
+                <input type="password" placeholder="Contraseña" required/>
                 <div class="checkbox">
                     <input type="checkbox" id="signupCheck"/>
-                    <label for="signupCheck">Acepto todos los términos y condiciones</label>
+                    <label for="signupCheck"> Acepto todos los términos y condiciones</label>
                 </div>
-                <input type="submit" value="Signup" />
+                <input type="submit" value="Guardar" />
             </form>
         </div>
 
         <div class="form login">
-            <header>INGRESO</header>
+            <header>Iniciar Sesión</header>
             <form action="#">
-                <input type="text" placeholder="Email address" required/>
-                <input type="password" placeholder="Password" required/>
+                <input type="text" placeholder="Correo Electrónico" required/>
+                <input type="password" placeholder="Contraseña" required/>
                 <a href="#">Has olvidado tu contraseña?</a>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Ingresar" />
             </form>
         </div>
     </section>

@@ -18,7 +18,7 @@ export class LoginComponent {
         wrapper.classList.add("active");
     });
     signupHeader.addEventListener("click", () => {
-        wrapper.classList.add("active");
+        wrapper.classList.remove("active");
     });
   }
   )};
