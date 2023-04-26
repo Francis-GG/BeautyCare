@@ -15,19 +15,19 @@
 
 <body>
   <div class="container">
-    <input type="radio" name="s"routerLink="/servicios/depilacion" id="depilacion" checked>
-    <input type="radio" name="s" routerLink="/servicios/peluqueria"id="peluqueria">
-    <input type="radio" name="s" routerLink="/servicios/manicure" id="manicure">
+    <input type="radio" name="s"  id="depilacion" checked>
+    <input type="radio" name="s" id="peluqueria">
+    <input type="radio" name="s" id="manicure">
     
     <nav>
       <div class="slider"></div>
-      <label class="depilacion" for="depilacion">
+      <label class="depilacion" routerLink="/servicios/depilacion" for="depilacion">
       <i class="fas fa-depilacion"></i>Depilación
       </label>
-      <label class="peluqueria" for="peluqueria">
+      <label class="peluqueria" routerLink="/servicios/peluqueria" for="peluqueria">
       <i class="fas fa-peluqueria"></i>Peluquería
       </label>
-      <label class="manicure" for="manicure">
+      <label class="manicure" routerLink="/servicios/manicure"  for="manicure">
         <i class="fas fa-manicure"></i>Manicure
       </label>
      
