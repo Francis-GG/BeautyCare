@@ -1,8 +1,10 @@
 .faq-section {
     background-color: #f7f7f7;
     padding: 40px 20px;
-  }
-  
+    background-image: url(../../../assets/images/fondo3.png);
+     
+}
+   
   .section-title {
     text-align: center;
     font-size: 2.5rem;
@@ -20,6 +22,7 @@
     width: 100%;
     margin-bottom: 30px;
     border: 1px solid #ccc;
+    background-color: #ffffff;
     border-radius: 5px;
     padding: 20px;
   }

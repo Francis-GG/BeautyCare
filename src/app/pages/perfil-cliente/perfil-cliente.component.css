@@ -1,0 +1,181 @@
+  .profile-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #eae3ee95;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .profile-avatar {
+    position: relative;
+  }
+  
+  .profile-avatar img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    
+  }
+  
+  .profile-avatar .edit-avatar {
+    position: absolute;
+    bottom: -10px;
+    right: -5px;
+    padding: 1px 5px;
+    
+    border-color: #3a5f1e89;
+    background-color: #fff;
+    color: #060506;
+    border: 0.8px solid #090909;
+    cursor: pointer;
+  }
+
+  .profile-avatar .edit-avatar:hover {
+    background-color: #f0f3f3;
+    transform: scale(1.1);
+  }
+  
+  .profile-info {
+    margin-top: 30px;
+    text-align: center;
+  }
+  /* nombre del cliente */
+  .profile-info h2 {
+    margin: 0;
+    font-size: 2.2rem;
+  }
+  /* correo y numero de telefono */
+  .profile-info p {
+    margin: 10px 0;
+  }
+  /* espacialidad de los botones editar información y cambiar contraseña */
+  .profile-actions {
+    margin-top: 20px;
+    
+  }
+  /* interior de los botones editar y cambiar  */
+  .profile-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #060506;
+    font-weight: bold;
+    cursor: pointer;
+    
+  }
+   /* interior de los botones editar y cambiar  */
+  .profile-actions button:hover {
+    background-color: #f0f3f3;
+    transform: scale(1.1);
+  }
+ 
+ 
+ 
+  /*MIS RESERVAS  */
+  .profile-card-reserva {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #eae3ee95;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  
+  .reservation {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: large;
+    font-weight: bold;
+  }
+  .cancel-btn {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    display: inline-block;
+   
+  }
+  
+  .cancel-btn:hover {
+    background-color: #c82333;
+    transform: scale(0.9);
+  }
+  
+  .date, .service, .time {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  
+  .profile-card-reserva-historial {
+    max-height: 400px; /* Altura máxima del contenedor */
+    overflow-y: scroll; /* Agrega un scroll vertical */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #eae3ee95;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    
+    
+  }
+
+  .details{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  h5 {
+    font-size: large;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .comentarios {
+    margin-top: 1px; /* Margen superior */
+    
+  }
+  
+  .comentario {
+    margin-bottom: 10px; /* Margen inferior */
+  }
+  
+  .comentario strong {
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  .comentario .fecha {
+    color: #999; /* Color gris para la fecha */
+    font-style: italic; /* Texto en cursiva */
+  }
+  
+ 
+
+  
+ 
+  
+
+    
+  
