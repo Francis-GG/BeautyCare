@@ -1,0 +1,86 @@
+<!-- Javascript!!!!
+<body>
+    <section class="wrapper">
+        <div class="form signup">
+            <header> Signup</header>
+            <form action="#">
+                <input type="text" placeholder="Full name" required />
+                <input type="text" placeholder="Email address" required/>
+                <input type="password" placeholder="Password" required/>
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck"/>
+                    <label for="signupCheck">Acepto todos los términos y condiciones</label>
+                </div>
+                <input type="submit" value="Signup" />
+            </form>
+        </div>
+
+        <div class="form login">
+            <header>INGRESO</header>
+            <form action="#">
+                <input type="text" placeholder="Email address" required/>
+                <input type="password" placeholder="Password" required/>
+                <a href="#"> Has olvidado tu contraseña ?</a>
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+
+
+        <script>
+            const wrapper = document.querySelector(".wrapper"),
+            signupHeader = document.querySelector(".singup header"),
+            loginHeader = document.querySelector(".login header");
+
+            loginHeader.addEventListener("Click", () => {
+                wrapper.classList.add("active");
+            });
+            signupHeader.addEventListener("Click", () => {
+                wrapper.classList.add("active");
+            });
+        </script>
+        
+    </section>
+</body> -->
+
+
+<!-- Typesript -->
+<body>
+    <section class="wrapper">
+        <div class="form signup">
+            <header>Signup</header>
+            <form action="#">
+                <input type="text" placeholder="Full name" required />
+                <input type="text" placeholder="Email address" required/>
+                <input type="password" placeholder="Password" required/>
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck"/>
+                    <label for="signupCheck">Acepto todos los términos y condiciones</label>
+                </div>
+                <input type="submit" value="Signup" />
+            </form>
+        </div>
+
+        <div class="form login">
+            <header>INGRESO</header>
+            <form action="#">
+                <input type="text" placeholder="Email address" required/>
+                <input type="password" placeholder="Password" required/>
+                <a href="#">Has olvidado tu contraseña?</a>
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+
+        <script>
+            const wrapper = document.querySelector(".wrapper") as HTMLElement;
+            const signupHeader = document.querySelector(".signup header") as HTMLElement;
+            const loginHeader = document.querySelector(".login header") as HTMLElement;
+
+            loginHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            });
+            signupHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            });
+        </script>
+    </section>
+</body>

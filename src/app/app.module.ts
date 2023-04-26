@@ -54,6 +54,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { PreguntfrecuentComponent } from './pages/preguntfrecuent/preguntfrecuent.component';
 import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.co
     ManicureComponent,
     ReservasComponent,
     PreguntfrecuentComponent,
-    PerfilClienteComponent
+    PerfilClienteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
