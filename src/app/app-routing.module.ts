@@ -33,10 +33,10 @@ const routes: Routes = [
     component: ReservasComponent
   },
   { path: 'admin',
-    component: AdminComponent
-  },
-  { path: 'admin/depilacion',
-    component: DepilacionAdminComponent
+    component: AdminComponent,
+    children: [
+      { path: 'servicios/depilacion', component: DepilacionAdminComponent, data: { title: 'Depilación' } },
+    ]
   },
 ];
 

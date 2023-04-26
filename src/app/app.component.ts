@@ -38,7 +38,7 @@ export class AppComponent {
   }
 
   showNavbarAndFooter(): boolean {
-    return this.router.url !== '/admin';
+    return !this.router.url.startsWith ('/admin');
   }
 }
 
