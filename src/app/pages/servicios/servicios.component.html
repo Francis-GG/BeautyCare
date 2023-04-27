@@ -15,9 +15,9 @@
 
 <body>
   <div class="container">
-    <input type="radio" name="s"  id="depilacion" checked>
-    <input type="radio" name="s" id="peluqueria">
-    <input type="radio" name="s" id="manicure">
+    <input type="radio" name="s"  id="depilacion" [checked]="currentRoute === '/servicios/depilacion'">
+    <input type="radio" name="s" id="peluqueria" [checked]="currentRoute === '/servicios/peluqueria'">
+    <input type="radio" name="s" id="manicure" [checked]="currentRoute === '/servicios/manicure'">
     
     <nav>
       <div class="slider"></div>
