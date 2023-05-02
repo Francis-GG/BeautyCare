@@ -217,6 +217,10 @@ main.dark .switch:before{
     transition: var(--tran-05);
 }
 
+.top{
+    z-index: 1;
+}
+
 nav.close ~ .dashboard{
     width: calc(100% - 73px);
     left: 73px;
