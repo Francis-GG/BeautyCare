@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Firestore, collection, getDocs} from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -9,7 +11,7 @@ import {Firestore, collection, getDocs} from '@angular/fire/firestore';
 })
 export class PeluqueriaComponent {
   public data: any = [];
-  constructor(public firestore: Firestore) {
+  constructor(public firestore: Firestore, private router: Router) {
     this.getData()
   }
   getData(){
@@ -21,4 +23,8 @@ export class PeluqueriaComponent {
       })]
     })
   }
+  reservar(itemSeleccionado: any) {
+    // Pass the selected data to the 'calendario' page using Angular's Router
+    this.router.navigate(['/calendario'], { state: { data: itemSeleccionado } });
+    }
 }

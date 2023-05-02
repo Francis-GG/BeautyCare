@@ -21,7 +21,7 @@
           <td class="descrip">{{item.descripcion}}</td>
           <td>{{item.tiempo}}</td>
           <td>{{item.precio}}</td>
-          <td><button>Reservar</button></td>
+          <td><button (click)="reservar(item)">Reservar</button></td>
         </tr>
       </tbody>
     </table>

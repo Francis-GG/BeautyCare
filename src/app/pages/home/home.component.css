@@ -21,8 +21,6 @@
     
 }
 
-
-
 #cards-servicios{
     margin-top: 5%;
     padding-top: 5%;
@@ -38,16 +36,15 @@
 }
 
 #titulo_servicios{
-    margin-top: 5%;
-    text-align: center;
-    margin-bottom: 5%;
-}
-
-#boton-ver-servicios{
     background-color: rgb(36, 36, 36);
     max-width: 100%;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
+    cursor: pointer;
+    align-content: center;
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 5%;
 }
 
 .btn-outline-light {
@@ -56,4 +53,12 @@
 
 #contenido{
     width: 100%;
+}
+
+.image-item img {
+    cursor: pointer;
+}
+
+.image-item {
+    align-items: center;
 }

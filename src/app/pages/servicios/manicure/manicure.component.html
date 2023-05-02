@@ -1,26 +1,26 @@
 <app-servicios></app-servicios>
 <div class="container-fluid text-center">
-    <div class="row justify-content-center">
-        <table>
-            <thead>
-              <tr>
-                <th>Servicio</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let item of data">
-              <tr>
-                <td>{{item.servicio}}</td>
-                <td class="descrip">{{item.descripcion}}</td>
-                <td>{{item.precio}}</td>
-                <td><button>Reservar</button></td>
-              </tr>
-            </tbody>
-          </table>
-          
-    </div>
+  <div class="row justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Descripción</th>
+          <th>Duración</th>
+          <th>Precio</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody  *ngFor="let item of data">
+        <tr>
+          <td>{{item.servicio}}</td>
+          <td class="descrip">{{item.descripcion}}</td>
+          <td>{{item.tiempo}}</td>
+          <td>{{item.precio}}</td>
+          <td><button (click)="reservar(item)">Reservar</button></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>
   
