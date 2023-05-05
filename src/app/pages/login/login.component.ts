@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import {Firestore, collection, getDocs, doc, setDoc} from '@angular/fire/firestore';
+
 
 declare var document: any;
 
@@ -12,7 +14,7 @@ declare var document: any;
 })
 export class LoginComponent {
   
-  constructor(public auth: Auth, private router: Router){
+  constructor(public auth: Auth, private router: Router, public firestore: Firestore){
 
   }
 
@@ -23,28 +25,45 @@ export class LoginComponent {
     // Add more error codes and messages as needed
   ]);
 
-  handleRegister(value: any){
+  async handleRegister(value: any){
     createUserWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
-      console.log(response.user)
+      console.log(response.user);
+      this.registerUserData( value.nombre, value.apellido, value.telefono); 
+      
+      
     })
     .catch((err) => {
-      const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al iniciar sesión.';
-      throw new Error(errorMessage);
+      const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al registrarse.';
+      alert(errorMessage);
     })
   }
-
-  handleLogin(value: any){
+  // Corresponde a las funciones del Login
+  async handleLogin(value: any){
     signInWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
       console.log(response.user);
       this.router.navigate(['']);
+
       })
       .catch((err) => {
         const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al iniciar sesión.';
         alert(errorMessage);
       });
   }
+
+   async registerUserData(nombre: string, apellido: string, telefono: string) {
+	 	try {
+	 		const user = this.auth.currentUser; 
+	 		const userDocRef = doc(this.firestore, `users/${user?.uid}`);
+	 		setDoc(userDocRef, {nombre, apellido, telefono});
+	 		return true;
+	 	} catch (error) {
+	 		console.log(error);
+	 		return false;
+	 	}
+	 }
+  
   
   ngOnInit() {
     document.addEventListener('DOMContentLoaded', () => { 
