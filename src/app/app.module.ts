@@ -59,6 +59,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -126,6 +127,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    FormsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
