@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { Firestore, doc, getDocs, collection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DateFilterFn } from '@angular/material/datepicker';
+
 
 
 
@@ -13,9 +16,24 @@ import { Router } from '@angular/router';
 export class CalendarioComponent {
   fechaSeleccionada: Date = new Date();
   fechaFormateada: string = '';
+  selectedFormatted: string = '';
   public itemSeleccionado: any;
   public dataContacto: any = [];
   public dataEmpleados: any = [];
+  minDate!: Date;
+  maxDate!: Date;
+  selected!: Date | null;
+  myFilter = (d: Date | null): boolean => {
+    if (d === null) {
+      return false; // or any other default behavior
+    }
+    const day = d.getDay();
+    return day !== 0;
+  };
+  
+
+  @Input('matDatepickerFilter')
+  dateFilter!: DateFilterFn<Date>
 
 
   constructor(private router: Router, public firestore: Firestore){
@@ -26,10 +44,21 @@ export class CalendarioComponent {
   }
   }
 
+
+  
   ngOnInit() {
     // Le da formato de fecha con palabras al calendario
-    this.fechaFormateada = formatDate(this.fechaSeleccionada, 'EEEE dd MMMM yyyy', 'es');
+    this.minDate = new Date();
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 3);
+    this.maxDate = maxDate;
+    
   }
+
+  onDateSelected(selected: Date): void {
+    this.selectedFormatted = formatDate(selected, 'EEEE d \'de\' MMMM \'de\' y', 'es-CL');
+  }
+
 
 
   getData(){
@@ -47,11 +76,18 @@ export class CalendarioComponent {
           return {...item.data(), id: item.id};
         })]
       })})
-  }
-}
-
-
-
-
   
- 
+
+  const currentDate = new Date();
+  this.minDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    currentDate.getDate()
+  );
+  this.maxDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 3,
+    currentDate.getDate()
+  );
+}
+}
