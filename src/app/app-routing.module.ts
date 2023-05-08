@@ -12,6 +12,7 @@ import { PerfilClienteComponent} from './pages/perfil-cliente/perfil-cliente.com
 import {LoginComponent} from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
+import { CalendarioComponent } from './pages/calendario/calendario.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -19,6 +20,10 @@ const routes: Routes = [
   },
   { path: '',
     component: HomeComponent
+  },
+  
+  { path: 'calendario',
+  component: CalendarioComponent
   },
   { path: 'preguntfrecuent',
   component: PreguntfrecuentComponent

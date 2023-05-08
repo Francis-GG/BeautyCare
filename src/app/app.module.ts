@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +57,11 @@ import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.co
 import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
+import { CalendarioComponent } from './pages/calendario/calendario.component';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { FormsModule } from '@angular/forms'
+
+
 
 
 @NgModule({
@@ -75,7 +80,8 @@ import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilac
     PerfilClienteComponent,
     LoginComponent,
     AdminComponent,
-    DepilacionAdminComponent
+    DepilacionAdminComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -121,8 +127,12 @@ import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilac
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
+    { provide: LOCALE_ID, useValue: 'es-CL'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,76 @@
+<body>
+  <div class="details-container">
+    <p> SERVICIO SELECCIONADO: {{itemSeleccionado.servicio}} </p>
+    <span>Revisa nuestra disponibilidad y reserva en la fecha y hora que te acomode</span>
+  </div>
+
+  <div class="container text-center" id="cards-contacto">
+    <p id="Selecion">Selecciona una fecha y una hora</p>
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body" id="first-card">
+          <h3>Calendario</h3>
+          <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
+            [dateFilter]="myFilter"></mat-calendar>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" id="second-card">
+          <h3>Horario</h3>
+          <!-- esta tirando error el formatDate en relación al TS -->
+          <p>{{ selected | date: ' EEEE dd/MMMM/yyyy' | titlecase}}</p>
+          <table class="horarios">
+            <tbody>
+              <tr>
+                <td>
+                  <button>9:00</button><br><br>
+                  <button>10:00</button><br><br>
+                  <button>11:00</button><br><br>
+                  <button>12:00</button><br><br>
+                  <button>13:00</button><br><br>
+                  <button>14:00</button><br><br>
+                  <button>15:00</button><br><br>
+                  <button>16:00</button><br><br>
+                </td>
+                <td>
+                  <button>9:30</button><br><br>
+                  <button>10:30</button><br><br>
+                  <button>11:30</button><br><br>
+                  <button>12:30</button><br><br>
+                  <button>13:30</button><br><br>
+                  <button>14:30</button><br><br>
+                  <button>15:30</button><br><br>
+                  <button>16:30</button><br><br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body" id="third-card">
+          <h3>Detalle de reserva</h3>
+          <p>Nombre del Servicio: "{{itemSeleccionado.servicio}}"</p>
+          <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
+          <p>Hora: </p>
+          <p>Dirección del local: {{dataContacto[0]?.direccion}} </p>
+          <p>Profesional: {{ dataEmpleados[0]?.nombre }} </p>
+
+          <p>Tiempo: {{itemSeleccionado.tiempo}}</p>
+          <p>Precio: {{itemSeleccionado.precio}}</p>
+          <button class="confirmar-reserva">Confirmar reserva</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<!-- horrios base de datos -->
+<!-- <table>
+    <tr *ngFor="let horario of horarios; let i = index">
+      <td>{{ horarios[i] }}</td>
+      <td>{{ horarios[i+1] }}</td>
+    </tr>
+  </table> -->
