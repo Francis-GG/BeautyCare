@@ -6,10 +6,10 @@
             <img src="../../../assets/images/user.png" alt="Avatar">
             <button class="edit-avatar">Editar Perfil</button>
           </div>
-          <div class="profile-info">
-            <h2>Nombre Apellido</h2>
-            <p>Correo electrónico: correo@correo.com</p>
-            <p>Teléfono: +1 (123) 456-7890</p>
+          <div class="profile-info" *ngFor="let user of data">
+            <h2>{{user.nombre}} {{user.apellido}}</h2>
+            <p>Correo electrónico: {{ userEmail }}</p>
+            <p>Teléfono: {{user.telefono}}</p>
           </div>
           <div class="profile-actions">
             <button class="edit-info-btn">Editar Información</button>
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>
 </div>
 
 
