@@ -57,6 +57,8 @@ import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.co
 import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
+import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluqueria-admin.component';
+import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilac
     PerfilClienteComponent,
     LoginComponent,
     AdminComponent,
-    DepilacionAdminComponent
+    DepilacionAdminComponent,
+    PeluqueriaAdminComponent,
+    ManicureAdminComponent
   ],
   imports: [
     BrowserModule,
