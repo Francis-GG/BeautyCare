@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Firestore, collection, getDocs, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
 
 
 @Component({
@@ -69,5 +69,18 @@ export class DepilacionAdminComponent {
         console.error('Error al añadir el servicio:', error);
       });
   }
-
+  eliminarServicio(serviceId: string) {
+    if (confirm('¿Está seguro que desea eliminar este servicio?')){
+      const serviceDocRef = doc(this.firestore, `categorias/1/servicios/${serviceId}`);
+      deleteDoc(serviceDocRef)
+        .then(() => {
+          console.log('Servicio eliminado correctamente');
+          this.data = this.data.filter((item: any) => item.id !== serviceId);
+          alert('Servicio eliminado correctamente');
+        })
+        .catch((error) => {
+          console.log('Error al intentar eliminar el servicio:', error);
+        });
+    }
+  }
 }
