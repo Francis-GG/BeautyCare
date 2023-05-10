@@ -6,7 +6,7 @@
             <img src="../../../assets/images/user.png" alt="Avatar">
             <button class="edit-avatar">Editar Perfil</button>
           </div>
-          <div class="profile-info" *ngFor="let user of data">
+          <div class="profile-info" *ngFor="let user of dataUser">
             <h2>{{user.nombre}} {{user.apellido}}</h2>
             <p>Correo electrónico: {{ userEmail }}</p>
             <p>Teléfono: {{user.telefono}}</p>
