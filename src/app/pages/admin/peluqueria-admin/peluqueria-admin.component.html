@@ -1,0 +1,131 @@
+<section class="intro">
+    <div class="bg-image h-100">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card shadow-2-strong">
+                <div class="card-body">
+                    <button type="button" class="btn btn-success btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalAgregarServicio">
+                        <i class="uil uil-plus-circle"></i><span> Agregar servicio</span>
+                    </button>
+                    <div class="modal fade" id="modalAgregarServicio" tabindex="-1" aria-labelledby="modalAgregarServicio" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="agregarServicioLabel">Agregar servicio</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                      <label for="inputIdServicio" class="form-label">ID Servicio</label>
+                                      <input type="text" class="form-control" id="idServicioPeluqueria" aria-describedby="servicioPeluqueriaHelp" [value]="nextId" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="inputNombreServicioPeluqueria" class="form-label">Nombre servicio</label>
+                                      <input type="text" class="form-control" id="nombreServicioPeluqueria">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputDescripcionServicioPeluqueria" class="form-label">Descripción Servicio</label>
+                                        <input type="text" class="form-control" id="descripcionServicioPeluqueria">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputDuracionServicioPeluqueria" class="form-label">Duración Servicio</label>
+                                        <input type="text" class="form-control" id="duracionServicioPeluqueria">
+                                        <div id="duracionHelp" class="form-text">Formato: "30 minutos", "60 minutos", "120 minutos"</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputPrecioServicioPeluqueria" class="form-label">Precio Servicio</label>
+                                        <input type="text" class="form-control" id="precioServicioPeluqueria">
+                                        <div id="precioHelp" class="form-text">Formato: "$6.000", "$12.000"</div>
+                                    </div>
+                                  </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-primary" id="addServicioButton">Añadir servicio</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <thead>
+                        <tr>
+                          <th scope="col">SERVICIO</th>
+                          <th scope="col">DESCRIPCION</th>
+                          <th scope="col">DURACION</th>
+                          <th scope="col">PRECIO</th>
+                          <th scope="col" id="boton-editar">EDITAR</th>
+                          <th scope="col" id="boton-eliminar">ELIMINAR</th>
+                        </tr>
+                      </thead>
+                      <tbody  *ngFor="let item of data">
+                        <tr>
+                          <td>{{item.servicio}}</td>
+                          <td>{{item.descripcion}}</td>
+                          <td>{{item.tiempo}}</td>
+                          <td>{{item.precio}}</td>
+                          <td>
+                            <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
+                                <i class="uil uil-edit"></i>
+                            </button>
+                          </td>
+                          <div class="modal fade" id="modalEditarServicio" tabindex="-1" aria-labelledby="modalEditarServicio" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="editarServicioLabel">Agregar servicio</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                          <label for="inputIdServicio" class="form-label">ID Servicio</label>
+                                          <input type="text" class="form-control" id="idServicioPeluqueria" aria-describedby="servicioPeluqueriaHelp" [value]="nextId" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="inputNombreServicioPeluqueria" class="form-label">Nombre servicio</label>
+                                          <input type="text" class="form-control" id="nombreServicioPeluqueria">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputDescripcionServicioPeluqueria" class="form-label">Descripción Servicio</label>
+                                            <input type="text" class="form-control" id="descripcionServicioPeluqueria">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputDuracionServicioPeluqueria" class="form-label">Duración Servicio</label>
+                                            <input type="text" class="form-control" id="duracionServicioPeluqueria">
+                                            <div id="duracionHelp" class="form-text">Formato: "30 minutos", "60 minutos", "120 minutos"</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="inputPrecioServicioPeluqueria" class="form-label">Precio Servicio</label>
+                                            <input type="text" class="form-control" id="precioServicioPeluqueria">
+                                            <div id="precioHelp" class="form-text">Formato: "$6.000", "$12.000"</div>
+                                        </div>
+                                      </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                  <button type="button" class="btn btn-primary" id="addServicioButton">Añadir servicio</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <td>
+                            <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3" (click)="eliminarServicio(item.id)">
+                                <i class="uil uil-times"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

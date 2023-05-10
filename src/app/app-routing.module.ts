@@ -12,6 +12,8 @@ import { PerfilClienteComponent} from './pages/perfil-cliente/perfil-cliente.com
 import {LoginComponent} from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
+import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluqueria-admin.component';
+import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
 
 const routes: Routes = [
@@ -53,6 +55,8 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'servicios/depilacion', component: DepilacionAdminComponent, data: { title: 'Depilación' } },
+      { path: 'servicios/peluqueria', component: PeluqueriaAdminComponent, data: { title: 'Peluquería' } },
+      { path: 'servicios/manicure', component: ManicureAdminComponent, data: { title: 'Manicure' } },
     ]
   },
 ];

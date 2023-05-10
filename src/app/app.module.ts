@@ -57,6 +57,8 @@ import { PerfilClienteComponent } from './pages/perfil-cliente/perfil-cliente.co
 import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilacion-admin.component';
+import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluqueria-admin.component';
+import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormsModule } from '@angular/forms'
@@ -81,6 +83,8 @@ import { FormsModule } from '@angular/forms'
     LoginComponent,
     AdminComponent,
     DepilacionAdminComponent,
+    PeluqueriaAdminComponent,
+    ManicureAdminComponent,
     CalendarioComponent
   ],
   imports: [
