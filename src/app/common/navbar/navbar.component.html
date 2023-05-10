@@ -1,7 +1,7 @@
 <body>
   <div class="hero">
     <nav>
-      <img title="logo-beauty-care" src="../../../assets/images/logoBeautyCare.png" class="logo">
+      <img title="logo-beauty-care" routerLink="/" src="../../../assets/images/logoBeautyCare.png" class="logo">
       <ul>
         <li><a routerLink="/"> Inicio</a></li>
         <li><a routerLink="/servicios/depilacion"> Servicios</a></li>
@@ -11,9 +11,9 @@
       <img title="imagen-usuario" src="../../../assets/images/user.png" class="user-pic" (click)="toggleMenu()">
       <div class="sub-menu-wrap" id="subMenu">
         <div class="sub-menu dropstart">
-          <div class="user-info">
+          <div class="user-info"*ngFor="let user of data">
             <img title="imagen-usuario" src="../../../assets/images/user.png">
-            <h3>Francisco González</h3>
+            <h3> {{user.nombre}} {{user.apellido}}</h3>
           </div>
           <hr>
 
@@ -26,15 +26,13 @@
             <p>Configuración</p>
             
           </a>
-          <a href="#" class="sub-menu-link">
+          <a (click)="signOut()" class="sub-menu-link">
             <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png">
             <p>Cerrar Sesión</p>
           </a>
-
         </div>
       </div>
     </nav>
   </div>
 </body>
-
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Auth, User } from '@angular/fire/auth';
+import { Firestore, getDoc, doc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-perfil-cliente',
@@ -6,8 +8,102 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil-cliente.component.css']
 })
 export class PerfilClienteComponent {
+  public dataUser: any = [];
+  public userEmail: string = '';
+
+
+  constructor(public auth: Auth, public firestore: Firestore) {
+    this.getDataUser();
+    this.getUserEmail();
+  }
+  getUserEmail() {
+    const user: User | null = this.auth.currentUser;
+    if (user) {
+      this.userEmail = user.email || '';
+    } else {
+      console.log('No authentiica el email del usuario.');
+    }
+  }
+
+  //funcion para obtener datos de la coleccion USERS de firebase
+  getDataUser() {
+    const user: User | null = this.auth.currentUser;
+    if (user) {
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      getDoc(userDocRef)
+        .then((docSnapshot) => {
+          if (docSnapshot.exists()) {
+            const userData = { ...docSnapshot.data(), id: docSnapshot.id };
+            this.dataUser = [userData];
+            console.log('nombre de usuario: ' + this.dataUser[0].nombre);
+          }
+        })
+        .catch((error) => {
+          console.log('Error al intentar obtener los datos del usuario:', error);
+        });
+    } else {
+      console.log('No hay un usuario autenticado actualmente.');
+    }
+  }
+
+  
 
 }
+
+
+
+
+//explicacion
+
+  // //funcion para obtener datos de la coleccion USERS de firebase
+  // getDataUser() {
+  //   //guardar el usuario actual en la variable user
+  //   const user: User | null = this.auth.currentUser;
+  //   //si el usuario esta logeado 
+  //   if (user) {
+  //     //linea para ubicarse en los campos del uid
+  //     const userDocRef = doc(this.firestore, 'users', user.uid);
+
+  //     getDoc(userDocRef)
+  //       //.then es como un if. si obtengo el get doc de userdoc ref... haz esto 
+  //       .then((docSnapshot) => {
+
+  //         if (docSnapshot.exists()) {
+  //           //si existe el documento
+  //           const userData = { ...docSnapshot.data(), id: docSnapshot.id };
+  //           this.dataUser = [userData];
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error al intentar obtener los datos del usuario:', error);
+  //       });
+  //   } else {
+  //     console.log('No hay un usuario autenticado actualmente.');
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
