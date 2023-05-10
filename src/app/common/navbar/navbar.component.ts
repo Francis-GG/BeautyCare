@@ -15,7 +15,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
 
   constructor(public auth: Auth, public firestore: Firestore, private router: Router) {
     this.subMenu = document.getElementById("subMenu")!
-    this.signOut();
+    
   }
 
   ngOnInit() {

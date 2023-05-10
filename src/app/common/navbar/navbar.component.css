@@ -24,6 +24,9 @@ nav{
     z-index: 1;
 }
 
+.sub-menu .sub-menu-link{
+    cursor: pointer;
+}
 
 @media (max-width: 500.98px) {
     nav ul li a{
