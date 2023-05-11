@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Firestore, collection, getDocs, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, updateDoc, doc, deleteDoc } from '@angular/fire/firestore';
+import { setDoc } from 'firebase/firestore';
 
 
 @Component({
@@ -11,6 +12,11 @@ export class DepilacionAdminComponent {
   
   public data: any = [];
   public nextId: number = 0;
+  public idServicio: string = '';
+  public nombreServicio: string = '';
+  public descripcionServicio: string = '';
+  public precioServicio: string = '';
+  public duracionServicio: string = '';
 
   constructor(public firestore: Firestore) {
     this.getNextId();
@@ -35,40 +41,41 @@ export class DepilacionAdminComponent {
       })]
     })
   }
-  
-  addServicio() {
-    const nombreInput = document.getElementById('nombreServicioDepilacion') as HTMLInputElement;
-    const descripcionInput = document.getElementById('descripcionServicioDepilacion') as HTMLInputElement;
-    const duracionInput = document.getElementById('duracionServicioDepilacion') as HTMLInputElement;
-    const precioInput = document.getElementById('precioServicioDepilacion') as HTMLInputElement;
-  
-    const servicio = {
-      id: this.nextId,
-      nombre: nombreInput.value,
-      descripcion: descripcionInput.value,
-      duracion: duracionInput.value,
-      precio: precioInput.value,
-    };
-  
-    const dbInstance = collection(this.firestore, 'categorias/1/servicios');
-    addDoc(dbInstance, servicio)
-      .then(() => {
-        console.log('Servicio añadido correctamente');
-        // Clear the form inputs
-        nombreInput.value = '';
-        descripcionInput.value = '';
-        duracionInput.value = '';
-        precioInput.value = '';
-        // Increment the nextId for the next service
-        this.nextId++;
-        // Update the ID input field in the modal
-        const idInput = document.getElementById('idServicioDepilacion') as HTMLInputElement;
-        idInput.value = this.nextId.toString();
-      })
-      .catch((error) => {
-        console.error('Error al añadir el servicio:', error);
-      });
+
+  obtenerIdServicio(idServicio: string, nombreServicio: string, descripcionServicio: string, duracionServicio: string, precioServicio: string) {
+    this.idServicio = idServicio;
+    this.nombreServicio = nombreServicio;
+    this.descripcionServicio = descripcionServicio;
+    this.precioServicio = precioServicio;
+    this.duracionServicio = duracionServicio;
   }
+
+  async editarServicio(servicio: string, descripcion: string, precio: string, tiempo: string) {
+    try{
+      const serviceDocRef = doc(this.firestore, `categorias/1/servicios/${this.idServicio}`);
+      setDoc(serviceDocRef, {servicio, descripcion, precio, tiempo});
+      return true;
+    } catch (error) {
+      console.log('Error al intentar editar el servicio:', error);
+      return false;
+    }   
+  }
+
+  async handleEditService(formValue: any) {    
+    const nombre = formValue['nombre-edit-servicio'];
+    const descripcion = formValue['descripcion-edit-servicio'];
+    const precio = formValue['precio-edit-servicio'];
+    const duracion = formValue['duracion-edit-servicio'];
+    try{
+      await this.editarServicio(nombre, descripcion, precio, duracion);
+      alert('Servicio actualizado correctamente')
+      this.getData();
+    }catch(error){
+      console.log('Error al intentar actualizar el servicio:', error);
+      alert('Error al intentar actualizar el servicio');
+    }
+  }
+
   eliminarServicio(serviceId: string) {
     if (confirm('¿Está seguro que desea eliminar este servicio?')){
       const serviceDocRef = doc(this.firestore, `categorias/1/servicios/${serviceId}`);

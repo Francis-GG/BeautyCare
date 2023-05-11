@@ -1,86 +1,137 @@
 <section class="intro">
-    <div class="bg-image h-100">
-      <div class="mask d-flex align-items-center h-100">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div class="card shadow-2-strong">
-                <div class="card-body">
-                    <button type="button" class="btn btn-success btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalAgregarServicio">
-                        <i class="uil uil-plus-circle"></i><span> Agregar servicio</span>
-                    </button>
-                    <div class="modal fade" id="modalAgregarServicio" tabindex="-1" aria-labelledby="modalAgregarServicio" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar servicio</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                      <label for="inputIdServicio" class="form-label">ID Servicio</label>
-                                      <input type="text" class="form-control" id="idServicioDepilacion" aria-describedby="servicioDepilacionHelp" [value]="nextId" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="inputNombreServicioDepilacion" class="form-label">Nombre servicio</label>
-                                      <input type="text" class="form-control" id="nombreServicioDepilacion">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputDescripcionServicioDepilacion" class="form-label">Descripción Servicio</label>
-                                        <input type="text" class="form-control" id="descripcionServicioDepilacion">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputDuracionServicioDepilacion" class="form-label">Duración Servicio</label>
-                                        <input type="text" class="form-control" id="duracionServicioDepilacion">
-                                        <div id="duracionHelp" class="form-text">Formato: "30 minutos", "60 minutos", "120 minutos"</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="inputPrecioServicioDepilacion" class="form-label">Precio Servicio</label>
-                                        <input type="text" class="form-control" id="precioServicioDepilacion">
-                                        <div id="precioHelp" class="form-text">Formato: "$6.000", "$12.000"</div>
-                                    </div>
-                                  </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                              <button type="button" class="btn btn-primary" id="addServicioButton">Añadir servicio</button>
+  <div class="bg-image h-100">
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card shadow-2-strong">
+              <div class="card-body">
+                <!-- Botón agregar servicio -->
+                <button type="button" class="btn btn-success btn-sm px-3" data-bs-toggle="modal"
+                  data-bs-target="#modalAgregarServicio">
+                  <i class="uil uil-plus-circle"></i><span> Agregar servicio</span>
+                </button>
+                <div class="modal fade" id="modalAgregarServicio" tabindex="-1" aria-labelledby="modalAgregarServicio"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar servicio</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="inputIdServicio" class="form-label">ID Servicio</label>
+                            <input type="text" class="form-control" id="idServicioDepilacion"
+                              aria-describedby="servicioDepilacionHelp" [value]="nextId" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputNombreServicioDepilacion" class="form-label">Nombre servicio</label>
+                            <input type="text" class="form-control" id="nombreServicioDepilacion">
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputDescripcionServicioDepilacion" class="form-label">Descripción
+                              Servicio</label>
+                            <input type="text" class="form-control" id="descripcionServicioDepilacion">
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputDuracionServicioDepilacion" class="form-label">Duración Servicio</label>
+                            <input type="text" class="form-control" id="duracionServicioDepilacion">
+                            <div id="duracionHelp" class="form-text">Formato: "30 minutos", "60 minutos", "120 minutos"
                             </div>
                           </div>
-                        </div>
+                          <div class="mb-3">
+                            <label for="inputPrecioServicioDepilacion" class="form-label">Precio Servicio</label>
+                            <input type="text" class="form-control" id="precioServicioDepilacion">
+                            <div id="precioHelp" class="form-text">Formato: "$6.000", "$12.000"</div>
+                          </div>
+                        </form>
                       </div>
-                  <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col">SERVICIO</th>
-                          <th scope="col">DESCRIPCION</th>
-                          <th scope="col">DURACION</th>
-                          <th scope="col">PRECIO</th>
-                          <th scope="col" id="boton-editar">EDITAR</th>
-                          <th scope="col" id="boton-eliminar">ELIMINAR</th>
-                        </tr>
-                      </thead>
-                      <tbody  *ngFor="let item of data">
-                        <tr>
-                          <td>{{item.servicio}}</td>
-                          <td>{{item.descripcion}}</td>
-                          <td>{{item.tiempo}}</td>
-                          <td>{{item.precio}}</td>
-                          <td>
-                            <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3">
-                                <i class="uil uil-edit"></i>
-                            </button>
-                          </td>
-                          <td>
-                            <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3" (click)="eliminarServicio(item.id)">
-                                <i class="uil uil-times"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="addServicioButton">Añadir servicio</button>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <!-- Modal editar servicios -->
+                <div class="modal fade" id="modalEditarServicio" tabindex="-1" aria-labelledby="modalEditarServicio" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar servicio</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form #editarServiciosForm="ngForm" (ngSubmit)="handleEditService(editarServiciosForm.value)">
+                          <div class="mb-3">
+                            <label for="inputIdServicio" class="form-label">ID Servicio</label>
+                            <input type="text" class="form-control" id="id-edit-servicio" name="id-edit-servicio" ngModel
+                              aria-describedby="servicioDepilacionHelp" [value]="idServicio" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputNombreServicioDepilacion" class="form-label">Nombre servicio</label>
+                            <input type="text" class="form-control" id="nombre-edit-servicio" name="nombre-edit-servicio" [(ngModel)]="nombreServicio">
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputDescripcionServicioDepilacion" class="form-label">Descripción
+                              Servicio</label>
+                            <input type="text" class="form-control" id="descripcion-edit-servicio" name="descripcion-edit-servicio" [(ngModel)]="descripcionServicio">
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputDuracionServicioDepilacion" class="form-label">Duración Servicio</label>
+                            <input type="text" class="form-control" id="duracion-edit-servicio" name="duracion-edit-servicio" [(ngModel)]="duracionServicio">
+                            <div id="duracionHelp" class="form-text">Formato: "30 minutos", "60 minutos", "120 minutos"
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputPrecioServicioDepilacion" class="form-label">Precio Servicio</label>
+                            <input type="text" class="form-control" id="precio-edit-servicio" name="precio-edit-servicio" [(ngModel)]="precioServicio">
+                            <div id="precioHelp" class="form-text">Formato: "$6.000", "$12.000"</div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="updateServicioButton" (click)="editarServiciosForm.ngSubmit.emit()">Actualizar servicio</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tabla servicios -->
+                <div class="table-responsive">
+                  <table class="table table-borderless mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">SERVICIO</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">DURACION</th>
+                        <th scope="col">PRECIO</th>
+                        <th scope="col" id="boton-editar">EDITAR</th>
+                        <th scope="col" id="boton-eliminar">ELIMINAR</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of data">
+                      <tr>
+                        <td>{{item.servicio}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.tiempo}}</td>
+                        <td>{{item.precio}}</td>
+                        <td>
+                          <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalEditarServicio" (click)="obtenerIdServicio(item.id, item.servicio, item.descripcion, item.tiempo, item.precio)" >
+                            <i class="uil uil-edit"></i>
+                          </button>
+                        </td>
+                        <td>
+                          <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3"
+                            (click)="eliminarServicio(item.id)">
+                            <i class="uil uil-times"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -88,4 +139,5 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
