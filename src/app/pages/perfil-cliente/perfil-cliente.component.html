@@ -1,23 +1,77 @@
-<div class="container-fluid" >
+<div class="container-fluid">
   <div class="row">
     <div class="col-6">
       <div class="profile-card">
-          <div class="profile-avatar">
-            <img src="../../../assets/images/user.png" alt="Avatar">
-            <button class="edit-avatar">Editar Perfil</button>
+        <div class="profile-avatar">
+          <img src="../../../assets/images/user.png" alt="Avatar">
+
+          <button type="button" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-bs-whatever="@fat">Editar Perfil</button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Editar información personal</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="recipient-nombre" class="col-form-label">Nombre</label>
+                      <input type="text" class="form-control" id="recipient-nombre"[placeholder]="nombrePlaceholder">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-apellido" class="col-form-label">Apellido</label>
+                      <input type="text" class="form-control" id="recipient-apellido" [placeholder]="apellidoPlaceholder">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-telefono" class="col-form-label">Teléfono de contacto</label>
+                      <input type="text" class="form-control" id="recipient-telefono" placeholder="{{ telefonoPlaceholder }}"  minlength="8" maxlength="8">
+                    </div>
+                    <div class="input-group mb-3">
+                      <label for="recipient-telefono" class="col-form-label">Seleccione una imagen</label>
+                    </div>
+                    <div>
+                      <input type="file" class="form-control" id="inputGroupFile01">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" onclick="updateDataUser()">Actualizar Cambios</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="profile-info" *ngFor="let user of dataUser">
-            <h2>{{user.nombre}} {{user.apellido}}</h2>
-            <p>Correo electrónico: {{ userEmail }}</p>
-            <p>Teléfono: {{user.telefono}}</p>
-          </div>
-          <div class="profile-actions">
-            <button class="edit-info-btn">Editar Información</button>
-            <button class="change-password">Cambiar Contraseña</button>
-          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="profile-info" *ngFor="let user of dataUser">
+          <h2>{{user.nombre}} {{user.apellido}}</h2>
+          <p>Correo electrónico: {{ userEmail }}</p>
+          <p>Teléfono: {{user.telefono}}</p>
+        </div>
+        <div class="profile-actions">
+          <button class="edit-info-btn">Editar Información</button>
+          <button class="change-password">Cambiar Contraseña</button>
+        </div>
       </div>
     </div>
-    <div class="col-6">        
+    <div class="col-6">
       <div class="profile-card-reserva">
         <h3 id="misreservas">Mis Reservas</h3>
         <div class="reservation">
@@ -43,10 +97,11 @@
         </div>
       </div>
     </div>
-  </div>
+      
+  </div>
 </div>
 
-
+<!-- historial de reserva  -->
 <div class="col">
   <div class="profile-card-reserva-historial">
     <h3>Historial de Reservas Realizadas</h3>
@@ -59,7 +114,7 @@
       </div>
       <div class="comentarios">
         <h5>Comentarios:</h5>
-        <div class="comentario"> 
+        <div class="comentario">
           <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
           <span class="fecha">- 25 de Mayo, 2023</span>
         </div>
@@ -97,28 +152,3 @@
     </div>
   </div>
 </div>
-
-
- 
-  <!--<div class="profile-body">
-      <h3>Mi información personal</h3>
-      <form>
-        <div class="form-group">
-          <label for="name">Nombre</label>
-          <input type="text" id="name" name="name" value="John" required>
-        </div>
-        <div class="form-group">
-          <label for="last-name">Apellido</label>
-          <input type="text" id="last-name" name="last-name" value="Doe" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" value="johndoe@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Teléfono</label>
-          <input type="tel" id="phone" name="phone" value="+1 123456789" required>
-        </div>
-        <button class="save-btn" type="submit">Guardar cambios</button>
-      </form>
-    </div>-->
