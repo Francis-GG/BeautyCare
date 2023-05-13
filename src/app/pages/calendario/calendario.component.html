@@ -22,25 +22,8 @@
           <table class="horarios">
             <tbody>
               <tr>
-                <td>
-                  <button>9:00</button><br><br>
-                  <button>10:00</button><br><br>
-                  <button>11:00</button><br><br>
-                  <button>12:00</button><br><br>
-                  <button>13:00</button><br><br>
-                  <button>14:00</button><br><br>
-                  <button>15:00</button><br><br>
-                  <button>16:00</button><br><br>
-                </td>
-                <td>
-                  <button>9:30</button><br><br>
-                  <button>10:30</button><br><br>
-                  <button>11:30</button><br><br>
-                  <button>12:30</button><br><br>
-                  <button>13:30</button><br><br>
-                  <button>14:30</button><br><br>
-                  <button>15:30</button><br><br>
-                  <button>16:30</button><br><br>
+                <td >
+                  <button *ngFor="let timeSlot of getTimeSlots()" (click)="selectTime(timeSlot)">{{ timeSlot }}</button><br><br>
                 </td>
               </tr>
             </tbody>
@@ -52,13 +35,13 @@
           <h3>Detalle de reserva</h3>
           <p>Nombre del Servicio: "{{itemSeleccionado.servicio}}"</p>
           <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
-          <p>Hora: </p>
+          <p>Hora: {{ selectedTime }} </p>
           <p>Dirección del local: {{dataContacto[0]?.direccion}} </p>
           <p>Profesional: {{ dataEmpleados[0]?.nombre }} </p>
 
           <p>Tiempo: {{itemSeleccionado.tiempo}}</p>
           <p>Precio: {{itemSeleccionado.precio}}</p>
-          <button class="confirmar-reserva">Confirmar reserva</button>
+          <button class="confirmar-reserva" (click)="crearReserva()" >Confirmar reserva</button>
         </div>
       </div>
     </div>
