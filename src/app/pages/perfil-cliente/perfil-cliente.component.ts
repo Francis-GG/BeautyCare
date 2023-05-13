@@ -76,6 +76,7 @@ export class PerfilClienteComponent {
     const telefono = formValue ['telefono-perfil'];
 
     try{
+      console.log(nombre)
       await this.editarPerfil(nombre, apellido, telefono);
       alert('Perfil editado correctamente');
       this.getDataUser();
@@ -84,7 +85,7 @@ export class PerfilClienteComponent {
       console.log('Error al intentar editar el perfil.')
       alert('Error al intentar editar el perfil.')
     }
-  }
+  } 
 
   async editarPerfil(nombre: string, apellido: string, telefono: string){
     const user: User | null = this.auth.currentUser;
