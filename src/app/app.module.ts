@@ -61,7 +61,8 @@ import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluque
 import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ClienteAdminComponent } from './pages/admin/cliente-admin/cliente-admin.component'
 
 
 
@@ -85,7 +86,8 @@ import { FormsModule } from '@angular/forms'
     DepilacionAdminComponent,
     PeluqueriaAdminComponent,
     ManicureAdminComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    ClienteAdminComponent
   ],
   imports: [
     BrowserModule,

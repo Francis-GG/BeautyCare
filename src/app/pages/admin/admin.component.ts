@@ -9,7 +9,11 @@ declare var document: any;
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  constructor(private router: Router, public titleService: Title) { }
+  authErrorMessages: any;
+  constructor(
+    private router: Router,
+    public titleService: Title) { }
+
   ngOnInit() {
     document.addEventListener('DOMContentLoaded', () => {
       const main = document.getElementsByTagName('main')[0];
@@ -25,33 +29,44 @@ export class AdminComponent {
         }
       });
 
-      modeToggle.addEventListener('click', function() {
+      modeToggle.addEventListener('click', function () {
         main.classList.toggle('dark');
       });
-      sidebarToggle.addEventListener('click', function() {
+      sidebarToggle.addEventListener('click', function () {
         sidebar.classList.toggle('close');
       });
       dropdownToggles.forEach((toggle: HTMLElement) => {
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const li = this.parentNode as HTMLElement;
-            if (li) {
-                li.classList.toggle('active');
-            }
+        toggle.addEventListener('click', function (e) {
+          e.preventDefault();
+          const li = this.parentNode as HTMLElement;
+          if (li) {
+            li.classList.toggle('active');
+          }
         });
       });
     });
-    
+
   }
-  private getTitle(state: any , parent: any): string[] {
+  private getTitle(state: any, parent: any): string[] {
     const data = [];
     if (parent && parent.snapshot.data && parent.snapshot.data.title) {
       data.push(parent.snapshot.data.title);
     }
-  
+
     if (state && parent) {
       data.push(...this.getTitle(state, state.firstChild(parent)));
     }
     return data;
   }
+
+
+
+ 
+
+
+
+
+
+
+
 }

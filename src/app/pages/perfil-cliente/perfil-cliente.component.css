@@ -27,15 +27,14 @@
     right: -5px;
     padding: 1px 5px;
     
-    border-color: #3a5f1e89;
-    background-color: #fff;
-    color: #060506;
+    color: #ffffff;
+    background-color:  #0D6EFD;
     border: 0.8px solid #090909;
     cursor: pointer;
   }
 
   .profile-avatar .edit-avatar:hover {
-    background-color: #f0f3f3;
+    background-color: #507dcf;
     transform: scale(1.1);
   }
   
@@ -62,15 +61,16 @@
     margin: 0 10px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #fff;
-    color: #060506;
-    font-weight: bold;
+    color: #ffffff;
+    background-color:  #b25dba;
     cursor: pointer;
+    outline: none;
     
   }
    /* interior de los botones editar y cambiar  */
   .profile-actions button:hover {
-    background-color: #f0f3f3;
+    
+    background-color: #507dcf;
     transform: scale(1.1);
   }
  
