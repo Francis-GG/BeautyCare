@@ -100,24 +100,24 @@ export class PerfilClienteComponent {
 
   // para la contraseña 
 
-  async handleEditarPassword(formValue: any){
-    const nuevaPassword = formValue['nueva-password'];
-    const confirmarPassword = formValue['confirmar-password'];
+//   async handleEditarPassword(formValue: any){
+//     const nuevaPassword = formValue['nueva-password'];
+//     const confirmarPassword = formValue['confirmar-password'];
 
-    try{
-      this.newPassword = nuevaPassword;
-      alert('contraseña actualizada correctamente');
+//     try{
+//       this.newPassword = nuevaPassword;
+//       alert('contraseña actualizada correctamente');
       
-    }catch{
-      console.log('Error al intentar actualizar la constraseña.')
-      alert('Error al intentar  actualizar la constraseña')
-    }
-  }
+//     }catch{
+//       console.log('Error al intentar actualizar la constraseña.')
+//       alert('Error al intentar  actualizar la constraseña')
+//     }
+//   }
 
 
- updatePassword(user, newPassword){
+//  updatePassword(user, newPassword){
   
- } 
+//  } 
 }
   
 

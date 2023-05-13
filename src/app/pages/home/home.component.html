@@ -22,15 +22,40 @@
       </button>
     </div>
   </div>
-  <div class="container" id="cards-servicios">
-  <div class="row">
-    <div class="col-sm-4" *ngFor="let item of data">
-      <div class="image-item text-center" >
-        <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}" routerLink="{{item.ruta}}">
-          <button type="button" class="btn btn-outline-light" id="titulo_servicios" routerLink="{{item.ruta}}">{{item.nombre}}</button>
-          <p>{{item.descripcion}}</p>
+
+  <!-- servicios -->
+  <div>
+    <h2 class="tituloLogo"> ~ BeautyCare ~ </h2>
+  </div>
+  <div>
+    <h1 class="tituloServicios">NUESTROS SERVICIOS</h1>
+  </div>
+  <div class="espacio"></div>
+  <div id="cards-servicios">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let item of data">
+        <div class="image-item text-center">
+          <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
+            routerLink="{{item.ruta}}">
+          <button type="button" class="btn btn-outline-light" id="titulo_servicios"
+            routerLink="{{item.ruta}}">{{item.nombre}}</button>
+          <p class="descrpservicios">{{item.descripcion}}</p>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="agendar">
+    <h2 class="tituloAgenda">Agenda tu <br>Hora</h2>
+    <div>
+      <h1 class="tituloLogo2">BeautyCare </h1>
+    </div>
+    <div class="logoAgenda">
+      <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
+    </div>
+    <p class="descripagendar"> Queremos hacer tu vida más fácil, por eso te invitamos a agendar tu hota de manera rápida
+      y cómoda pinchando aquí </p>
+    <button class="btn-agenda"> Agendar</button>
+
   </div>
 </div>
