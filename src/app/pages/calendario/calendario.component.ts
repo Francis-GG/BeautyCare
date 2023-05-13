@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { formatDate } from '@angular/common';
-import { Firestore, doc, getDocs, collection } from '@angular/fire/firestore';
+import { Firestore, doc, getDocs, collection, setDoc } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DateFilterFn } from '@angular/material/datepicker';
+import { addDoc } from 'firebase/firestore';
 
 
 
@@ -23,9 +23,21 @@ export class CalendarioComponent {
   minDate!: Date;
   maxDate!: Date;
   selected!: Date | null;
+  timeSlots: string[][] = [
+    [], // Sunday (not used)
+    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
+    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
+    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
+    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
+    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
+    ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30' ,'17:00', '17:30'], // Saturday
+  ];
+  selectedTime: string | null = null;
+
+
   myFilter = (d: Date | null): boolean => {
     if (d === null) {
-      return false; // or any other default behavior
+      return false;
     }
     const day = d.getDay();
     return day !== 0;
@@ -36,12 +48,22 @@ export class CalendarioComponent {
   dateFilter!: DateFilterFn<Date>
 
 
-  constructor(private router: Router, public firestore: Firestore){
+  constructor(public auth: Auth, private router: Router, public firestore: Firestore){
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
     this.itemSeleccionado = navigation?.extras.state["data"];
     this.getData();
   }
+  }
+
+
+  getTimeSlots(): string[] {
+    const selectedDay = this.selected?.getDay() || 0; // Sunday is 0
+    return this.timeSlots[selectedDay];
+  }
+
+  selectTime(time: string) {
+    this.selectedTime = time;
   }
 
 
@@ -52,16 +74,32 @@ export class CalendarioComponent {
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 3);
     this.maxDate = maxDate;
-    
   }
+  
 
-  onDateSelected(selected: Date): void {
-    this.selectedFormatted = formatDate(selected, 'EEEE d \'de\' MMMM \'de\' y', 'es-CL');
+  async crearReserva() {
+    try {
+      const user = this.auth.currentUser;
+      if (user && this.itemSeleccionado) {
+        const reservaData = {
+          servicio: this.itemSeleccionado?.servicio,
+          fecha: this.selected?.toLocaleDateString(),
+          hora: this.selectedTime,
+          profesional: this.dataEmpleados[0]?.nombre || '',
+          tiempo: this.itemSeleccionado.tiempo || '',
+          precio: this.itemSeleccionado.precio || '',
+        };
+        const reservaCollectionRef = collection(this.firestore, `users/${user?.uid}/reservas`);
+        await addDoc(reservaCollectionRef, reservaData);
+      }
+    } catch (error) {
+      console.error('Error al crear la reserva', error);
+    }
   }
-
-
+  
 
   getData(){
+    
     // Busca los atributos de contacto de la coleccion contacto
     const dbInstance = collection(this.firestore, 'contacto');
     getDocs(dbInstance)
