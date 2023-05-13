@@ -6,7 +6,7 @@
           <img src="../../../assets/images/user.png" alt="Avatar">
 
           <button type="button" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            data-bs-whatever="@fat" >Editar Perfil</button>
+            data-bs-whatever="@fat">Editar Perfil</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -20,15 +20,18 @@
                   <form #editarPerfilForm="ngForm" (ngSubmit)="handleEditarPerfil(editarPerfilForm.value)">
                     <div class="mb-3">
                       <label for="recipient-nombre" class="col-form-label">Nombre</label>
-                      <input type="text" class="form-control" id="nombre-perfil" name="nombre-perfil" [(ngModel)]="nombrePerfil">
+                      <input type="text" class="form-control" id="nombre-perfil" name="nombre-perfil"
+                        [(ngModel)]="nombrePerfil">
                     </div>
                     <div class="mb-3">
                       <label for="recipient-apellido" class="col-form-label">Apellido</label>
-                      <input type="text" class="form-control" id="apellido-perfil" name="apellido-perfil" [(ngModel)]="apellidoPerfil">
+                      <input type="text" class="form-control" id="apellido-perfil" name="apellido-perfil"
+                        [(ngModel)]="apellidoPerfil">
                     </div>
                     <div class="mb-3">
                       <label for="recipient-telefono" class="col-form-label">Teléfono de contacto</label>
-                      <input type="text" class="form-control" id="telefono-perfil" name="telefono-perfil" [(ngModel)]="telefonoPerfil"  minlength="8" maxlength="8">
+                      <input type="text" class="form-control" id="telefono-perfil" name="telefono-perfil"
+                        [(ngModel)]="telefonoPerfil" minlength="8" maxlength="8">
                     </div>
                     <div class="input-group mb-3">
                       <label for="recipient-imagen" class="col-form-label">Seleccione una imagen</label>
@@ -39,9 +42,10 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editarPerfilForm.ngSubmit.emit()">Actualizar Cambios</button>
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="editarPerfilForm.ngSubmit.emit()">Actualizar Cambios</button>
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                  
+
                 </div>
               </div>
             </div>
@@ -49,7 +53,7 @@
         </div>
 
 
-<!-- muestra la informacion del usuario debajo del avatar -->
+        <!-- muestra la informacion del usuario debajo del avatar -->
         <div class="profile-info" *ngFor="let user of dataUser">
           <h2>{{user.nombre}} {{user.apellido}}</h2>
           <p>Correo electrónico: {{ userEmail }}</p>
@@ -57,20 +61,21 @@
         </div>
         <div class="profile-actions">
           <button class="edit-info-btn">Cambiar correo electrónico</button>
-          <button class="change-password" data-bs-toggle="modal" data-bs-target="#cambiarPasswordModal">Cambiar Contraseña</button>
-           </div>
+          <button class="change-password" data-bs-toggle="modal" data-bs-target="#cambiarPasswordModal">Cambiar
+            Contraseña</button>
+        </div>
       </div>
-          <div class="modal fade" id="cambiarPasswordModal" tabindex="-1" aria-labelledby="cambiarPasswordModal"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Editar contraseña</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
-                  <!-- <form #editarPasswordForm="ngForm" (ngSubmit)="handleEditarPassword(EditarPasswordForm.value)">
+      <div class="modal fade" id="cambiarPasswordModal" tabindex="-1" aria-labelledby="cambiarPasswordModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar contraseña</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
+              <!-- <form #editarPasswordForm="ngForm" (ngSubmit)="handleEditarPassword(EditarPasswordForm.value)">
                     <div class="mb-3">
                       <label for="recipient-nombre" class="col-form-label">Nueva Contraseña </label>
                       <input type="text" class="form-control" id="nueva-password" name="nueva-password" [(ngModel)]="nueva-password">
@@ -86,92 +91,92 @@
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                   
                 </div> -->
-              </div>
             </div>
           </div>
-
-
-
-
-    </div>
-    <div class="col-6">
-      <div class="profile-card-reserva">
-        <h3 id="misreservas">Mis Reservas</h3>
-        <div class="reservation">
-          <h4>Reserva #1</h4>
-          <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
-          <p class="date"><strong>Fecha:</strong> 22 de Mayo, 2023</p>
-          <p class="time"><strong>Hora:</strong> 10:00 AM</p>
-          <button class="cancel-btn">Cancelar reserva</button>
         </div>
-        <div class="reservation">
-          <h4>Reserva #2</h4>
-          <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
+
+
+
+
+      </div>
+      <div class="col-6">
+        <div class="profile-card-reserva">
+          <h3 id="misreservas">Mis Reservas</h3>
+          <div class="reservation">
+            <h4>Reserva #1</h4>
+            <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
+            <p class="date"><strong>Fecha:</strong> 22 de Mayo, 2023</p>
+            <p class="time"><strong>Hora:</strong> 10:00 AM</p>
+            <button class="cancel-btn">Cancelar reserva</button>
+          </div>
+          <div class="reservation">
+            <h4>Reserva #2</h4>
+            <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
+            <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+            <p class="time"><strong>Hora:</strong> 3:00 PM</p>
+            <button class="cancel-btn">Cancelar reserva</button>
+          </div>
+          <div class="reservation">
+            <h4>Reserva #3</h4>
+            <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
+            <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
+            <p class="time"><strong>Hora:</strong> 11:00 AM</p>
+            <button class="cancel-btn">Cancelar reserva</button>
+          </div>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+
+  <!-- historial de reserva  -->
+  <div class="col">
+    <div class="profile-card-reserva-historial">
+      <h3>Historial de Reservas Realizadas</h3>
+      <div class="reservation">
+        <h4>Reserva #1</h4>
+        <div class="details">
+          <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
           <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
           <p class="time"><strong>Hora:</strong> 3:00 PM</p>
-          <button class="cancel-btn">Cancelar reserva</button>
         </div>
-        <div class="reservation">
-          <h4>Reserva #3</h4>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
+            <span class="fecha">- 25 de Mayo, 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="reservation">
+        <h4>Reserva #2</h4>
+        <div class="details">
+          <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
+          <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+          <p class="time">Hora: 3:00 PM</p>
+        </div>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "Excelente servicio, lo recomiendo."
+            <span class="fecha">- 30 de Mayo, 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="reservation">
+        <h4>Reserva #3</h4>
+        <div class="details">
           <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
           <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
           <p class="time"><strong>Hora:</strong> 11:00 AM</p>
-          <button class="cancel-btn">Cancelar reserva</button>
         </div>
-      </div>
-    </div>
-      
-  </div>
-</div>
-
-<!-- historial de reserva  -->
-<div class="col">
-  <div class="profile-card-reserva-historial">
-    <h3>Historial de Reservas Realizadas</h3>
-    <div class="reservation">
-      <h4>Reserva #1</h4>
-      <div class="details">
-        <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
-        <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-        <p class="time"><strong>Hora:</strong> 3:00 PM</p>
-      </div>
-      <div class="comentarios">
-        <h5>Comentarios:</h5>
-        <div class="comentario">
-          <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
-          <span class="fecha">- 25 de Mayo, 2023</span>
-        </div>
-      </div>
-    </div>
-    <div class="reservation">
-      <h4>Reserva #2</h4>
-      <div class="details">
-        <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
-        <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-        <p class="time">Hora: 3:00 PM</p>
-      </div>
-      <div class="comentarios">
-        <h5>Comentarios:</h5>
-        <div class="comentario">
-          <strong>Usuario:</strong> "Excelente servicio, lo recomiendo."
-          <span class="fecha">- 30 de Mayo, 2023</span>
-        </div>
-      </div>
-    </div>
-    <div class="reservation">
-      <h4>Reserva #3</h4>
-      <div class="details">
-        <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
-        <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
-        <p class="time"><strong>Hora:</strong> 11:00 AM</p>
-      </div>
-      <div class="comentarios">
-        <h5>Comentarios:</h5>
-        <div class="comentario">
-          <strong>Usuario:</strong> "No me gustó el resultado, esperaba algo mejor."
-          <span class="fecha">- 3 de Junio, 2023</span>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "No me gustó el resultado, esperaba algo mejor."
+            <span class="fecha">- 3 de Junio, 2023</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

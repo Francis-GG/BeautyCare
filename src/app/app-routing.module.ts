@@ -15,6 +15,7 @@ import { DepilacionAdminComponent } from './pages/admin/depilacion-admin/depilac
 import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluqueria-admin.component';
 import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
+import { ClienteAdminComponent } from './pages/admin/cliente-admin/cliente-admin.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -57,8 +58,11 @@ const routes: Routes = [
       { path: 'servicios/depilacion', component: DepilacionAdminComponent, data: { title: 'Depilación' } },
       { path: 'servicios/peluqueria', component: PeluqueriaAdminComponent, data: { title: 'Peluquería' } },
       { path: 'servicios/manicure', component: ManicureAdminComponent, data: { title: 'Manicure' } },
-    ]
-  },
+      // { path: '/reservas', component: ReservasComponent, data: {title: 'Reservas'}},
+      { path: '/cliente-admin', component: ClienteAdminComponent, data: {title: 'Cliente-admin'} },  
+      
+     ]
+    },
 ];
 
 @NgModule({

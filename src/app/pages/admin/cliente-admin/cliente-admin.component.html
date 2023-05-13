@@ -1,0 +1,60 @@
+<body>
+    <section>
+
+        <div class="card">
+            
+               
+            <header>Regístrar clientes</header>
+            <!-- debo poner la funcion que registra clientes -->
+            <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+                <input id="email-registro" name="email" ngModel placeholder="Email" type="email" class="input-field" />
+                <input id="password-registro" name="password" ngModel placeholder="Contraseña" id="password"
+                    type="password" class="input-field" />
+                <div class="input-group">
+                    <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" id="nombre" type="text"
+                        class="form-control" />
+
+                    <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" id="apellido"
+                        type="texto" class="form-control" />
+                </div>
+                <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " id="telefono"
+                    type="text" class="input-field" />
+                <input type="submit" value="Guardar" />
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="table-responsive">
+            <table class="table table-borderless mb-0">
+                <thead >
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col" id="boton-editar">EDITAR</th>
+                    <th scope="col" id="boton-eliminar">ELIMINAR</th>
+                  </tr>
+                </thead>  
+                <tbody *ngFor="let item of data">
+                    <tr>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.apellido }}</td>
+                        <td>{{ item.telefono }}</td>
+                        <td>
+                            <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
+                                <i class="uil uil-edit"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3">
+                                <i class="uil uil-times"></i>
+                            </button>
+                          </td>
+                    </tr>
+                </tbody>  
+            </table>
+
+        </div>
+    </section>
+</body>
