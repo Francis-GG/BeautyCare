@@ -59,7 +59,7 @@ const routes: Routes = [
       { path: 'servicios/peluqueria', component: PeluqueriaAdminComponent, data: { title: 'Peluquería' } },
       { path: 'servicios/manicure', component: ManicureAdminComponent, data: { title: 'Manicure' } },
       // { path: '/reservas', component: ReservasComponent, data: {title: 'Reservas'}},
-      { path: '/cliente-admin', component: ClienteAdminComponent, data: {title: 'Cliente-admin'} },  
+      { path: 'cliente-admin', component: ClienteAdminComponent, data: {title: 'Cliente-admin'} },  
       
      ]
     },
