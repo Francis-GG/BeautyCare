@@ -102,26 +102,12 @@
       <div class="col-6">
         <div class="profile-card-reserva">
           <h3 id="misreservas">Mis Reservas</h3>
-          <div class="reservation">
-            <h4>Reserva #1</h4>
-            <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
-            <p class="date"><strong>Fecha:</strong> 22 de Mayo, 2023</p>
-            <p class="time"><strong>Hora:</strong> 10:00 AM</p>
-            <button class="cancel-btn">Cancelar reserva</button>
-          </div>
-          <div class="reservation">
-            <h4>Reserva #2</h4>
-            <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
-            <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-            <p class="time"><strong>Hora:</strong> 3:00 PM</p>
-            <button class="cancel-btn">Cancelar reserva</button>
-          </div>
-          <div class="reservation">
-            <h4>Reserva #3</h4>
-            <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
-            <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
-            <p class="time"><strong>Hora:</strong> 11:00 AM</p>
-            <button class="cancel-btn">Cancelar reserva</button>
+          <div class="reservation" *ngFor="let reserva of dataReservas; let i = index">
+            <h4>Reserva #{{ i + 1 }}</h4>
+            <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
+            <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+            <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
+            <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar reserva</button>
           </div>
         </div>
       </div>
