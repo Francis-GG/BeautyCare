@@ -12,6 +12,8 @@ import { Auth } from '@angular/fire/auth';
 export class NavbarComponent implements AfterViewInit, OnInit {
   public data: any = [];
   private subMenu!: HTMLElement;
+  public loggedIn= false;
+  public avatarUrl: string | null = null;
 
   constructor(public auth: Auth, public firestore: Firestore, private router: Router) {
     this.subMenu = document.getElementById("subMenu")!
@@ -62,6 +64,8 @@ export class NavbarComponent implements AfterViewInit, OnInit {
         if (docSnapshot.exists()) {
           const userData = { ...docSnapshot.data(), id: docSnapshot.id };
           this.data = [userData];
+          this.loggedIn = true; // asigna el valor de loggedIn a true
+          this.avatarUrl = this.data[0].avatarUrl; // establece la URL de la imagen del avatar del usuario
           console.log('nombre de usuario: ' + this.data[0].nombre);
         
         }

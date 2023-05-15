@@ -3,20 +3,17 @@
 *{
     margin: 0;
     padding: 0;
-    font-family:'Times New Roman', Times, serif;
-    font-size: 25px;
     box-sizing: border-box;
 }
 .hero{
     width: 100%;
     min-height: 10vh;
     background: #eceaff;
-    color: #7d0d6ca9;
 }
 nav{
     background:rgba(146, 48, 185, 0.53);
-    width: 100%;
-    padding: 10px 5%;
+    /* width: 100%; */
+    padding: 10px 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,17 +25,12 @@ nav{
     cursor: pointer;
 }
 
-@media (max-width: 500.98px) {
-    nav ul li a{
-        display: flexbox;
-        margin: 1px 2px;      
-    }
-}
+
 .logo{
     width: 90px;
     border-radius: 50%;
     cursor: pointer;
-    margin-left: 5px;
+    margin: 5px 10px;
 
 }
 .logo:hover{
@@ -55,20 +47,26 @@ nav{
     transform: scale(1.1);
 }
 nav ul{
-    width: 100%;
+    display: flex;
     text-align: center;
+    font-size: 1.8rem;
+    font-family: 'Times New Roman', Times, serif;
+    
 }
 
 nav ul li{
     display: inline-block;
     list-style: none;
-    margin: 10px 20px;
+    margin: 10px 10px;
    
 }
 
 nav ul li a{
-    color: #fff;
     text-decoration: none;
+        font-style: italic;
+        margin-bottom: 20px;
+        color: #fcfcfc;
+        text-shadow: 1px 1px 3px black;
 }
 
 nav ul li:hover{
@@ -76,7 +74,7 @@ nav ul li:hover{
 }
 
 nav ul li a:hover{
-    color: yellow;
+    color: rgb(196, 187, 196);
 }
 
 .sub-menu-wrap{
@@ -91,6 +89,8 @@ nav ul li a:hover{
 .sub-menu-wrap.open-menu{
     max-height: 400px;
 }
+
+/* esto es la imagen que esta den el menu desplegable*/
 .sub-menu{
     background: #fff;
     padding: 20px;
@@ -113,6 +113,8 @@ nav ul li a:hover{
     border: 0;
     height: 1px;
     width: 100%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+   font-family: 'Times New Roman', Times, serif;
     background: #ccc;
     margin: 15px 0 10px;
 }
@@ -146,3 +148,109 @@ nav ul li a:hover{
 
 }
 
+.btn-login {
+    display: inline-block;
+    padding: 2px 2px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #35a04c;
+    border: none;
+    border-radius: 2em;
+    box-shadow: -5px 15px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-style: italic;
+    color: #fcfcfc;
+    text-shadow: 1px 1px 3px black;
+  }
+  
+  .btn-login:hover {
+    background-color: #C10079;
+    transform: scale(1.1);
+}
+  
+
+
+/* para pantallas grandes  */
+@media (min-width: 768px) {
+
+    nav{
+        background:rgba(146, 48, 185, 0.53);
+        /* width: 100%; */
+        padding: 10px 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+    }
+    nav ul{
+        width: auto;
+        text-align: center;
+        font-size: 3.0rem;
+        font-family: 'Times New Roman', Times, serif;
+        padding: auto;
+    }
+
+    nav ul li{
+        display: inline-block;
+        list-style: none;
+        margin: 10px 20px;      
+    }
+    nav ul li a{
+        
+        text-decoration: none;
+        font-style: italic;
+        margin-bottom: 20px;
+        color: #fcfcfc;
+        text-shadow: 1px 1px 3px black;
+        
+        
+    }
+
+    nav ul li:hover{
+        transform: scale(1.1);
+    }
+
+    nav ul li a:hover{
+        color: rgb(196, 187, 196);
+    }
+
+
+    .btn-login {
+        display: inline-block;
+        padding: 20px 20px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #35a04c;
+        border: none;
+        border-radius: 2em;
+        box-shadow: -5px 15px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-style: italic;
+        color: #fcfcfc;
+        text-shadow: 1px 1px 3px black;
+      }
+      
+      .btn-login:hover {
+        background-color: #C10079;
+        transform: scale(1.1);
+    }
+
+    .logo{
+        width: 110px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-left: 5px;
+    
+    }
+    .logo:hover{
+        transform: scale(1.1);
+    }
+
+}

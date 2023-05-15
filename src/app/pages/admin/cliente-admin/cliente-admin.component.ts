@@ -10,6 +10,10 @@ import { Firestore, collection, doc, getDocs, setDoc } from '@angular/fire/fires
 export class ClienteAdminComponent {
   authErrorMessages: any;
   public data: any = [];
+  public idUsers: string = '';
+  public nombreCliente: string = '';
+  public apellidoCliente: string = '';
+  public telefonoCliente: string = '';
 
 constructor (   
   public auth: Auth,
@@ -24,6 +28,7 @@ constructor (
         console.log(response.user);
         this.registerUserData(value.nombre, value.apellido, value.telefono);
         this.getData();
+
         })
       .catch((err) => {
         const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al registrarse.';
@@ -36,6 +41,8 @@ constructor (
       const user = this.auth.currentUser;
       const userDocRef = doc(this.firestore, `users/${user?.uid}`);
       setDoc(userDocRef, { nombre, apellido, telefono });
+      alert('usuario registrado: ' + nombre)
+      console.log('usuario registrado: ' + nombre);
       return true;
     } catch (error) {
       console.log(error);
@@ -49,6 +56,7 @@ constructor (
       .then((querySnapshot) => {
         this.data = querySnapshot.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
+
         });
       })
       .catch((error) => {
@@ -57,14 +65,48 @@ constructor (
   }
 
 
+  obtenerIdCliente(idUsers: string, nombreCliente: string, apellidoCliente: string, telefonoCliente: string) {
+    this.idUsers = idUsers;
+    this.nombreCliente = nombreCliente;
+    this.apellidoCliente = apellidoCliente;
+    this.telefonoCliente = telefonoCliente;
+  }
 
 
 
+
+  // editar con modal
+  //eliminar sin modal con alerta ??
+
+  async editarCliente(nombre: string, apellido: string, telefono: string) {
+    try{
+      const serviceDocRef = doc(this.firestore, `users/${this.idUsers}`);
+
+      setDoc(serviceDocRef, {nombre, apellido, telefono});
+      return true;
+    } catch (error) {
+      console.log('Error al intentar editar el cliente:', error);
+      return false;
+    }   
+  }
   
+  async handleEditCliente(formValue: any) {    
+    const nombre = formValue['nombre-edit'];
+    const apellido = formValue['apellido-edit'];
+    const telefono = formValue['telefono-edit'];
+    try{
+      await this.editarCliente(nombre, apellido, telefono);
+      alert('cliente actualizado correctamente')
+      this.getData();
+    }catch(error){
+      console.log('Error al intentar actualizar el cliente:', error);
+      alert('Error al intentar actualizar el cliente');
+    }
+  }
+
 
 
 }
-
 
 
 

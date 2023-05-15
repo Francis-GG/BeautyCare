@@ -1,60 +1,168 @@
-<body>
-    <section>
+<div class="container text-center">
+    <div class="row">
+        <div class="col col-md-6 col-sm-6 col-xs-12">
+            <div class="card">
+                <header>Regístrar clientes</header>
+                <!-- debo poner la funcion que registra clientes -->
+                <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+                    <input id="email-registro" name="email" ngModel placeholder="Email" type="email"
+                        class="input-field" />
+                    <input id="password-registro" name="password" ngModel placeholder="Contraseña" id="password"
+                        type="password" class="input-field" />
+                    <div class="input-group">
+                        <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" id="nombre" type="text"
+                            class="form-control" />
 
-        <div class="card">
-            
-               
-            <header>Regístrar clientes</header>
-            <!-- debo poner la funcion que registra clientes -->
-            <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
-                <input id="email-registro" name="email" ngModel placeholder="Email" type="email" class="input-field" />
-                <input id="password-registro" name="password" ngModel placeholder="Contraseña" id="password"
-                    type="password" class="input-field" />
-                <div class="input-group">
-                    <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" id="nombre" type="text"
-                        class="form-control" />
-
-                    <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" id="apellido"
-                        type="texto" class="form-control" />
+                        <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" id="apellido"
+                            type="texto" class="form-control" />
+                    </div>
+                    <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " id="telefono"
+                        type="text" class="input-field" />
+                    <input type="submit" value="Guardar" />
+                </form>
+            </div>
+        </div>
+        <div class="col col-md-6 col-sm-6 col-xs-12">
+            <div class="card">
+                <div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="modalEditarCliente"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cliente</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form #editarclienteForm="ngForm"
+                                    (ngSubmit)="handleEditCliente(editarclienteForm.value)">
+                                    <div class="mb-3">
+                                        <label for="inputNombreCliente" class="form-label">Nombre
+                                            Cliente</label>
+                                        <input type="text" class="form-control" id="nombre-edit" name="nombre-edit"
+                                            [(ngModel)]="nombreCliente">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputApellidocliente" class="form-label">Apellido </label>
+                                        <input type="text" class="form-control" id="apellido-edit" name="apellido-edit"
+                                            [(ngModel)]="apellidoCliente">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="inputtelfonoCliente" class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono-edit" name="telefono-edit"
+                                            [(ngModel)]="telefonoCliente">
+                                        <div id="telefonoHelp" class="form-text">Formato: "+569 "</div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    id="updateClienteButton" (click)="editarclienteForm.ngSubmit.emit()">Actualizar
+                                    cliente</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " id="telefono"
-                    type="text" class="input-field" />
-                <input type="submit" value="Guardar" />
-            </form>
-        </div>
-    </section>
+                <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col" id="boton-editar">EDITAR</th>
 
-    <section>
+                                <th scope="col" id="boton-eliminar">ELIMINAR</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of data">
+                            <tr>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.apellido }}</td>
+                                <td>{{ item.telefono }}</td>
+                                <td>
+                                    <button title="Editar cliente" type="button" class="btn btn-warning btn-sm px-3"
+                                        data-bs-toggle="modal" data-bs-target="#modalEditarCliente"
+                                        (click)="obtenerIdCliente(item.id, item.nombre, item.apellido, item.telefono)">
+                                        <i class="uil uil-edit"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button title="Eliminar cliente" type="button" class="btn btn-danger btn-sm px-3">
+                                        <i class="uil uil-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- 
+<div class="container mt-5 text-center">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <header>Regístrar clientes</header>
+          <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+            <input id="email-registro" name="email" ngModel placeholder="Email" type="email" class="input-field" />
+            <input id="password-registro" name="password" ngModel placeholder="Contraseña" id="password"
+              type="password" class="input-field" />
+            <div class="input-group">
+              <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" id="nombre" type="text"
+                class="form-control" />
+  
+              <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" id="apellido"
+                type="texto" class="form-control" />
+            </div>
+            <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " id="telefono"
+              type="text" class="input-field" />
+            <input type="submit" value="Guardar" />
+          </form>
+        </div>
+      </div>
+      <div class="col">
         <div class="table-responsive">
-            <table class="table table-borderless mb-0">
-                <thead >
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col" id="boton-editar">EDITAR</th>
-                    <th scope="col" id="boton-eliminar">ELIMINAR</th>
-                  </tr>
-                </thead>  
-                <tbody *ngFor="let item of data">
-                    <tr>
-                        <td>{{ item.nombre }}</td>
-                        <td>{{ item.apellido }}</td>
-                        <td>{{ item.telefono }}</td>
-                        <td>
-                            <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalEditarServicio">
-                                <i class="uil uil-edit"></i>
-                            </button>
-                          </td>
-                          <td>
-                            <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3">
-                                <i class="uil uil-times"></i>
-                            </button>
-                          </td>
-                    </tr>
-                </tbody>  
-            </table>
-
+          <table class="table table-borderless mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Telefono</th>
+                <th scope="col" id="boton-editar">EDITAR</th>
+                <th scope="col" id="boton-eliminar">ELIMINAR</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of data">
+              <tr>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.apellido }}</td>
+                <td>{{ item.telefono }}</td>
+                <td>
+                  <button title="Editar servicio" type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="modal"
+                    data-bs-target="#modalEditarServicio">
+                    <i class="uil uil-edit"></i>
+                  </button>
+                </td>
+                <td>
+                  <button title="Eliminar servicio" type="button" class="btn btn-danger btn-sm px-3">
+                    <i class="uil uil-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </section>
-</body>
+      </div>
+    </div>
+  </div>
+   -->
