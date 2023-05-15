@@ -74,6 +74,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       }
     } else {
       console.log('No authenticated user.');
+      
     }
   }
 
@@ -83,6 +84,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       this.router.navigate(['/login']);
       console.log('adiosito! con éxito;')
       alert(`Adios!` + this.data[0].nombre); 
+      this.loggedIn = false;
     }).catch((error) => {
       console.log('Error during sign out:', error);
     });

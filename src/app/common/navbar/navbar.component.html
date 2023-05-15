@@ -59,7 +59,7 @@
             <ng-template #defaultAvatar>
               <img title="imagen-usuario" src="../../../assets/images/user.png" alt="Imagen predeterminada de usuario">
             </ng-template>
-            <h3>{{data[0].nombre}} {{data[0].apellido}}</h3>
+            <h3 id="user-info">{{data[0].nombre}} {{data[0].apellido}}</h3>
             <hr>
             <a href="#" class="sub-menu-link" routerLink="/perfil-cliente">
               <img title="icono-perfil" src="../../../assets/images/profile.png" alt="Icono de edición de perfil">
@@ -74,7 +74,7 @@
       </div>
 
       
-      <div class="user-info" *ngIf="data.length === 0">
+      <div  *ngIf="data.length === 0">
         <button class="btn-login " routerLink="/login">
           Iniciar Sesión
         </button>
