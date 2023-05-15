@@ -6,7 +6,7 @@
         <li><a routerLink="/"> Inicio</a></li>
         <li><a routerLink="/servicios/depilacion"> Servicios</a></li>
         <li><a routerLink="/contacto"> Contacto</a></li>
-        <li><a routerLink="/preguntfrecuent">Preguntas Frecuentes</a></li>
+        <!-- <li><a routerLink="/preguntfrecuent">Preguntas Frecuentes</a></li> -->
       </ul>
       <img title="imagen-usuario" src="../../../assets/images/user.png" class="user-pic" (click)="toggleMenu()">
       <div class="sub-menu-wrap" id="subMenu">
@@ -21,14 +21,14 @@
             <img title="icono-perfil" src="../../../assets/images/profile.png">
             <p>Editar Perfil</p>
           </a>
-          <a href="#" class="sub-menu-link">
+          <!-- <a href="#" class="sub-menu-link">
             <img title="icono-configuracion" src="../../../assets/images/setting.png">
             <p>Configuración</p>
             
-          </a>
-          <a (click)="signOut()" class="sub-menu-link">
+          </a> -->
+          <a  class="sub-menu-link">
             <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png">
-            <p>Cerrar Sesión</p>
+            <p (click)="signOut()">Cerrar Sesión</p>
           </a>
         </div>
       </div>

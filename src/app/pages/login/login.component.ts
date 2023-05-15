@@ -29,7 +29,13 @@ export class LoginComponent {
     createUserWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
       console.log(response.user);
-      this.registerUserData( value.nombre, value.apellido, value.telefono); 
+      this.registerUserData( value.nombre, value.apellido, value.telefono);
+      alert(`Registro exitoso! Bienvenido ${value.nombre}!`); 
+      if(response.user.email?.includes('@admin.cl')){
+        this.router.navigate(['admin']);
+      }else{
+        this.router.navigate(['']);
+      }
       
       
     })
@@ -43,7 +49,12 @@ export class LoginComponent {
     signInWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
       console.log(response.user);
-      this.router.navigate(['']);
+      alert(`Bienvenido ${value.nombre}!`); 
+      if(response.user.email?.includes('@admin.cl')){
+        this.router.navigate(['admin']);
+      }else{
+        this.router.navigate(['']);
+      }
 
       })
       .catch((err) => {

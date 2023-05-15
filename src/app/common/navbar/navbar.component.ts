@@ -74,11 +74,16 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   }
 
   // //funcion para cerrar sesion
-  signOut() {
+  async signOut() {
     this.auth.signOut().then(() => {
       this.router.navigate(['/login']);
+      console.log('adiosito! con éxito;')
+      alert(`Adios!` + this.data[0].nombre); 
     }).catch((error) => {
       console.log('Error during sign out:', error);
     });
   }
+
+
+
 }  

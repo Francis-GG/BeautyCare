@@ -47,7 +47,9 @@ nav label{
   transition: all 0.3s ease;
 }
 nav label:hover{
-background: rgba(142, 68, 173, 0.3);
+color: #0a0101;
+font-weight: bold;
+background: rgba(102, 27, 134, 0.3);
 }
 nav label i{
   margin-right: 4px;
