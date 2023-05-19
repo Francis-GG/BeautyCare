@@ -1,11 +1,12 @@
 body{
-   background-image: url("../assets/images/fondo3.png") ;
+    /* cambié la foto a una mas intensa  */
+   background-image: url("../assets/images/fondoIntenso.png") ;
    background-repeat: no-repeat;
    background-size: cover;     
 }
 
 .container{
-    max-width: 100%;
+    max-width: 90%;
     background-image: url("../assets/images/fondo3.png") ;
     background-repeat: no-repeat;
     background-size: cover;    
