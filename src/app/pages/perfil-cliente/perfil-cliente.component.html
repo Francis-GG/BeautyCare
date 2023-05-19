@@ -56,7 +56,7 @@
         <!-- muestra la informacion del usuario debajo del avatar -->
         <div class="profile-info" *ngFor="let user of dataUser">
           <h2>{{user.nombre}} {{user.apellido}}</h2>
-          <p>Correo electrónico: {{ userEmail }}</p>
+          <p>Correo electrónico: {{user.email}}</p>
           <p>Teléfono: {{user.telefono}}</p>
         </div>
         <div class="profile-actions">

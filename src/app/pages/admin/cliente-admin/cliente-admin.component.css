@@ -35,7 +35,7 @@
 }
 
 input[type="submit"] {
-  background-color: #007bff;
+  background-color: #0bc11a;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -202,4 +202,34 @@ table-sm td,
 .btn-sm:not(:disabled):not(.disabled):focus {
   box-shadow: none;
   outline: none;
+}
+
+
+
+/* botones del modal  */
+#updateClienteButton{
+  background-color: #0bc11a;
+  border: none;
+
+}
+#updateClienteButton:hover{
+  background-color: #04470a;
+  border: none;
+}
+
+#cancelareditar{
+  background-color: #c10e0b;
+  border: none;
+
+}
+#cancelareditar:hover{
+  background-color: #470404;
+  border: none;
+}
+
+#telefonoHelp{
+  text-align: left;
+}
+#emialnoHelp{
+  text-align: left;
 }

@@ -14,7 +14,10 @@ declare var document: any;
 })
 export class LoginComponent {
   
-  constructor(public auth: Auth, private router: Router, public firestore: Firestore){
+  constructor(
+    public auth: Auth, 
+    private router: Router, 
+    public firestore: Firestore){
 
   }
 
@@ -29,7 +32,7 @@ export class LoginComponent {
     createUserWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
       console.log(response.user);
-      this.registerUserData( value.nombre, value.apellido, value.telefono);
+      this.registerUserData( value.nombre, value.apellido, value.telefono, value.email);
       alert(`Registro exitoso! Bienvenido ${value.nombre}!`); 
       if(response.user.email?.includes('@admin.cl')){
         this.router.navigate(['admin']);
@@ -63,11 +66,11 @@ export class LoginComponent {
       });
   }
 
-   async registerUserData(nombre: string, apellido: string, telefono: string) {
+   async registerUserData(nombre: string, apellido: string, telefono: string, email: string) {
 	 	try {
 	 		const user = this.auth.currentUser; 
 	 		const userDocRef = doc(this.firestore, `users/${user?.uid}`);
-	 		setDoc(userDocRef, {nombre, apellido, telefono});
+	 		setDoc(userDocRef, {nombre, apellido, telefono, email});
 	 		return true;
 	 	} catch (error) {
 	 		console.log(error);

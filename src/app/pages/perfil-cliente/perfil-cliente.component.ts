@@ -22,6 +22,7 @@ export class PerfilClienteComponent {
   public nombrePerfil: string = '';
   public apellidoPerfil: string = '';
   public telefonoPerfil: string = '';
+  public emailPerfil: string = '';
   public newPassword: any;
   public dataReservas: any = [];
   public idReserva: string = '';
@@ -39,10 +40,11 @@ export class PerfilClienteComponent {
     this.getDataReserva();
   }
 
-  obtenerDatosPerfil(nombrePerfil: string, apellidoPerfil: string, telefonoPerfil: string) {
+  obtenerDatosPerfil(nombrePerfil: string, apellidoPerfil: string, telefonoPerfil: string, emailPerfil: string) {
     this.nombrePerfil = nombrePerfil;
     this.apellidoPerfil = apellidoPerfil;
     this.telefonoPerfil = telefonoPerfil;
+    this.emailPerfil = emailPerfil;
   }
 
   getUserEmail() {
@@ -66,7 +68,8 @@ export class PerfilClienteComponent {
             this.dataUser = [userData];
             this.nombrePerfil = this.dataUser[0].nombre;
             this.apellidoPerfil = this.dataUser[0].apellido;
-            this.telefonoPerfil = this.dataUser[0].telefono;           
+            this.telefonoPerfil = this.dataUser[0].telefono;  
+            this.emailPerfil = this.dataUser[0].email;         
             console.log('nombre de usuario: ' + this.dataUser[0].nombre);
           }
         })
