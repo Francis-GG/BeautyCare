@@ -86,28 +86,27 @@ constructor (
   
 
   searchClientes() {
-   
-  
     const usersCollectionRef = collection(this.firestore, 'users');
-    const queryRef = query(usersCollectionRef, where('nombre', '>=', this.nombreCliente), where('nombre', '<=', this.nombreCliente + '\uf8ff')); // Búsqueda por nombre
+    const queryRef = query(
+      usersCollectionRef,
+      where('nombre', '>=', this.nombreCliente.toLowerCase()),
+      where('nombre', '<=', this.nombreCliente.toLowerCase() + '\uf8ff')
+    );
   
     getDocs(queryRef)
       .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => {
+        const data: { id: string; nombre: string }[] = querySnapshot.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
         });
   
-        // Filtra los resultados para que coincidan sin tener en cuenta las mayúsculas y minúsculas
-        const filteredData = this.data = data.filter((item: any) => item.nombre.toLowerCase().includes(this.nombreCliente.toLowerCase()));
-
-        
-        
+        const filteredData = data.filter(
+          (item) => item.nombre.toLowerCase().includes(this.nombreCliente.toLowerCase())
+        );
+  
         if (filteredData.length > 0) {
           this.data = filteredData;
-
           this.noResultsFound = false;
         } else {
-          // No se encontraron coincidencias, muestra un mensaje
           this.data = [];
           this.noResultsFound = true;
         }
@@ -150,7 +149,7 @@ constructor (
   
   
 
-
+  //Obtiene los datos de los clientes para el modal y para la tabla
 
   obtenerIdCliente(idUsers: string, nombreCliente: string, apellidoCliente: string, telefonoCliente: string, emailCliente: string) {
     this.idUsers = idUsers;
@@ -167,11 +166,11 @@ constructor (
 
   // editar con modal
 
-  async editarCliente(nombre: string, apellido: string, telefono: string, email: string) {
+  async editarCliente(nombre: string, apellido: string, telefono: string) {
     try{
       const serviceDocRef = doc(this.firestore, `users/${this.idUsers}`);
 
-      setDoc(serviceDocRef, {nombre, apellido, telefono, email});
+      setDoc(serviceDocRef, {nombre, apellido, telefono});
       return true;
     } catch (error) {
       console.log('Error al intentar editar el cliente:', error);
@@ -180,14 +179,12 @@ constructor (
   }
 
   
- 
   async handleEditCliente(formValue: any) {    
     const nombre = formValue['nombre-edit'];
     const apellido = formValue['apellido-edit'];
     const telefono = formValue['telefono-edit'];
-    const email = formValue['email-edit'];
     try{
-      await this.editarCliente(nombre, apellido, telefono, email);
+      await this.editarCliente(nombre, apellido, telefono);
       alert('cliente actualizado correctamente')
       this.getData();
     }catch(error){
@@ -196,7 +193,8 @@ constructor (
     }
   }
 
-  // buscar cliente 
+  // modal para buscar la citas del cliente 
+ 
   
 
 

@@ -72,8 +72,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="inputemailCliente" class="form-label">Correo electrónico</label>
-                                            <input type="email" class="form-control" id="email-edit" name="email-edit"
-                                                [(ngModel)]="emailCliente">
+                                            <input type="email" class="form-control" id="email-edit" name="email-edit" readonly
+                                               placeholder ="{{emailCliente}}">
                                             <div id="emialnoHelp" class="form-text">Formato: "correo@correo.cl "</div>
                                         </div>
                                     </form>
