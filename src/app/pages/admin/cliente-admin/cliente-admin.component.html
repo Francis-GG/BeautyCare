@@ -3,7 +3,7 @@
 <!-- Agrega una barra de búsqueda para filtrar los clientes -->
 <div class="col col-md-12 ">
     <input type="text" class="form-control" id="searchTerm" name="searchTerm" [(ngModel)]="nombreCliente"
-        (keyup)="searchClientes()" placeholder="Busca por nombre del cliente">
+        (keyup)="search()" placeholder="Busca por nombre del cliente">
 
 
     <div *ngIf="noResultsFound">
@@ -73,7 +73,7 @@
                                         <div class="mb-3">
                                             <label for="inputemailCliente" class="form-label">Correo electrónico</label>
                                             <input type="email" class="form-control" id="email-edit" name="email-edit" readonly
-                                               placeholder ="{{emailCliente}}">
+                                              [(ngModel)]="emailCliente">
                                             <div id="emialnoHelp" class="form-text">Formato: "correo@correo.cl "</div>
                                         </div>
                                     </form>

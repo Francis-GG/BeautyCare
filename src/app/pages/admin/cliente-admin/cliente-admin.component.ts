@@ -2,6 +2,15 @@ import { Component } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, deleteUser, user } from '@angular/fire/auth';
 import { Firestore, collection, doc, getDocs, setDoc, deleteDoc, getDoc, where, query } from '@angular/fire/firestore';
 
+
+export interface User {
+  id: string;
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  email: string;
+}
+
 @Component({
   selector: 'app-cliente-admin',
   templateUrl: './cliente-admin.component.html',
@@ -16,6 +25,7 @@ export class ClienteAdminComponent {
   public telefonoCliente: string = '';
   public emailCliente: string = '';
   public noResultsFound: boolean = false;
+  public originalData: any = [];
 
 constructor (   
   public auth: Auth,
@@ -23,6 +33,9 @@ constructor (
     this.getData();
 
   }
+
+
+  // esta funcion ingresa los valores y llama a la funcion que esta abajo
 
   async handleRegister(value: any) {
     createUserWithEmailAndPassword(this.auth, value.email, value.password)
@@ -56,10 +69,12 @@ constructor (
     const usersCollectionRef = collection(this.firestore, 'users');
     getDocs(usersCollectionRef)
       .then((querySnapshot) => {
-        this.data = querySnapshot.docs.map((doc) => {
+        this.originalData = querySnapshot.docs.map((doc) => { 
+          console.log(doc.data()); // Debug line
           return { ...doc.data(), id: doc.id };
-
         });
+        this.data = [...this.originalData]; 
+        console.log(this.originalData); // Debug line
       })
       .catch((error) => {
         console.error('Error getting documents:', error);
@@ -67,89 +82,25 @@ constructor (
   }
 
 
-//codigo bueno para nombre pero debe ser exacto el ingreso
-  // searchClientes() {
-  //   const usersCollectionRef = collection(this.firestore, 'users');
-  //   const queryRef = query(usersCollectionRef, where('nombre', '==', this.nombreCliente)); // Ajusta el campo 'nombre' al campo que deseas buscar
-    
-  //   getDocs(queryRef)
-  //     .then((querySnapshot) => {
-  //       this.data = querySnapshot.docs.map((doc) => {
-  //         return { ...doc.data(), id: doc.id };
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error getting documents:', error);
-  //     });
-  // }
+  //función para buscar clientes en general 
+  search() {
+    let searchTerm = this.nombreCliente.toLowerCase(); 
 
-  
-
-  searchClientes() {
-    const usersCollectionRef = collection(this.firestore, 'users');
-    const queryRef = query(
-      usersCollectionRef,
-      where('nombre', '>=', this.nombreCliente.toLowerCase()),
-      where('nombre', '<=', this.nombreCliente.toLowerCase() + '\uf8ff')
-    );
-  
-    getDocs(queryRef)
-      .then((querySnapshot) => {
-        const data: { id: string; nombre: string }[] = querySnapshot.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        });
-  
-        const filteredData = data.filter(
-          (item) => item.nombre.toLowerCase().includes(this.nombreCliente.toLowerCase())
-        );
-  
-        if (filteredData.length > 0) {
-          this.data = filteredData;
-          this.noResultsFound = false;
-        } else {
-          this.data = [];
-          this.noResultsFound = true;
-        }
-      })
-      .catch((error) => {
-        console.error('Error getting documents:', error);
-      });
+    if (!searchTerm) {
+      this.data = [...this.originalData];
+      this.noResultsFound = false;
+    } else {
+      this.data = this.originalData.filter((item: User) => 
+        (item.nombre ? item.nombre.toLowerCase().startsWith(searchTerm) : false) ||
+        (item.apellido ? item.apellido.toLowerCase().startsWith(searchTerm) : false) ||
+        (item.email ? item.email.toLowerCase().startsWith(searchTerm) : false)
+      );
+      this.noResultsFound = this.data.length === 0;
+    }
   }
-  
 
-  
-  
 
-  // searchClientes() {
-  //   const searchTermNombre = this.nombreCliente.toLowerCase(); // Convertir el término de búsqueda del nombre a minúsculas
-  //   const searchTermApellido = this.apellidoCliente.toLowerCase(); // Convertir el término de búsqueda del apellido a minúsculas
-  
-  //   const usersCollectionRef = collection(this.firestore, 'users');
-  //   const queryRefNombre = query(usersCollectionRef, where('nombre', '>=', searchTermNombre), where('nombre', '<=', searchTermNombre + '\uf8ff')); // Búsqueda por nombre
-  //   const queryRefApellido = query(usersCollectionRef, where('apellido', '>=', searchTermApellido), where('apellido', '<=', searchTermApellido + '\uf8ff')); // Búsqueda por apellido
-  
-  //   Promise.all([getDocs(queryRefNombre), getDocs(queryRefApellido)])
-  //     .then(([querySnapshotNombre, querySnapshotApellido]) => {
-  //       const dataNombre = querySnapshotNombre.docs.map((doc) => {
-  //         return { ...doc.data(), id: doc.id };
-  //       });
-  
-  //       const dataApellido = querySnapshotApellido.docs.map((doc) => {
-  //         return { ...doc.data(), id: doc.id };
-  //       });
-  
-  //       // Combina los resultados de las dos consultas en un solo conjunto de datos
-  //       this.data = [...dataNombre, ...dataApellido];
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error getting documents:', error);
-  //     });
-  // }
-  
-  
-  
-
-  //Obtiene los datos de los clientes para el modal y para la tabla
+//Obtiene los datos de los clientes para el modal y para la tabla
 
   obtenerIdCliente(idUsers: string, nombreCliente: string, apellidoCliente: string, telefonoCliente: string, emailCliente: string) {
     this.idUsers = idUsers;
@@ -166,11 +117,11 @@ constructor (
 
   // editar con modal
 
-  async editarCliente(nombre: string, apellido: string, telefono: string) {
+  async editarCliente(nombre: string, apellido: string, telefono: string, email: string) {
     try{
       const serviceDocRef = doc(this.firestore, `users/${this.idUsers}`);
 
-      setDoc(serviceDocRef, {nombre, apellido, telefono});
+      setDoc(serviceDocRef, {nombre, apellido, telefono, email});
       return true;
     } catch (error) {
       console.log('Error al intentar editar el cliente:', error);
@@ -183,8 +134,9 @@ constructor (
     const nombre = formValue['nombre-edit'];
     const apellido = formValue['apellido-edit'];
     const telefono = formValue['telefono-edit'];
+    const email = formValue['email-edit'];
     try{
-      await this.editarCliente(nombre, apellido, telefono);
+      await this.editarCliente(nombre, apellido, telefono, email);
       alert('cliente actualizado correctamente')
       this.getData();
     }catch(error){
@@ -193,10 +145,10 @@ constructor (
     }
   }
 
-  // modal para buscar la citas del cliente 
  
   
 
+  
 
 
 
@@ -206,7 +158,5 @@ constructor (
 }
 
   
-
-
 
 
