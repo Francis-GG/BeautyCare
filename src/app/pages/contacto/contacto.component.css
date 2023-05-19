@@ -84,12 +84,19 @@ h3 {
   margin-bottom: 1%;
 }
 
-.btn-primary {
-  background-color: #212121;
-  border: 1px solid #212121;
+.btn-enviar {
+  background-color: #b170bd;
+  color: #f7f8f3;  
+  border: 2px solid #212121;
   border-radius: 0%;
   font-family: 'futura-lt-w01-book', sans-serif;
   margin-bottom: 3%;
+  text-shadow: 1px 1px 3px black;
+  font-size: 1.5rem;
+}
+.btn-enviar:hover {
+  background-color: #4d054e;
+  
 }
 
 #map {

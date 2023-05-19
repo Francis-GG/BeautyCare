@@ -4,10 +4,7 @@
       <h1 id="titulo-pagina">Contacto</h1>
       <div class="card" id="descripcion-pagina">
         <div class="card-body">
-          En BeautyCare nos importa mucho estar en contacto con nuestros clientes. Si tienes alguna duda, comentario o
-          sugerencia, no dudes en ponerte en contacto con nosotros.
-          Puedes contactarnos por teléfono o por correo electrónico. Si prefieres, también puedes utilizar nuestro
-          formulario de contacto en línea para hacernos llegar tus comentarios. <br>Estaremos encantados de ayudarte.
+          {{data[0]?.descripcion}}
         </div>
       </div>
     </div>
@@ -71,8 +68,7 @@
       <textarea id="formcontacttexto" placeholder="Escribe tu mensaje aquí..." class="form-control" name="formcontacttexto" rows="3" ngModel></textarea>
     </div>
     <div class="col text-center">
-      <button  class="btn btn-primary" type="submit" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
-      data-bs-whatever="@fat" >Enviar</button>
+      <button  class="btn-enviar" type="submit" >Enviar</button>
       
     </div>
      
