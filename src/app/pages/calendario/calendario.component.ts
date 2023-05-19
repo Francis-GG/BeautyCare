@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Firestore, doc, getDocs, collection, setDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDocs, collection } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
@@ -23,16 +23,19 @@ export class CalendarioComponent {
   minDate!: Date;
   maxDate!: Date;
   selected!: Date | null;
-  timeSlots: string[][] = [
+  timeSlots: { time: string, isActive: boolean }[][] = [
     [], // Sunday (not used)
-    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
-    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
-    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
-    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
-    ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'],
-    ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30' ,'17:00', '17:30'], // Saturday
+    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
+    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
+    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
+    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
+    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
+    [{ time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }]// Saturday
   ];
   selectedTime: string | null = null;
+  selectedStartTime: string | null = null;
+  selectedEndTime: string | null = null;
+  public serviceDurationSlots: number = 1;
 
 
   myFilter = (d: Date | null): boolean => {
@@ -42,32 +45,56 @@ export class CalendarioComponent {
     const day = d.getDay();
     return day !== 0;
   };
-  
+
 
   @Input('matDatepickerFilter')
   dateFilter!: DateFilterFn<Date>
 
 
-  constructor(public auth: Auth, private router: Router, public firestore: Firestore){
+  constructor(public auth: Auth, private router: Router, public firestore: Firestore) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
-    this.itemSeleccionado = navigation?.extras.state["data"];
-    this.getData();
+      this.itemSeleccionado = navigation?.extras.state["data"];
+      this.setServiceDurationSlots();
+      this.getData();
+    }
   }
+  setServiceDurationSlots() {
+    const duration = this.itemSeleccionado.tiempo || '';
+    const durationMinutes = Number(duration.split(' ')[0]);
+    this.serviceDurationSlots = Math.ceil(durationMinutes / 30);
   }
 
-
-  getTimeSlots(): string[] {
+  getTimeSlots(): { time: string, isActive: boolean }[] {
     const selectedDay = this.selected?.getDay() || 0; // Sunday is 0
-    return this.timeSlots[selectedDay];
+    const daySlots = this.timeSlots[selectedDay];
+    const validSlots = [];
+    for (let i = 0; i <= daySlots.length - this.serviceDurationSlots; i++) {
+      validSlots.push(daySlots[i]);
+    }
+    return validSlots;
   }
 
-  selectTime(time: string) {
-    this.selectedTime = time;
+  selectTime(timeSlot: { time: string, isActive: boolean }) {
+    // Deselect other times
+    this.timeSlots.forEach(day =>
+      day.forEach(slot => slot.isActive = false)
+    );
+
+    // Select the needed slots
+    const selectedDay = this.selected?.getDay() || 0;
+    const selectedSlotIndex = this.timeSlots[selectedDay].findIndex(slot => slot.time === timeSlot.time);
+    const serviceDurationSlots = this.serviceDurationSlots;
+
+    for (let i = 0; i < serviceDurationSlots; i++) {
+      this.timeSlots[selectedDay][selectedSlotIndex + i].isActive = true;
+    }
+
+    this.selectedStartTime = this.timeSlots[selectedDay][selectedSlotIndex].time;
+    this.selectedEndTime = this.timeSlots[selectedDay][selectedSlotIndex + serviceDurationSlots - 1].time;
   }
 
 
-  
   ngOnInit() {
     // Le da formato de fecha con palabras al calendario
     this.minDate = new Date();
@@ -75,7 +102,7 @@ export class CalendarioComponent {
     maxDate.setMonth(maxDate.getMonth() + 3);
     this.maxDate = maxDate;
   }
-  
+
 
   async crearReserva() {
     try {
@@ -84,7 +111,8 @@ export class CalendarioComponent {
         const reservaData = {
           servicio: this.itemSeleccionado?.servicio,
           fecha: this.selected?.toLocaleDateString(),
-          hora: this.selectedTime,
+          horaInicio: this.selectedStartTime,
+          horaTermino: this.selectedEndTime,
           profesional: this.dataEmpleados[0]?.nombre || '',
           tiempo: this.itemSeleccionado.tiempo || '',
           precio: this.itemSeleccionado.precio || '',
@@ -96,36 +124,39 @@ export class CalendarioComponent {
       console.error('Error al crear la reserva', error);
     }
   }
-  
 
-  getData(){
-    
+
+  getData() {
+
     // Busca los atributos de contacto de la coleccion contacto
     const dbInstance = collection(this.firestore, 'contacto');
     getDocs(dbInstance)
-    .then((response) => {
-      this.dataContacto = [...response.docs.map((item) => {
-        return {...item.data(), id: item.id};
-      })]
-      // Busca el nombre de empleados en sub coleccion de contacto/empleados
-      const empleadosCollection = collection(doc(this.firestore, 'contacto', this.dataContacto[0]?.id), 'empleados');
-      getDocs(empleadosCollection).then((response) => {
-        this.dataEmpleados = [...response.docs.map((item) => {
-          return {...item.data(), id: item.id};
+      .then((response) => {
+        this.dataContacto = [...response.docs.map((item) => {
+          return { ...item.data(), id: item.id };
         })]
-      })})
-  
+        // Busca el nombre de empleados en sub coleccion de contacto/empleados
+        const empleadosCollection = collection(doc(this.firestore, 'contacto', this.dataContacto[0]?.id), 'empleados');
+        getDocs(empleadosCollection).then((response) => {
+          this.dataEmpleados = [...response.docs.map((item) => {
+            return { ...item.data(), id: item.id };
+          })]
+        })
+      })
 
-  const currentDate = new Date();
-  this.minDate = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth(),
-    currentDate.getDate()
-  );
-  this.maxDate = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth() + 3,
-    currentDate.getDate()
-  );
-}
+
+    const currentDate = new Date();
+    this.minDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDate()
+    );
+    this.maxDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 3,
+      currentDate.getDate()
+    );
+  }
+
+
 }

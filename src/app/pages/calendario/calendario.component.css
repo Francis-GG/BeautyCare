@@ -83,12 +83,20 @@
     display: inline-block;
     font-size: 16px;
     margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
     border-radius: 5px;
   }
   
   .horarios button:hover {
     background-color: #630374;
+  }
+
+  .horarios button.active {
+    /* Your styles for the active state */
+    background-color: #00a822;
+    color: white;
   }
   
   /* Estilos para el tercer card */
