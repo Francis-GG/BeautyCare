@@ -1,84 +1,51 @@
-<!-- <body>
-  <div class="hero">
-    <nav>
-      <img title="logo-beauty-care" routerLink="/" src="../../../assets/images/logoBeautyCare.png" class="logo">
-      <ul>
-        <li><a routerLink="/"> Inicio</a></li>
-        <li><a routerLink="/servicios/depilacion"> Servicios</a></li>
-        <li><a routerLink="/contacto"> Contacto</a></li>
-        <li><a routerLink="/preguntfrecuent">Preguntas Frecuentes</a></li>
+<div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+
+      <ul class="titulosnav">
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/servicios/depilacion">Servicios</a></li>
+        <li><a routerLink="/contacto">Contacto</a></li>
       </ul>
-      <img title="imagen-usuario" src="../../../assets/images/user.png" class="user-pic" (click)="toggleMenu()">
-      <div class="sub-menu-wrap" id="subMenu">
-        <div class="sub-menu dropstart">
-          <div class="user-info"*ngFor="let user of data">
-            <img title="imagen-usuario" src="../../../assets/images/user.png">
-            <h3> {{user.nombre}} {{user.apellido}}</h3>
+      <div *ngIf="data.length > 0">
+        <img
+          [src]="loggedIn? (avatarUrl || '../../../assets/images/login/5-removebg-preview.png') : '../../../assets/images/logoBeautyCare.png'"
+          class="user-pic" (click)="toggleMenu()">
+
+        <div class="user-info" *ngFor="let user of data">
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu dropstart">
+
+              <div class="user-info" *ngFor="let user of data">
+                <!-- foto del submenu -->
+                <img title="imagen-usuario" src="../../../assets/images/user.png">
+                <h3> {{user.nombre}} {{user.apellido}}</h3>
+              </div>
+              <hr>
+              <!-- icono de perfil y ruta para editar perfil -->
+              <a href="#" class="sub-menu-link" routerLink="/perfil-cliente">
+                <img title="icono-perfil" src="../../../assets/images/profile.png">
+                <p>Editar Perfil</p>
+              </a>
+              <!-- icono de cerrar sesion y ruta para cerrar sesion -->
+              <a (click)="signOut()" class="sub-menu-link">
+                <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png">
+                <p>Cerrar Sesión</p>
+              </a>
+            </div>
           </div>
-          <hr>
-
-          <a href="#" class="sub-menu-link" routerLink="/perfil-cliente">
-            <img title="icono-perfil" src="../../../assets/images/profile.png">
-            <p>Editar Perfil</p>
-          </a>
-          <a href="#" class="sub-menu-link">
-            <img title="icono-configuracion" src="../../../assets/images/setting.png">
-            <p>Configuración</p>
-            
-          </a>
-          <a  class="sub-menu-link">
-            <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png">
-            <p (click)="signOut()">Cerrar Sesión</p>
-          </a>
         </div>
       </div>
-    </nav>
-  </div>
-</body>
- -->
-<!-- nuevo formato -->
-
-<body>
-  <nav>
-    <img title="logo-beauty-care" routerLink="/" src="../../../assets/images/logoBeautyCare.png" class="logo">
-    <ul class="titulosnav">
-      <li><a routerLink="/">Inicio</a></li>
-      <li><a routerLink="/servicios/depilacion">Servicios</a></li>
-      <li><a routerLink="/contacto">Contacto</a></li>
-    </ul>
-    <div *ngIf="data.length > 0">
-      <button class="logo" (click)="toggleMenu()">
-        <img title="imagen-usuario" src="../../../assets/images/user.png">
-      </button>
 
 
-
-      <div class="sub-menu-wrap" id="subMenu">
-        <div class="sub-menu dropstart">
-          <img *ngIf="data[0].photoURL; else defaultAvatar" [src]="data[0].photoURL" alt="Imagen de perfil del usuario">
-          <ng-template #defaultAvatar>
-            <img title="imagen-usuario" src="../../../assets/images/user.png" alt="Imagen predeterminada de usuario">
-          </ng-template>
-          <h3 id="user-info">{{data[0].nombre}} {{data[0].apellido}}</h3>
-          <hr>
-          <a href="#" class="sub-menu-link" routerLink="/perfil-cliente">
-            <img title="icono-perfil" src="../../../assets/images/profile.png" alt="Icono de edición de perfil">
-            <p>Editar Perfil</p>
-          </a>
-          <a class="sub-menu-link" (click)="signOut()">
-            <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png" alt="Icono de cierre de sesión">
-            <p>Cerrar Sesión</p>
-          </a>
-        </div>
+      <h1 class="titulonav">BeautyCare</h1>
+      <!-- si no esta logeado el logo redirigirá al login para registrarse o para iniciar sesion -->
+      <div *ngIf="data.length === 0">
+        <img
+          [src]="loggedIn? (avatarUrl || '../../../assets/images/login/5-removebg-preview.png') : '../../../assets/images/logoBeautyCare.png'"
+          class="user-pic" routerLink="login">
       </div>
-    </div>
-
-
-    <div *ngIf="data.length === 0">
-      <button class="btn-login " routerLink="/login">
-        Iniciar Sesión
-      </button>
     </div>
   </nav>
-
-</body>
+</div>

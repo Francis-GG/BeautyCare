@@ -1,196 +1,208 @@
-/*Nuevo CSS del indio APUS*/
-/* pequeñas */
-@media (max-width: 768px) {
-    nav {
-        background: rgba(146, 48, 185, 0.53);
-        padding: 5px 1px 0px;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin: 0;
-      }
-    
-      nav ul.titulosnav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    
-      nav ul.titulosnav li {
-        display: inline-block;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        margin-left: 10px;
-        margin-right: 30px;
-      }
-    
-      nav ul.titulosnav li:not(:last-child) {
-        margin-right: 5px; /* Ajusta este valor según tus necesidades */
-        
-      }
-    
-      nav ul.titulosnav li a {
-        text-decoration: none;
-        font-style: italic;
-        color: #fcfcfc;
-        text-shadow: 1px 1px 3px black;
-        font-size: 1.2rem;
-      }
-      nav ul li a:hover {
-        color: rgb(196, 187, 196);
-    }
-    
-      .btn-login {
-        width: 100%;
-        /* es lo mejor que pude hacer con los padding */
-        padding: 2px 2px ; 
-
-        margin-right: 1px;
-        font-size: 0.8rem;
-        color: #fcfcfc;
-        color: #fff;
-        background-color: #35a04c;
-        border: none;
-        text-shadow: 1px 1px 3px black;
-        border-radius: 2em;
-        box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-align: center;
-        font-style: italic;
-      }
-    
-      .btn-login:hover {
-        background-color: #C10079;
-      }
-    
-      .logo {
-        width: 70px;
-        cursor: pointer;
-        border-radius: 10em;
-        box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.1);
-        margin: 15px 0px; /* Ajusta este valor según tus necesidades */
-      }
-    
-      .logo:hover {
-        transform: scale(1.1);
-      }
-    }
-
-
-
-
-/* para pantallas grandes  */
-@media (min-width: 769px) {
-
-    nav {
-        background: rgba(146, 48, 185, 0.53);
-        /* width: 100%; */
-        padding: 10px 5%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-        z-index: 1;
-    }
-
-    nav ul {
-        width: auto;
-        text-align: center;
-        font-size: 3.0rem;
-        font-family: 'Times New Roman', Times, serif;
-        padding: auto;
-    }
-
-    nav ul li {
-        display: inline-block;
-        list-style: none;
-        margin: 10px 20px;
-    }
-
-    nav ul li a {
-
-        text-decoration: none;
-        font-style: italic;
-        margin-bottom: 20px;
-        color: #fcfcfc;
-        text-shadow: 1px 1px 3px black;
-          font-size: 2.5rem;
-
-
-    }
-
-    nav ul li:hover {
-        transform: scale(1.1);
-    }
-
-    nav ul li a:hover {
-        color: rgb(196, 187, 196);
-    }
-
-
-    .btn-login {
-        display: inline-block;
-        padding: 20px 20px;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #fff;
-        background-color: #35a04c;
-        border: none;
-        border-radius: 2em;
-        box-shadow: -5px 15px 15px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        font-style: italic;
-        color: #fcfcfc;
-        text-shadow: 1px 1px 3px black;
-    }
-
-    .btn-login:hover {
-        background-color: #C10079;
-        transform: scale(1.1);
-    }
-
-    .logo {
-        width: 110px;
-        border-radius: 50%;
-        cursor: pointer;
-        margin-left: 5px;
-
-    }
-
-    .logo:hover {
-        transform: scale(1.1);
-    }
-
+html {
+  font-size: 16px; /* Tamaño de texto raíz */
 }
 
 
-  /* para pantallas medianas (entre 769px y 992px) */
-@media (min-width: 769px) and (max-width: 992px) {
-  nav ul li {
-    margin: 5px 5px; /* Ajusta este valor según tus necesidades */
-    font-size: 2.5rem;
-  }
 
-  .btn-login {
-    font-size: 1.2rem; /* Ajusta este valor según tus necesidades */
-  }
-
-  .logo {
-    margin: 5px 0px; /* Ajusta este valor según tus necesidades */
-  }
+.container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #060207;
+  border-radius: 5px;
+  padding: 0px;
+  justify-content: center;
 }
 
-/* para pantallas grandes (más de 992px) */
-@media (min-width: 993px) {
-    nav ul li {
-    font-size: 2.5rem;
-    }
-  /* No se requiere ningún cambio adicional en este punto */
+.navbar navbar-expand-lg bg-body-tertiary{
+color: rgb(255, 0, 0);
 }
+
+.container-fluid{
+background:rgba(146, 48, 185, 0.53);
+justify-content: center;
+}
+
+.titulonav{
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Dancing Script';
+  justify-content: end;
+  
+  
+ 
+}
+.titulonav:hover{
+  transform: scale(1.1);
+}
+
+.logo {
+  width: 70px;
+  cursor: pointer;
+  border-radius: 10em;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.1);
+  margin: 15px 0px; /* Ajusta este valor según tus necesidades */
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+
+ul {
+ 
+  text-align: center;
+  font-size: 1.2em; /* 1.5 veces el tamaño del texto raíz */
+  font-family: 'Times New Roman', Times, serif;
+  padding: auto;
+  justify-content: center;
+  
+  
+}
+
+ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 10px 20px;
+  font-size: 1.2em; /* 1.2 veces el tamaño del texto raíz */
+}
+
+ul li a {
+  display: flex;
+  text-decoration: none;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #fcfcfc;
+  text-shadow: 1px 1px 3px black;
+  font-size: 1em; /* Igual al tamaño del texto raíz */
+
+}
+
+ul li:hover {
+  transform: scale(1.1);
+}
+
+ul li a:hover {
+  color: rgb(196, 187, 196);
+}
+
+
+
+
+
+/* foto del navbar */
+.user-pic{
+  width: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 5px;
+  background-image: -webkit-radial-gradient();
+  background-image: radial-gradient();
+  background-color: #fff;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+ 
+}
+.user-pic:hover{
+  transform: scale(1.1);
+}
+
+/* menu desplegable */
+/* es para mover la caja blanca del menu que se despliega */
+.sub-menu-wrap{
+  position: absolute;
+  top: 80%;
+  right: 3%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+/* ancho de la caja dejarlo asi */
+.sub-menu-wrap.open-menu{
+  max-height: 400px;
+}
+.sub-menu{
+  background: #fff;
+  padding: 20px;
+  margin:10px;   
+}
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+/* titulo nombre del menu desplegable listo  */
+.user-info h3{
+  font-weight:bolder;
+  font-size: 1.6rem;
+  color: #781184;
+  text-align: start;
+}
+
+/* letras del submenu */
+.user-info p{
+  font-size: 1.2rem;
+  color: #0d0b0b;
+  text-align: start;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0px 0px 5px;
+}
+
+
+
+/* imagen del menu desplegable */
+.user-info img{ 
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* flecha del menu desplegable */
+.sub-menu-link span{
+  font-size: 22px;
+  transition: transform 0.5s;
+}
+
+.sub-menu hr{
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 15px 0 10px;
+}
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+  margin: 0px 0px 5px;
+
+}
+
+/* letras editar perfil y cerrar sesion */
+.sub-menu-link p{
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 0px 0px 5px;
+}
+
+/* imagenes de iconos del sub menu */
+.sub-menu-link img{
+  width: 40px;
+  background: #e5e5e5;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 15px;
+}
+
+.sub-menu-link img:hover{
+  background: #f2efef;
+  transform: scale(1.1);
+}
+
+.sub-menu-link:hover p{
+  font-weight: 600;
+
+} 
