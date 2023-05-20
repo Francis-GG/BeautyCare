@@ -1,22 +1,9 @@
 <section class="faq-section">
   <h2 class="section-title">Preguntas Frecuentes</h2>
   <div class="faq-container">
-    <div class="faq-item">
-      <h3 class="question">¿Cómo puedo hacer una reserva?</h3>
-      <p>{{data[0].respuesta1}}</p>
-    </div>
-    <div class="faq-item">
-        <h3 class="question">hola</h3>
-        <p>{{data[0].respuesta2}}</p>
-		
-      </div>
-    <div class="faq-item">
-      <h3 class="question">¿Cuál es el tiempo de anticipación para cancelar una reserva?</h3>
-      <p class="answer">Pedimos que las cancelaciones se realicen al menos 24 horas antes de la cita programada.</p>
-    </div>
-    <div class="faq-item">
-      <h3 class="question">¿Qué métodos de pago aceptan?</h3>
-      <p class="answer">El pago del servico se realiza exclusivamente en el local. Aceptamos pagos en efectivo, tarjetas de crédito y débito.</p>
+    <div class="faq-item" *ngFor="let item of data">
+      <h3 class="question">{{item.pregunta}}</h3>
+      <p>{{item.respuesta}}</p>
     </div>
   </div>
 </section>

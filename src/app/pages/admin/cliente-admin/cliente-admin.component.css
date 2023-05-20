@@ -1,6 +1,11 @@
+/* *{
+  width: 100%;
+} */
 .container {
   margin-top: 50px;
+
 }
+
 
 .card {
   background-color: #f8f9fa;
@@ -83,7 +88,8 @@ table td {
 }
 
 table th#boton-editar,
-table th#boton-eliminar {
+table th#boton-buscar,
+table th#boton-agregarReserva {
   width: 100px;
 }
 
@@ -166,6 +172,20 @@ table-sm td,
 .table-sm th {
   padding: 0.3rem;
 }
+
+#botonAgregarCliente{
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background-color: #0bc11a;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+  width: 100%;
+}
+
 
 * Botones de la tabla */
 #boton-editar,

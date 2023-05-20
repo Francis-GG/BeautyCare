@@ -13,16 +13,16 @@ export class PreguntfrecuentComponent {
 
 
 constructor(public firestore: Firestore){
-  this.getDataSucursal();
+  this.getData();
 
 }
   // obtiene la informacion del local 
-  getDataSucursal(){
+  getData(){
     const dbInstance = collection(this.firestore, 'preguntasFrecuentes');
     getDocs(dbInstance)
     .then((response) => {
       this.data = [...response.docs.map((item) => {
-        return {...item.data(), id: item.id};
+        return {...item.data(), id: item.id}
       })]
     })
   }

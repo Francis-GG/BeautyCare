@@ -6,7 +6,7 @@ body{
 }
 
 .container{
-    max-width: 90%;
+    max-width: 80%;
     background-image: url("../assets/images/fondo3.png") ;
     background-repeat: no-repeat;
     background-size: cover;    
