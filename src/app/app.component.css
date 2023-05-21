@@ -1,5 +1,5 @@
-body{
-    /* cambié la foto a una mas intensa  */
+/* body{
+    
    background-image: url("../assets/images/fondoIntenso.png") ;
    background-repeat: no-repeat;
    background-size: cover;     
@@ -10,5 +10,24 @@ body{
     background-image: url("../assets/images/fondo3.png") ;
     background-repeat: no-repeat;
     background-size: cover;    
+} */
+
+* {
+  box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  margin: 0;
+}
+
+.container {
+  /* si  la pantalla se extiende más de 1400px el contenido se centra */
+  max-width: 1400px;
+  margin: auto;
+
+}

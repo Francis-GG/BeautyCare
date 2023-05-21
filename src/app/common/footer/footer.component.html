@@ -1,24 +1,35 @@
 <footer>
-   <ul>
-      <li>
-         <h1>BeautyCare</h1>
-         <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
-      </li>
-      <li>
-         <h4>Dirección</h4>
-         <p>Avenida Apoquindo 6415, Las Condes,RM</p>
-      </li>
-      <li>
-         <h4>Horario de atención</h4>
-         <p>Lunes a Viernes de 09:00 a 20:00 horas</p>
-      </li>
-      <li>
-         <h4>Contacto</h4>
-         <p>Teléfono: +56912345678</p>
-         <p>Email: email@beautycare.com</p>
-      </li>
-   </ul>
+   <div class="container">
+      <div class="row">
+         
+            
+            <div id="telefono"class="col  ">
+               <h1>Teléfono</h1>
+               <p>{{data[0].telefono}}</p>
+               <h1>Email</h1>
+               <p>{{data[0].email}}</p>
+            </div>
+            <div id="horario"class="col  ">
+               <h1>Horario </h1>
+               <p>Lunes a viernes <br> 09:00 - 20:00</p>
+               <p>Sábados <br> 10:00 - 16:00</p>
+               <strong><p>Domingos Cerrado</p></strong>
+            </div>
+            <div id="direccion" class="col ">
+               <h1>Dirección</h1>
+               <p>{{data[0].direccion}} </p>
+            </div>
+            <div id="titulo"class="col  ">
+               <h1 class="titulofooter">BeautyCare</h1>
+               <img class="logo" src="../../../assets/images/logoBeautyCare.png" alt="logo">
+            </div>
+  
+      </div>
+   </div>
+
+   
 </footer>
+<br>
 <div class="container-fluid">
    <div class="row">
       <div class="col-md-12 text-center">

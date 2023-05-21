@@ -1,65 +1,70 @@
-<body>
-
-  <!-- para agendar directamente -->
-  <div class="agenda">
-    <div class="row align-items-center">
-      <div class="col-md-3 col-sm-3 col-xs-12">
-        <h1 class="tituloagendartuhora">
-          Agenda tu hora
-        </h1>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <span class="despcagendar">Queremos hacer tu vida más fácil, por eso te invitamos a agendar tu hora de manera
-          rápida y cómoda pinchando aquí
-        </span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-6">
-        <button routerLink="/servicios/depilacion" class="botonagendar">Agendar</button>
-      </div>
-    </div>
+<!-- código de la sección "Bienvenida" -->
+<section id="bienvenida">
+  <div class="container">
+    <p class="texto">En BeautyCare ofrecemos una amplia gama de servicios de belleza para que te sientas y
+      luzcas mejor </p>
   </div>
+</section>
 
-
-  <!-- para el carrucel con fotos -->
-  <!-- <div class="container-carrucel">
-    <div class="row">
-      <div col col-12>
-        <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
-            </div>
-            <div class="carousel-item">
-              <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
-            </div>
-            <div class="carousel-item">
-              <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
+<!-- carrucel con preguntas  -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
+        <!-- código del carrusel -->
+        <div class="container-carrucel">
+          <div class="row">
+            <div col col-12>
+              <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
+                  <p class="carousel-control-prev-icon" aria-hidden="true"></p>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
       </div>
     </div>
-  </div> -->
-
-  <!-- espacio  -->
-  <div>
-    <h2 class="tituloLogo"> ~ BeautyCare ~ </h2>
   </div>
-  <div>
-    <h1 class="tituloNuestro">NUESTROS SERVICIOS</h1>
-    <p class="descrservicios">En BeautyCare ofrecemos una amplia gama de servicios de belleza para que te sientas y
+</div>
+
+
+<!-- código de la sección "Nuestros servicios" -->
+<section id="tituloServicios">
+  <div class="container">
+    <h1>NUESTROS SERVICIOS</h1>
+    <p>En BeautyCare ofrecemos una amplia gama de servicios de belleza para que te sientas y
       luzcas mejor</p>
   </div>
+</section>
 
-  <!--para los servicios-->
+
+
+
+
+
+
+
+
+
+<!-- código de la sección "Nuestros servicios" -->
+<section class="container">
 
   <div id="cards-servicios">
     <div class="row">
@@ -76,94 +81,60 @@
       </div>
     </div>
   </div>
-
-  <!-- espacio  -->
-  <!-- preguntas frecuentes -->
-  <!-- <div class="preguntas">
-    <div class="row align-items-center">
-      <div class="col-md-3 col-sm-3 col-xs-12">
-        <h1 class="titulopreguntas">
-          ¿Tienes dudas?
-        </h1>
-      </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <span class="despcpreguntas"> Si tienes dudas sobre nuestros servicios, puedes revisar nuestra sección de
-          preguntas frecuentes pinchando aquí
-        </span>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-6">
-        <button routerLink="/preguntfrecuent" class="botonpreguntas">Preguntas Frecuentes</button>
-      </div>
-    </div>
-  </div> -->
+</section>
 
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 col-12">
-        <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
-          <!-- código del carrusel -->
-          <div class="container-carrucel">
-            <div class="row">
-              <div col col-12>
-                <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
-                    </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carruselHome"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-12">
-        <div class="preguntas">
-          <!-- código de la sección "Tienes dudas?" -->
-          <div class="preguntas">
-            <div class="row align-items-center">
-              <div class="col-md-3 col-sm-3 col-xs-12">
-                <h1 class="titulopreguntas">
-                  ¿Tienes dudas?
-                </h1>
-              </div>
-              <div class="col-md-6 col-sm-6 col-xs-6">
-                <span class="despcpreguntas"> Si tienes dudas sobre nuestros servicios, puedes revisar nuestra sección
-                  de preguntas frecuentes pinchando aquí
-                </span>
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-6">
-                <button routerLink="/preguntfrecuent" class="botonpreguntas">Preguntas Frecuentes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
+
+
+<!-- para agendar directamente -->
+<section id="agenda">
+  <div class="container">
+    <h2>AGENDA TU HORA</h2>
+    <p>Queremos hacer tu vida más fácil, por eso te invitamos a agendar tu hora de manera
+      rápida y cómoda pinchando aquí</p>
+    <button routerLink="/servicios/depilacion">Agendar</button>
   </div>
+</section>
+
+
+<!-- código de la sección "Tienes dudas?" -->
+<section id="preguntas">
+  <div class="container"></div>
+  <h1>¿Tienes dudas?</h1>
+  <p>Si tienes dudas sobre nuestros servicios, puedes revisar nuestra
+    sección de preguntas frecuentes pinchando aquí o puedes contactarnos</p>
+  <button routerLink="/preguntfrecuent" class="botonpreguntas">Preguntas Frecuentes</button>
+</section>
 
 
 
-
-
-
-
-
-</body>
+<!-- código de la sección "Contacto" -->
+<section id="contacto">
+<div class="container">
+  
+  <div id="telefono" class="col  ">
+    <h1>Teléfono</h1>
+    <p>{{data[0].telefono}}</p>
+    <h1>Email</h1>
+    <p>{{data[0].email}}</p>
+  </div>
+  <div id="horario" class="col  ">
+    <h1>Horario </h1>
+    <p>Lunes a viernes <br> 09:00 - 20:00</p>
+    <p>Sábados <br> 10:00 - 16:00</p>
+    <strong>
+      <p>Domingos Cerrado</p>
+    </strong>
+  </div>
+  <div id="direccion" class="col ">
+    <h1>Dirección</h1>
+    <p>{{data[0].direccion}} </p>
+  </div>
+  <div id="titulo" class="col  ">
+    <h1 class="titulofooter">BeautyCare</h1>
+    <img class="logo" src="../../../assets/images/logoBeautyCare.png" alt="logo">
+  </div>
+</div>
+</section>
