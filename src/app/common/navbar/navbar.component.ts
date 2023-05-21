@@ -36,6 +36,9 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     }
     //this.getData();
   }
+
+
+  
   //Función que abre y cierra el menú
   toggleMenu() {
     const subMenu = document.getElementById("subMenu");
