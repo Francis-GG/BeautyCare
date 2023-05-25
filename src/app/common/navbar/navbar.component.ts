@@ -71,7 +71,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
           const userData = { ...docSnapshot.data(), id: docSnapshot.id };
           this.data = [userData];
           this.loggedIn = true; // asigna el valor de loggedIn a true
-          this.imagePath = this.data[0].imagen; 
+          this.imagePath = this.data[0].imagenPath; 
           console.log('nombre de usuario: ' + this.data[0].nombre);
         
         }

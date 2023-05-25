@@ -17,8 +17,8 @@ export class HomeComponent {
 
 
   constructor(public firestore: Firestore) {
-    this.getData(),
-    this.getDataSucursal()
+    this.getData()
+    // this.getDataSucursal()
   }
 
 
@@ -27,6 +27,7 @@ export class HomeComponent {
     getDocs(dbInstance)
     .then((response) => {
       this.data = [...response.docs.map((item) => {
+        console.log("los datos son" + item)
         return {...item.data(), id: item.id}
       })]
     })
@@ -34,19 +35,7 @@ export class HomeComponent {
 
   // datos de contecto 
 
-  getDataSucursal(){
-    const dbInstance = collection(this.firestore, 'contacto');
-       getDocs(dbInstance)
-       .then((response) => {
-         this.dataSucursal = [...response.docs.map((item) => {
-            return {...item.data(), id: item.id}
-          } 
-          )]
-        
-          
-       })
-    }
-
+  
 
 
 

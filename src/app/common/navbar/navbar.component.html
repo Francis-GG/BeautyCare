@@ -27,7 +27,7 @@
 
             <div class="user-info" *ngFor="let user of data">
               <!-- foto del submenu -->
-              <img title="imagen-usuario" src="../../../assets/images/user.png">
+              <img title="imagen-usuario" [src]="imagePath">
               <h3> {{user.nombre}} {{user.apellido}}</h3>
             </div>
             <hr>

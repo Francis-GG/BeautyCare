@@ -50,8 +50,8 @@
     <div class="row">
       <div class="col-sm-4" *ngFor="let item of data">
         <div class="image-item text-center">
-          <img src="{{item.imagen_horizontal}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
-            routerLink="{{item.ruta}}">
+          <!-- <img src="{{item.imagen_horizontal}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
+            routerLink="{{item.ruta}}"> -->
 
 
           <button type="button" class="btn btn-outline-light" id="botonServicios"
@@ -90,34 +90,3 @@
 
 <!-- código de la sección "Contacto" -->
 
-
-
-
-<section id="contacto">
-
-  <div class="container">
-   
-
-      <div id="telefono" class=" col">
-        <h1>Teléfono</h1>
-        <p>{{data[0].telefono}}</p>
-        <h1>Email</h1>
-        <p>{{data[0].email}}</p>
-      </div>
-      <div id="horario" class="col ">
-        <h1>Horario </h1>
-        <p>Lunes a viernes <br> 09:00 - 20:00</p>
-        <p>Sábados <br> 10:00 - 16:00</p>
-        <strong>
-          <p>Domingos Cerrado</p>
-        </strong>
-      </div>
-      <div id="direccion" class="col ">
-        <h1>Dirección</h1>
-        <p>{{data[0].direccion}} </p>
-      </div>
-
-
-    </div>
- 
-</section>
