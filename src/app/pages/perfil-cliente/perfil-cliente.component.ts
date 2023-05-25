@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Auth, User } from '@angular/fire/auth';
 import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs } from '@angular/fire/firestore';
+import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
+
+
+
 
 interface userData{
   id: string;
@@ -31,10 +35,12 @@ export class PerfilClienteComponent {
   public servicioReserva: string = '';
   public precioReserva: string = '';
   public tiempoReserva: string = '';
+  public imagePath: string = '';
 
 
 
-  constructor(public auth: Auth, public firestore: Firestore) {
+
+  constructor(public auth: Auth, public firestore: Firestore, private storage: Storage) {
     this.getDataUser();
     this.getUserEmail();
     this.getDataReserva();
@@ -69,7 +75,8 @@ export class PerfilClienteComponent {
             this.nombrePerfil = this.dataUser[0].nombre;
             this.apellidoPerfil = this.dataUser[0].apellido;
             this.telefonoPerfil = this.dataUser[0].telefono;  
-            this.emailPerfil = this.dataUser[0].email;         
+            this.emailPerfil = this.dataUser[0].email;
+            this.imagePath = this.dataUser[0].imagePath || '';         
             console.log('nombre de usuario: ' + this.dataUser[0].nombre);
           }
         })
@@ -114,15 +121,22 @@ export class PerfilClienteComponent {
   
 
 //se invoca con el name del HTML
-  async handleEditarPerfil(formValue: any){
+  async handleEditarPerfil(formValue: any, fileInput: HTMLInputElement){
     const nombre = formValue['nombre-perfil'];
     const apellido = formValue['apellido-perfil'];
     const telefono = formValue ['telefono-perfil'];
+    const file = fileInput.files?.[0];
 
     try{
-      console.log(nombre)
-      await this.editarPerfil(nombre, apellido, telefono);
-      alert('Perfil editado correctamente');
+      if (file) {
+        await this.uploadAvatar(file); // Upload the new image
+        await this.editarPerfil(nombre, apellido, telefono); // Update profile data
+        alert('Perfil editado correctamente');
+      } else {
+        await this.editarPerfil(nombre, apellido, telefono); // Update profile data without uploading an image
+        alert('Perfil editado correctamente');
+      }
+
       this.getDataUser();
       this.getUserEmail();
     }catch{
@@ -131,17 +145,62 @@ export class PerfilClienteComponent {
     }
   } 
 
+  // async uploadImage(file: File) {
+  //   const user: User | null = this.auth.currentUser;
+  //   if (user) {
+  //     const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
+  //     const snapshot = await uploadBytes(storageRef, file);
+  //     this.imagePath = snapshot.ref.fullPath;
+  //     // Delete the previous image if it exists
+  //     const previousImageRef = ref(this.storage, this.imagePath);
+  //     await deleteObject(previousImageRef);
+  //   } else {
+  //     console.log('Error al intentar subir la imagen.');
+  //   }
+  // }
+
+  async uploadAvatar(file: File) {
+    const user: User | null = this.auth.currentUser;
+  
+    if (!user) {
+      return false;
+    }
+  
+    const path = `users/${user.uid}/profile-image`;
+    const storageRef = ref(this.storage, path);
+  
+    try {
+      await uploadBytes(storageRef, file);
+      const imageUrl = await getDownloadURL(storageRef);
+      this.imagePath = imageUrl; // Update the imagePath property
+  
+      const userDocRef = doc(this.firestore, `users/${user.uid}`);
+      await setDoc(userDocRef, { imageUrl });
+  
+      return true;
+    } catch (error) {
+      console.log('Error while retrieving the download URL:', error);
+      return false;
+    }
+  }
+
+
+
+
+  
+
   async editarPerfil(nombre: string, apellido: string, telefono: string){
     const user: User | null = this.auth.currentUser;
     if (user){
       const userDocRef = doc(this.firestore, 'users', user.uid);
-      setDoc(userDocRef, {nombre, apellido, telefono});
+      setDoc(userDocRef, { nombre, apellido, telefono, imagePath: this.imagePath });
       return true;
     }else {
       console.log('Error al intentar actualizar los datos.')
       return false;
     }
   }
+
 
   eliminarReserva(reservaId: string) {
     const user: User | null = this.auth.currentUser;
@@ -162,8 +221,132 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
+
+  
+  
+   //Para eliminar un cliente determinado     
+
+  // eliminarCliente(idUsers: string){
+  //   if (confirm('¿Está seguro que desea eliminar este cliente?')){
+  //     const clienteDocRef = doc(this.firestore, `users/${user.uid}/users/${idUsers}`);
+  //     deleteDoc(clienteDocRef)
+  //       .then(() => {
+  //         console.log('Cliente eliminado correctamente');
+  //         this.data = this.data.filter((item: any) => item.id !== idUsers);
+  //         alert('Cliente eliminado correctamente');
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error al intentar eliminar el cliente:', error);
+  //         alert('Error al intentar eliminar el cliente');
+  //       });
+  //   }
+  // }
+
+  // async eliminarCliente(idUsers: string) {
+  //   if (confirm('¿Está seguro que desea eliminar este cliente?')) {
+  //     const user = this.auth.currentUser; // Obtener el usuario actual
+  
+  //     if (user) {
+  //       const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
+  
+  //       try {
+  //         // Eliminar el documento del usuario en Firestore
+  //         await deleteDoc(clienteDocRef);
+  
+  //         // Eliminar el usuario en Authentication
+  //         await deleteUser(user);
+  
+  //         console.log('Cliente eliminado correctamente');
+  //         this.data = this.data.filter((item: any) => item.id !== idUsers);
+  //         alert('Cliente eliminado correctamente');
+  //       } catch (error) {
+  //         console.log('Error al intentar eliminar el cliente:', error);
+  //         alert('Error al intentar eliminar el cliente');
+  //       }
+  //     }
+  //   }
+  // }
+
+  // async eliminarCliente(idUsers: string) {
+  //   if (confirm('¿Está seguro que desea eliminar este cliente?')) {
+  //     const user = await this.auth.currentUser; // Obtener el usuario actual
+      
+  //     if (user) {
+  //       if (user.uid === idUsers) {
+  //         console.log('No puedes eliminar tu propio usuario');
+  //         alert('No puedes eliminar tu propio usuario');
+  //       } else {
+  //         const clienteDocRef = doc(this.firestore, `users/${idUsers}`);
+          
+  //         try {
+  //           // Eliminar el documento del usuario en Firestore
+  //           await deleteDoc(clienteDocRef);
+  //           // Eliminar el usuario en Authentication
+  //           await deleteUser(user);
+            
+  //           console.log('Cliente eliminado correctamente');
+  //           this.data = this.data.filter((item: any) => item.id !== idUsers);
+  //           alert('Cliente eliminado correctamente');
+  //         } catch (error) {
+  //           console.log('Error al intentar eliminar el cliente:', error);
+  //           alert('Error al intentar eliminar el cliente');
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   // para la contraseña 
 
 //   async handleEditarPassword(formValue: any){

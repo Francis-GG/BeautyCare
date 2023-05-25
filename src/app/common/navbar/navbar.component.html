@@ -18,7 +18,7 @@
 
     <div *ngIf="data.length > 0">
       <img
-        [src]="loggedIn? (avatarUrl || '../../../assets/images/login/5-removebg-preview.png') : '../../../assets/images/logoBeautyCare.png'"
+        [src]="loggedIn? (imagePath || '../../../assets/images/login/5-removebg-preview.png') : '../../../assets/images/logoBeautyCare.png'"
         class="user-pic" (click)="toggleMenu()">
 
       <div class="user-info" *ngFor="let user of data">

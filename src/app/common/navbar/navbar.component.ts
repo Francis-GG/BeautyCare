@@ -13,10 +13,13 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   public data: any = [];
   private subMenu!: HTMLElement;
   public loggedIn= false;
-  public avatarUrl: string | null = null;
+  public imagePath: string = '';
+  public dataUser: any = [];
+
 
   constructor(public auth: Auth, public firestore: Firestore, private router: Router) {
     this.subMenu = document.getElementById("subMenu")!
+    this.getData();
     
   }
 
@@ -68,7 +71,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
           const userData = { ...docSnapshot.data(), id: docSnapshot.id };
           this.data = [userData];
           this.loggedIn = true; // asigna el valor de loggedIn a true
-          this.avatarUrl = this.data[0].avatarUrl; // establece la URL de la imagen del avatar del usuario
+          this.imagePath = this.data[0].imagen; 
           console.log('nombre de usuario: ' + this.data[0].nombre);
         
         }
@@ -80,6 +83,11 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       
     }
   }
+
+
+
+
+
 
   // //funcion para cerrar sesion
   async signOut() {

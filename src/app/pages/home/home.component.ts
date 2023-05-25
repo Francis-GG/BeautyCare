@@ -10,9 +10,18 @@ import {addDoc, Firestore, collection, getDocs} from '@angular/fire/firestore';
 export class HomeComponent {
   title = 'Beautycare';
   public data: any = [];
+  public dataSucursal:  any = [];
+
+
+
+
+
   constructor(public firestore: Firestore) {
-    this.getData()
+    this.getData(),
+    this.getDataSucursal()
   }
+
+
   getData(){
     const dbInstance = collection(this.firestore, 'categorias');
     getDocs(dbInstance)
@@ -22,4 +31,23 @@ export class HomeComponent {
       })]
     })
   }
+
+  // datos de contecto 
+
+  getDataSucursal(){
+    const dbInstance = collection(this.firestore, 'contacto');
+       getDocs(dbInstance)
+       .then((response) => {
+         this.dataSucursal = [...response.docs.map((item) => {
+            return {...item.data(), id: item.id}
+          } 
+          )]
+        
+          
+       })
+    }
+
+
+
+
 }

@@ -3,8 +3,8 @@
     <div class="col-6">
       <div class="profile-card">
         <div class="profile-avatar">
-          <img src="../../../assets/images/user.png" alt="Avatar">
-
+          <img [src]="imagePath" alt="Avatar">
+          
           <button type="button" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@fat">Editar Perfil</button>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-body">
                   <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
-                  <form #editarPerfilForm="ngForm" (ngSubmit)="handleEditarPerfil(editarPerfilForm.value)">
+                  <form #editarPerfilForm="ngForm" (ngSubmit)="handleEditarPerfil(editarPerfilForm.value, fileInput)">
                     <div class="mb-3">
                       <label for="recipient-nombre" class="col-form-label">Nombre</label>
                       <input type="text" class="form-control" id="nombre-perfil" name="nombre-perfil"
@@ -37,7 +37,7 @@
                       <label for="recipient-imagen" class="col-form-label">Seleccione una imagen</label>
                     </div>
                     <div>
-                      <input type="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" class="form-control" id="inputGroupFile01" #fileInput>
                     </div>
                   </form>
                 </div>
@@ -165,3 +165,19 @@
       </div>
     </div>
   </div>
+
+
+<!-- Para eliminar la cuenta de usuario  -->
+
+  <div>
+    <h2 class="eliminar">Eliminar cuenta</h2>
+    <button class="cancel-btn">Cancelar
+    reserva</button>
+  </div>
+
+
+
+<!-- 
+  <button class="cancel-btn"
+    (click)="eliminarReserva(reserva.id)">Cancelar
+    reserva</button> -->

@@ -23,11 +23,13 @@ html {
 body {
 
   margin: 0;
+  background-image: url("../assets/images/fondoIntenso.png") ;
 }
 
 .container {
   /* si  la pantalla se extiende más de 1400px el contenido se centra */
   max-width: 1400px;
   margin: auto;
+  background-image: url("../assets/images/fondo3.png") ;
 
 }
