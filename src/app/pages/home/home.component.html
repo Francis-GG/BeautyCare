@@ -48,17 +48,49 @@
 
   <div id="cards-servicios">
     <div class="row">
-      <div class="col-sm-4" *ngFor="let item of data">
+      <!-- <div class="col-sm-4" *ngFor="let item of data">
         <div class="image-item text-center">
-          <!-- <img src="{{item.imagen_horizontal}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
-            routerLink="{{item.ruta}}"> -->
-
-
+          <img src="{{item.imagen_horizontal}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
+            routerLink="{{item.ruta}}">
           <button type="button" class="btn btn-outline-light" id="botonServicios"
             routerLink="{{item.ruta}}">{{item.nombre}}</button>
           <p class="descrpservicios">{{item.descripcion}}</p>
         </div>
+      </div> -->
+
+
+      <!-- reemplazo para el css mientras tanto  -->
+      <div class="col-sm-4">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/depilacion2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/depilacion">
+            <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/depilacion">Depilación</button>
+            <p class="descrpservicios">¡Adiós a los vellos indeseados! Nuestro servicio de depilación te dejará suave y sin vellos en las áreas que desees. Contamos con profesionales altamente capacitados y productos de alta calidad para brindarte una experiencia de depilación efectiva y cómoda.</p>
+        </div>
       </div>
+      <div class="col-sm-4">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/peluqueria2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/peluqueria">
+            <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/peluqueria">Peluquería</button>
+            <p class="descrpservicios">¡Transforma tu cabello en un look espectacular! Con nuestro servicio de peluquería, podrás lucir el estilo que siempre has deseado. Ofrecemos cortes, peinados, coloración, tratamientos capilares y más, todo realizado por nuestros estilistas expertos.</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/manicure2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/manicure">
+            <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/manicura">Manicure</button>
+            <p class="descrpservicios">¡Luce unas uñas impecables! Con nuestro servicio de manicure, podrás disfrutar de una gran variedad de opciones para cuidar y embellecer tus manos. Ofrecemos diferentes estilos de manicure, desde el clásico francés hasta el más innovador diseño, con productos de calidad y atención personalizada.</p>
+        </div>
+      </div>
+
+
+      
+      
     </div>
   </div>
 </section>
