@@ -1,43 +1,77 @@
-html,
-body,
-.intro {
-  height: 100%;
+/* Estilo de la tabla */
+.table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 0;
+    color: #212529;
+    border-collapse: collapse;
+  }
+  
+  .table td,
+  .table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table tbody+tbody {
+    border-top: 2px solid #dee2e6;
+  }
+  
+  table-sm td,
+.table-sm th {
+  padding: 0.3rem;
 }
 
-.container{
-  min-width: 90%;
+
+.listado{
+    text-align: start;
 }
 
-#boton-editar,
-#boton-eliminar{
-    color: rgb(139, 139, 139)
+.texto{
+    text-align: justify;
 }
 
-.card-body button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Estilo de los botones */
 
-.btn-success {
-  margin-left: auto;
-}
+#boton-eliminar {
+    width: 10%;
+  }
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+  }
 
-table td,
-table th {
-  white-space: pre-wrap;
-  word-break: break-word;
-  max-width: 25vw;
-}
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    
+  }
+    .btn-danger:hover {
+        background-color: #691a22;
+        
+    
+    }
 
-.card {
-  border-radius: .5rem;
-}
+  .btn-sm:hover {
+    background-color: #691a22;
+    border: none;
 
-.mask-custom {
-  background: rgba(24, 24, 16, .2);
-  border-radius: 2em;
-  border: 2px solid rgba(255, 255, 255, 0.05);
-  background-clip: padding-box;
-  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
-}
+  }
+  
+  
+
+
+/*
+.btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  } */

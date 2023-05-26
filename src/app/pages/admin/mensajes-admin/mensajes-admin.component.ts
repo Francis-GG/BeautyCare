@@ -9,8 +9,10 @@ import { Firestore, collection, getDocs, updateDoc, doc, deleteDoc, query, order
 export class MensajesAdminComponent {
   public data: any = [];
   
+  
 
-  constructor(public firestore: Firestore){
+  constructor(
+    public firestore: Firestore){
     this.getDataMensajes();
 
   }
@@ -40,6 +42,9 @@ export class MensajesAdminComponent {
         });
     }
   }
+
+
+
 
 
 

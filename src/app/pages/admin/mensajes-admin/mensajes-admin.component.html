@@ -3,32 +3,37 @@
         <div class="col-md-12">
             <h1 class="text-center">ADMINISTRACIÓN DE MENSAJERÍA</h1>
         </div>
-        <div class="card">
 
-            <div class="col col-md-12  ">
+
+        <div class="col col-md-12  ">
+            <div class="card">
                 <table class="table table-borderless mb-12">
                     <thead>
                         <tr>
+                            <th scope="col-md-4">Id</th>
                             <th scope="col-md-4">DATOS USUARIO</th>
                             <th scope="col-md-4">COMENTARIOS</th>
                             <th scope="col-md-4">FECHA</th>
+                            <th scope="col-md-4">HORA</th>
                             <th scope="col-md-4" id="boton-eliminar">ELIMINAR</th>
                         </tr>
                     </thead>
 
-                    <!-- editar servicio -->
+                    <!-- Tabla con el listado de mensajes -->
                     <tbody *ngFor="let item of data">
                         <tr>
-                            <td>
+                            <p>Id: {{ item.id }}</p>
+                            <td class="listado">
                                 <p>Nombre: {{ item.nombre }} {{ item.apellido }}</p>
                                 <p>Teléfono: {{ item.telefono }}</p>
                                 <p>Email: {{ item.email }}</p>
                             </td>
-                            <td>{{item.texto}}</td>
-                            <td>{{item.fecha}}</td>
+                            <td class="texto">{{item.texto}}</td>
+                            <td class="fecha">{{item.fecha}}</td>
+                            <td>{{item.hora}}</td>
                             <td>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#eliminarServicio" (click)="eliminarMensaje(item.id)"> Eliminar Comentario
+                                    data-bs-target="#eliminarServicio" (click)="eliminarMensaje(item.id)"> Eliminar
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>

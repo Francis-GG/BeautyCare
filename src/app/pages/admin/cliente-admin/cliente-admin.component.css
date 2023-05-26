@@ -185,6 +185,9 @@ table-sm td,
   padding: 10px;
   width: 100%;
 }
+#botonAgregarCliente:hover{
+  background-color: #04470a;
+}
 
 
 * Botones de la tabla */

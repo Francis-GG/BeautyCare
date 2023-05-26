@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Auth } from '@angular/fire/auth';
 declare var document: any;
 
 @Component({
@@ -10,8 +11,13 @@ declare var document: any;
 })
 export class AdminComponent {
   authErrorMessages: any;
+  public data: any = [];
+  public loggedIn = false;
+
+
   constructor(
     private router: Router,
+    public auth: Auth,
     public titleService: Title) { }
 
   ngOnInit() {
@@ -59,14 +65,17 @@ export class AdminComponent {
     return data;
   }
 
+  // función para cerrar sesión 
+  async signOut() {
+    this.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+      console.log('adiosito! con éxito;')
+      alert(`Adios!` + this.data[0].nombre);
+      this.loggedIn = false;
+    }).catch((error) => {
+      console.log('Error during sign out:', error);
+    });
 
 
- 
-
-
-
-
-
-
-
+  }
 }

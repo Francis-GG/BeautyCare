@@ -63,11 +63,12 @@
     async submitContacto(id: string ,nombre: string, apellido: string, email: string, telefono: string, texto: string){
       const currentTime = new Date();
       const fecha = currentTime.toLocaleString();
+      const hora = currentTime.toLocaleTimeString();
 
 
       if(confirm('¿Está seguro que desea enviar el formulario?')){
        const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
-       setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha})
+       setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha, hora})
        .then(() => {
          console.log('Formulario enviado con éxito.')
        })
