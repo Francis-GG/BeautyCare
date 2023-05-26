@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth, User } from '@angular/fire/auth';
+import { Auth, User, deleteUser } from '@angular/fire/auth';
 import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
 
@@ -226,75 +226,28 @@ export class PerfilClienteComponent {
   
    //Para eliminar un cliente determinado     
 
-  // eliminarCliente(idUsers: string){
-  //   if (confirm('¿Está seguro que desea eliminar este cliente?')){
-  //     const clienteDocRef = doc(this.firestore, `users/${user.uid}/users/${idUsers}`);
-  //     deleteDoc(clienteDocRef)
-  //       .then(() => {
-  //         console.log('Cliente eliminado correctamente');
-  //         this.data = this.data.filter((item: any) => item.id !== idUsers);
-  //         alert('Cliente eliminado correctamente');
-  //       })
-  //       .catch((error) => {
-  //         console.log('Error al intentar eliminar el cliente:', error);
-  //         alert('Error al intentar eliminar el cliente');
-  //       });
-  //   }
-  // }
+  
 
-  // async eliminarCliente(idUsers: string) {
-  //   if (confirm('¿Está seguro que desea eliminar este cliente?')) {
-  //     const user = this.auth.currentUser; // Obtener el usuario actual
-  
-  //     if (user) {
-  //       const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
-  
-  //       try {
-  //         // Eliminar el documento del usuario en Firestore
-  //         await deleteDoc(clienteDocRef);
-  
-  //         // Eliminar el usuario en Authentication
-  //         await deleteUser(user);
-  
-  //         console.log('Cliente eliminado correctamente');
-  //         this.data = this.data.filter((item: any) => item.id !== idUsers);
-  //         alert('Cliente eliminado correctamente');
-  //       } catch (error) {
-  //         console.log('Error al intentar eliminar el cliente:', error);
-  //         alert('Error al intentar eliminar el cliente');
-  //       }
-  //     }
-  //   }
-  // }
+   async eliminarCliente() {
+     if (confirm('¿Está seguro que desea eliminar su cuenta?')) {
+       const user = this.auth.currentUser; // Obtener el usuario actual
+       if (user) {
+         const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
+         try {
+           // Eliminar el documento del usuario en Firestore
+           await deleteDoc(clienteDocRef);
+           // Eliminar el usuario en Authentication
+           await deleteUser(user);
+           console.log('Cliente eliminado correctamente');
+           alert('Cliente eliminado correctamente');
+         } catch (error) {
+           console.log('Error al intentar eliminar el cliente:', error);
+           alert('Error al intentar eliminar el cliente');
+         }
+       }
+     }
+   }
 
-  // async eliminarCliente(idUsers: string) {
-  //   if (confirm('¿Está seguro que desea eliminar este cliente?')) {
-  //     const user = await this.auth.currentUser; // Obtener el usuario actual
-      
-  //     if (user) {
-  //       if (user.uid === idUsers) {
-  //         console.log('No puedes eliminar tu propio usuario');
-  //         alert('No puedes eliminar tu propio usuario');
-  //       } else {
-  //         const clienteDocRef = doc(this.firestore, `users/${idUsers}`);
-          
-  //         try {
-  //           // Eliminar el documento del usuario en Firestore
-  //           await deleteDoc(clienteDocRef);
-  //           // Eliminar el usuario en Authentication
-  //           await deleteUser(user);
-            
-  //           console.log('Cliente eliminado correctamente');
-  //           this.data = this.data.filter((item: any) => item.id !== idUsers);
-  //           alert('Cliente eliminado correctamente');
-  //         } catch (error) {
-  //           console.log('Error al intentar eliminar el cliente:', error);
-  //           alert('Error al intentar eliminar el cliente');
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
   
 
 

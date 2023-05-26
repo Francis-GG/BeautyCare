@@ -90,139 +90,131 @@
 
         <!-- <div class="col col-md-4">
             <div class="card"> -->
-                <div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalAgregarCliente"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <header>Registrar clientes</header>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <!-- cuadro para registrar a los clientes desde el Admin -->
-                                <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
-                                    <input id="email-registro" name="email" ngModel placeholder="Email" type="email"
-                                        class="input-field" />
-                                    <input id="password-registro" name="password" ngModel placeholder="Contraseña"
-                                        id="password" type="password" class="input-field" />
-                                    <div class="input-group">
-                                        <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre"
-                                            id="nombre" type="text" class="form-control" />
+        <div class="modal fade" id="modalAgregarCliente" tabindex="-1" aria-labelledby="modalAgregarCliente"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <header>Registrar clientes</header>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
 
-                                        <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido"
-                                            id="apellido" type="texto" class="form-control" />
-                                    </div>
-                                    
-                                    <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 "
-                                        id="telefono" type="text" class="input-field" />
-                                        
-                                    
+                        <!-- cuadro para registrar a los clientes desde el Admin -->
+                        <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+                            <input id="email-registro" name="email" ngModel placeholder="Email" type="email"
+                                class="input-field" />
+                            <input id="password-registro" name="password" ngModel placeholder="Contraseña" id="password"
+                                type="password" class="input-field" />
+                            <div class="input-group">
+                                <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" id="nombre"
+                                    type="text" class="form-control" />
 
-                                </form>
-                                <button type="button" class="btn btn-secondary" id="cancelareditar"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                id="agregarClienteButton" (click)="registerForm.ngSubmit.emit()">Agregar
-                                cliente</button>
+                                <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido"
+                                    id="apellido" type="texto" class="form-control" />
                             </div>
-                        </div>
+
+                            <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 "
+                                id="telefono" type="text" class="input-field" />
+
+
+
+                        </form>
+                        <button type="button" class="btn btn-secondary" id="cancelareditar"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="agregarClienteButton"
+                            (click)="registerForm.ngSubmit.emit()">Agregar
+                            cliente</button>
                     </div>
                 </div>
-            <!-- </div>
+            </div>
+        </div>
+        <!-- </div>
         </div> -->
 
 
 
 
 
-            <!-- cuadro para editar a los clientes desde el Admin -->
-            <!-- <div class="col col-md-12 ">
+        <!-- cuadro para editar a los clientes desde el Admin -->
+        <!-- <div class="col col-md-12 ">
                 <div class="card"> -->
-                    <div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="modalEditarCliente"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cliente</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form #editarclienteForm="ngForm"
-                                        (ngSubmit)="handleEditCliente(editarclienteForm.value)">
-                                        <div class="mb-3">
-                                            <label for="inputNombreCliente" class="form-label">Nombre
-                                                Cliente</label>
-                                            <input type="text" class="form-control" id="nombre-edit" name="nombre-edit"
-                                                [(ngModel)]="nombreCliente">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="inputApellidocliente" class="form-label">Apellido </label>
-                                            <input type="text" class="form-control" id="apellido-edit"
-                                                name="apellido-edit" [(ngModel)]="apellidoCliente">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="inputtelfonoCliente" class="form-label">Teléfono</label>
-                                            <input type="text" class="form-control" id="telefono-edit"
-                                                name="telefono-edit" [(ngModel)]="telefonoCliente">
-                                            <div id="telefonoHelp" class="form-text">Formato: "+569 "</div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="inputemailCliente" class="form-label">Correo electrónico</label>
-                                            <input type="email" class="form-control" id="email-edit" name="email-edit"
-                                                readonly [(ngModel)]="emailCliente">
-                                            <div id="emialnoHelp" class="form-text">Formato: "correo@correo.cl "</div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" id="cancelareditar"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                        id="updateClienteButton" (click)="editarclienteForm.ngSubmit.emit()">Actualizar
-                                        cliente</button>
-                                        
-                                </div>
-                            </div>
-                        </div>
+        <div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="modalEditarCliente"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cliente</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                <!-- </div>
-            </div> -->
-
-            <!-- modal para ver las reservas del cliente  -->
-            <div class="col col-md-8" >
-                    <div class="modal fade" id="modalReservasCliente" tabindex="-1"
-                        aria-labelledby="modalReservasCliente" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="reservasModalLabel">Reservas Cliente</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-6">
-                                        <div class="profile-card-reserva">
-                                            <h3 id="misreservas">Mis Reservas</h3>
-                                            <div class="reservation"
-                                                *ngFor="let reserva of dataReservas; let i = index">
-                                                <h4>Reserva #{{ i + 1 }}</h4>
-                                                <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
-                                                <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
-                                                <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
-                                                <button class="cancel-btn"
-                                                    (click)="eliminarReserva(reserva.id)">Cancelar
-                                                    reserva</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                    <div class="modal-body">
+                        <form #editarclienteForm="ngForm" (ngSubmit)="handleEditCliente(editarclienteForm.value)">
+                            <div class="mb-3">
+                                <label for="inputNombreCliente" class="form-label">Nombre
+                                    Cliente</label>
+                                <input type="text" class="form-control" id="nombre-edit" name="nombre-edit"
+                                    [(ngModel)]="nombreCliente">
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label for="inputApellidocliente" class="form-label">Apellido </label>
+                                <input type="text" class="form-control" id="apellido-edit" name="apellido-edit"
+                                    [(ngModel)]="apellidoCliente">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputtelfonoCliente" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono-edit" name="telefono-edit"
+                                    [(ngModel)]="telefonoCliente">
+                                <div id="telefonoHelp" class="form-text">Formato: "+569 "</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputemailCliente" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email-edit" name="email-edit" readonly
+                                    [(ngModel)]="emailCliente">
+                                <div id="emialnoHelp" class="form-text">Formato: "correo@correo.cl "</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelareditar"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="updateClienteButton"
+                            (click)="editarclienteForm.ngSubmit.emit()">Actualizar
+                            cliente</button>
+
                     </div>
                 </div>
-       
-            
+            </div>
+        </div>
+        <!-- </div>
+            </div> -->
+
+        <!-- modal para ver las reservas del cliente  -->
+        <div class="col col-md-8">
+            <div class="modal fade" id="modalReservasCliente" tabindex="-1" aria-labelledby="modalReservasCliente"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="reservasModalLabel">Reservas Cliente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-6">
+                                <div class="profile-card-reserva">
+                                    <h3 id="misreservas">Mis Reservas</h3>
+                                    <div class="reservation" *ngFor="let reserva of dataReservas; let i = index">
+                                        <h4>Reserva #{{ i + 1 }}</h4>
+                                        <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
+                                        <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                        <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
+                                        <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar
+                                            reserva</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>

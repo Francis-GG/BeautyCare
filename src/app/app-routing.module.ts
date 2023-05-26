@@ -16,6 +16,7 @@ import { PeluqueriaAdminComponent } from './pages/admin/peluqueria-admin/peluque
 import { ManicureAdminComponent } from './pages/admin/manicure-admin/manicure-admin.component';
 import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { ClienteAdminComponent } from './pages/admin/cliente-admin/cliente-admin.component';
+import { MensajesAdminComponent } from './pages/admin/mensajes-admin/mensajes-admin.component';
 
 const routes: Routes = [
   { path: 'contacto',
@@ -59,8 +60,8 @@ const routes: Routes = [
       { path: 'servicios/peluqueria', component: PeluqueriaAdminComponent, data: { title: 'Peluquería' } },
       { path: 'servicios/manicure', component: ManicureAdminComponent, data: { title: 'Manicure' } },
       { path: 'reservas', component: ReservasComponent, data: {title: 'reservas'}},
-      { path: 'cliente-admin', component: ClienteAdminComponent, data: {title: 'cliente-admin'} },  
-      
+      { path: 'cliente-admin', component: ClienteAdminComponent, data: {title: 'Clientes'} },  
+      { path: 'mensajes-admin', component: MensajesAdminComponent, data: {title: 'Mensajes'}}
      ]
     },
 ];
