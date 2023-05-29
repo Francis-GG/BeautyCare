@@ -27,11 +27,13 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.getData();
+        this.changeAvatar();
+
       }
     });
   }
   
-  
+  //submenu del navbar
   ngAfterViewInit() {
     this.subMenu = document.getElementById("subMenu")!;
     if (!this.subMenu) {
@@ -70,8 +72,6 @@ export class NavbarComponent implements AfterViewInit, OnInit {
         if (docSnapshot.exists()) {
           const userData = { ...docSnapshot.data(), id: docSnapshot.id };
           this.data = [userData];
-          this.loggedIn = true; // asigna el valor de loggedIn a true
-          this.imagePath = this.data[0].imagenPath; 
           console.log('nombre de usuario: ' + this.data[0].nombre);
         
         }
@@ -81,6 +81,35 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     } else {
       console.log('No authenticated user.');
       
+    }
+  }
+
+
+  //funcion para cambiar estado del avatar del navbar
+  async changeAvatar() {
+    const user: User | null = this.auth.currentUser;
+    if (user) {
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      try {
+        const docSnapshot = await getDoc(userDocRef);
+
+        if (docSnapshot.exists()) {
+          const userData = { ...docSnapshot.data(), id: docSnapshot.id };
+          this.dataUser = [userData];
+          this.loggedIn = true; // asigna el valor de loggedIn a true
+          this.imagePath = this.dataUser[0].imagenPath;
+          console.log('imagen de usuario: ' + this.dataUser[0].imagenPath);
+        } else {
+          this.loggedIn = true; // asigna el valor de loggedIn a true
+          console.log('El usuario no tiene imagen guardada');
+          this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
+        }
+      } catch (error) {
+        console.log('Error en traer los datos al navbar:', error);
+      }
+    } else {
+      this.loggedIn = false;
+      console.log('No authenticated user.');
     }
   }
 

@@ -197,11 +197,11 @@ export class PerfilClienteComponent {
 
     try {
       await uploadBytes(storageRef, file);
-      const imageUrl = await getDownloadURL(storageRef);
-      this.imagePath = imageUrl; // Update the imagePath property
+      const imagePath = await getDownloadURL(storageRef);
+      this.imagePath = imagePath; // Update the imagePath property
 
       const userDocRef = doc(this.firestore, `users/${user.uid}`);
-      await updateDoc(userDocRef, { imageUrl });
+      await updateDoc(userDocRef, { imagePath });
 
       return true;
     } catch (error) {
