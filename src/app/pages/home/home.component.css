@@ -18,28 +18,10 @@ body {
   margin: auto;
 }
 
-/* 
-button {
-
-  font-weight: bold;
-  padding: 10px 30px;
-  border-radius: 5px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  color: white;
-  background-color: hsl(271, 78%, 56%);
-}
-
-button:hover {
-  background-color: rgb(101, 33, 165);
-} */
-
-
-
 
 /* Carrusel */
 .container-carrucel {
-  max-width: 85%;
+  max-width: 100%;
   margin: auto;
 
   position: center;
@@ -49,7 +31,7 @@ button:hover {
 
 .container-carrucel img {
 
-  height: 90vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,20 +54,109 @@ button:hover {
 }
 
 
-#bienvenida .container{
+/* card de los servicios  */
+#tituloServicios .container {
   display: flex;
-  font-size: 1.5em;
+  flex-direction: column;
+  align-items: center;
+  max-width: 85%;  
+  margin-bottom: 20px;
+ 
+}
+
+
+#tituloServicios h1 {
+  font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-top: 50px;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px black;
+    color: #ae2abf;
+    font-weight: bold;   
+    text-align: center;
+    line-height: 1em;
+}
+
+#card1 img {
+  height: 50vh;
+  width: 80%;
+  /* object-fit: cover; */
+  object-position: center;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding-bottom: 12px 12px;
+  margin-top: 10px;
+
+}
+#card1 .descrpservicios {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 1.2em;
+  color: rgb(2, 10, 14);
+  text-align: justify;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px 20px;
+}
+
+#card1 button {
+  font-weight: bold;
+  text-shadow: #000;
+  font-size: 1.2em;
+  padding: 10px 30px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: hsl(271, 78%, 56%);
+
+}
+
+#card1 button:hover {
+  background-color: rgb(101, 33, 165);
+}
+.image-item {
+
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+  transition: all 1s;
+  padding: 1px;
+  margin-top: 20px;
+}
+
+.image-item:hover {
+  
+  transform: translateY(-1%);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+#bienvenida .container{
+  /* display: flex; */
+  font-size: 1em;
   font-style: italic;
   font-weight: bold;
   text-shadow: #000;
   padding: 0px 0px;
+  margin-top: 10px;
   justify-content: center;
   opacity: 1;
 }
 
 #agenda {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -106,6 +177,8 @@ button:hover {
   font-style: italic;
   font-family: 'Times New Roman', Times, serif;
   padding: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 50px;
   margin-right: 20px;
   background-color: #f3f0f42b;
@@ -116,8 +189,10 @@ button:hover {
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   font-size: 1.5em;
-  margin-top: 10px;
-  text-align: end;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+  text-align: center;
   font-weight: bold;
   color: #f4f4f4;
   text-shadow: 2px 2px 2px rgba(77, 62, 6, 0.5);
@@ -133,6 +208,7 @@ button:hover {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   margin-left: 30px;
   margin-right: 30px;
+  padding: 10px;
 
 }
 
@@ -145,7 +221,8 @@ button:hover {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   color: white;
   background-color: hsl(271, 78%, 56%);
-
+  margin-top: 20px;
+  margin-bottom: 20px;
 
 
 }
@@ -153,251 +230,5 @@ button:hover {
 #agenda button:hover {
   background-color: rgb(101, 33, 165);
 }
-
-
-#tituloServicios .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-
-#tituloServicios h1 {
-  font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    margin-top: 50px;
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px black;
-    color: #ae2abf;
-    font-weight: bold;   
-    text-align: center;
-    line-height: 1em;
-}
-
-#tituloServicios p {
-
-  font-family: 'Roboto', sans-serif;
-  /* separacion entre lineas   */
-  line-height: 1.5em;
-  flex-direction: column;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: rgb(26, 81, 103);
-  text-align: end;
-  margin: 0;
-  padding: 0;
-}
-
-/* card de los servicios  */
-
-
-
-/* Servicios */
-.tituloLogo{
-  font-family: 'Dancing Script';
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 3%;
-  margin-top: 3%;
-  text-align: center;
-  text-shadow: 1px 1px 2px black;
-}
-
-/*  */
-
-.descrservicios{
-font-style: italic;
-font-size: 2.2rem;
-margin-bottom: 20px;
-color: #2c2ea8;
-text-shadow: 1px 1px 2px black;
-padding: 10px;
-display: block;
-max-width: 100%;
-word-wrap: break-word;
-text-align: center;
-
-}
-
-/* card de los servicios  */
-#cards-servicios {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
-  background: white;
-}
-
-
- .col-sm-4 {
-  padding: 15px;
-  text-align: center;
-}
-
-.image-item {
-
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-  transition: all 1s;
-}
-
-.image-item:hover {
-  
-  transform: translateY(-3%);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* imagenes de las card que no estan tomando  */
-.icard-img-top {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  vertical-align: middle;
-
-  height: 45vh;
-  width: 100%;
-  padding: 1%;
-  border-radius:52% 48% 44% 56% / 54% 0% 0% 46% ;
-  transition: all 1s;
-  bottom: -10%;
-  border-radius: 45%;
-  box-shadow: -5px 15px
-    15px rgba(0, 0, 0, 0.5);
-} 
-
-#botonServicios{
-  font-weight: bold;
-  padding: 10px 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  color: white;
-  background-color: hsl(271, 78%, 56%);
-
-}
-#botonServicios:hover{
-  background-color: rgb(101, 33, 165);
-  color: white;
-
-}
-
-
-
-
-/* preguntas  */
-
-#preguntas .container{
-  display: flex;
-  padding: 30px;
-  text-align: center;
-  font-family: 'Times New Roman', Times, serif;
-
-}
-
-#preguntas h1{
-  font-family: 'Times New Roman', Times, serif;
-  text-transform: uppercase;
-  font-size: 2.5rem;
-  color: #d9c87d;
-  font-weight: bold;
-  text-align: right;
-  line-height: 1.2;
-  text-shadow: 1px 1px 2px #080808;
-  margin-bottom: 20px;
-}
-
-
-#preguntas p {
-  font-style: italic;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #6f1ca7;
-  text-shadow: 1px 1px 2px black;
-  padding: 10px;
-  display: block;
-  max-width: 100%;
-  word-wrap: break-word;
-  text-align: right;
-}
-
-#preguntas button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  background-color: #D97D86;
-  border: none;
-  border-radius: 2em;
-  box-shadow: -5px 15px 15px rgba(0, 0, 0, 0.1);
- transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-#preguntas button:hover {
-  background-color: #C10079;
-} 
-
-#info #infor {
-  color: black;
-  font-size: 3.5em;
-  font-family: 'Times New Roman', Times, serif;
-  text-align: start;
-  font-style: italic;
-  text-shadow: 1px 1px 2px #080808;
-  margin-bottom: 5px;
-  margin-top: 5px
-
-  
-
-  
-}
-
-* #contacto .container{
-  display: flex;
-  flex-direction: column;
-justify-content: space-between;
-padding: 10px 10px;
-margin: auto; 
-text-align: center;
-
-}
-
-#contacto .telefono{
-  font-size: 1.5em;
-  font-weight: bold;
-  color: rgb(2, 2, 2);
-  margin: 0;
-  padding: 0;
-}
-
-
-/*
-#contacto h1{
-  font-size: 2em;
-  margin-left: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-
-}
-
-#contacto .spani{
-  font-size: 0.8em;
-  text-align: center;
-  font-family: 'Times New Roman', Times, serif;
-  padding: 5px 12px;
-  text-align: center;
- 
- 
-} */
 
 
