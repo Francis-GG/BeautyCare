@@ -16,17 +16,19 @@ export class FooterComponent {
     this.getDataSucursal();
   }
 
-     // obtiene la informacion del local 
-     getDataSucursal(){
-      const dbInstance = collection(this.firestore, 'contacto');
-      getDocs(dbInstance)
+  // obtiene la informacion del local 
+  getDataSucursal() {
+    const dbInstance = collection(this.firestore, 'contacto');
+    getDocs(dbInstance)
       .then((response) => {
         this.data = [...response.docs.map((item) => {
-          return {...item.data(), id: item.id};
+          return { ...item.data(), id: item.id };
+
         })]
       })
-    }
-  
-  
+  }
+
+
+
 
 }

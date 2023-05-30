@@ -1,33 +1,45 @@
-<section id="footer">
-   <div class="container">
-      <div class="rutas">
-
-
-
-         <div class="listado">
-            <ul>
-               <a href="#">
-                  <li>Inicio</li>
-               </a>
-               <a href="#">
-                  <li>Servicios</li>
-               </a>
-               <a href="#">
-                  <li>Contácto</li>
-               </a>
-               <a href="#">
-                  <li>Preguntas frecuentes</li>
-               </a>
-
-            </ul>
-         </div>
-
-
+<section>
+   <footer>
+      <ul>
+         <li>
+            <h1>BeautyCare</h1>
+            <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
+         </li>
          
-      </div>
-      <div id="titulo">
-         <h1 class="titulofooter">BeautyCare</h1>
-         <img class="logo" src="../../../assets/images/logoBeautyCare.png" alt="logo">
+         <li>
+            <div class="rutas">
+               <div class="listado">
+                  <ul>
+                     <a href="#">
+                        <li>Inicio</li>
+                     </a>
+                     <a routerLink="/servicios/depilacion">
+                        <li>Servicios</li>
+                     </a>
+                     <a routerLink="/contacto">
+                        <li>Contacto</li>
+                     </a>
+                     <a routerLink="/preguntfrecuent">
+                        <li>Preguntas frecuentes</li>
+                     </a>
+      
+                  </ul>
+               </div>
+            </div>
+      
+         </li>
+         <li>
+            <h4>Contacto</h4>
+            <p>Teléfono: {{data.telefono}}</p>
+            <p>Email: email@beautycare.com</p>
+         </li>
+      </ul>
+   </footer>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12 text-center">
+            <p id="copyderecho">©2023 Creado por KaizenGO portafolio de título.</p>
+         </div>
       </div>
    </div>
-   </section>
+</section>
