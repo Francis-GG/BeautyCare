@@ -1,9 +1,11 @@
 <section class="faq-section">
-  <h2 class="section-title">Preguntas Frecuentes</h2>
-  <div class="faq-container">
-    <div class="faq-item" *ngFor="let item of data">
-      <h3 class="question">{{item.pregunta}}</h3>
-      <p>{{item.respuesta}}</p>
+  <div class="container">
+    <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+    <div class="faq-container">
+      <div class="faq-item" *ngFor="let item of data">
+        <h3 class="question">{{item.pregunta}}</h3>
+        <p>{{item.respuesta}}</p>
+      </div>
     </div>
   </div>
 </section>

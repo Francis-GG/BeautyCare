@@ -1,17 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-}
-
-
 
 .container {
   max-width: 1400px;
@@ -19,92 +5,54 @@ body {
 }
 
 
-/* Carrusel */
 .container-carrucel {
-  max-width: 100%;
-  margin: auto;
-
-  position: center;
-  ;
-  /* overflow: hidden; */
-}
-
-.container-carrucel img {
-
-  height: 60vh;
+  max-width: 600px;
+  margin-top: 20px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  padding-bottom: 12px 12px;
+
+  margin: 0px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-height: 40%;
+  
 }
 
-.container-carrucel button {
-  top: 50%;
-  position: absolute;
-  margin: 0px;
-  padding: 1px 1px 1px;
-  transform: translateY(-50%);
-  width: auto;
-  border: none; 
-  /* cursor: pointer;
-  transition: 0.3s; */
-
+.carousel-item img {
+  width: 100%;
+  height: auto;
+ border-radius: 5px;
+  
+  
 }
-
-
-/* card de los servicios  */
-#tituloServicios .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 85%;  
-  margin-bottom: 20px;
- 
-}
-
 
 #tituloServicios h1 {
   font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    margin-top: 50px;
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px black;
-    color: #ae2abf;
-    font-weight: bold;   
-    text-align: center;
-    line-height: 1em;
+  font-style: italic;
+  margin-top: 50px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px black;
+  color: #ae2abf;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1em;
 }
 
-#card1 img {
-  height: 50vh;
-  width: 80%;
-  /* object-fit: cover; */
+
+#card1 img{
+  width: 90%;
+  height: 45vh;
   object-position: center;
   margin: auto;
-  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  flex-direction: column;
   padding-bottom: 12px 12px;
-  margin-top: 10px;
+  margin-top: 12px;
+  border-radius: 1%;
+}
 
-}
-#card1 .descrpservicios {
-  font-family: 'Times New Roman', Times, serif;
-  font-style: italic;
-  font-size: 1.2em;
-  color: rgb(2, 10, 14);
-  text-align: justify;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 20px 20px;
-}
 
 #card1 button {
   font-weight: bold;
@@ -112,6 +60,7 @@ body {
   font-size: 1.2em;
   padding: 10px 30px;
   margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 5px;
   border: 2px solid rgba(0, 0, 0, 0.3);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -123,67 +72,69 @@ body {
 #card1 button:hover {
   background-color: rgb(101, 33, 165);
 }
-.image-item {
 
-  position: relative;
+
+.image-item{
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-  transition: all 1s;
-  padding: 1px;
+  padding: 1px 2px;
   margin-top: 20px;
-  background-image: linear-gradient(
-  0deg, 
+  background-image: linear-gradient(0deg,
   rgba(181, 28, 192, 0.1),
   rgba(230, 224, 234, 0.197));
+  transition: box-shadow 0.3s ease-in-out;
+  transition: all 1s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: justify;
 }
 
+
 .image-item:hover {
-  
+
   transform: translateY(-1%);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.descrpservicios{
+  padding: 0px 12px;
+  background-color: rgba(240, 233, 240, 0.163);
+}
 
-#bienvenida .container{
-  /* display: flex; */
-  font-size: 1em;
+#bienvenida .container {
+  display: flex;
+  font-size: 1.5em;
   font-style: italic;
   font-weight: bold;
   text-shadow: #000;
   padding: 0px 0px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   justify-content: center;
   opacity: 1;
 }
 
 #agenda {
-  /* display: flex; */
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* height: 30vh; */
-  background-image: linear-gradient(
-  0deg, 
-  rgba(0, 0, 0, 0.5),
-  rgba(0, 0, 0, 0.5))
-  ,url("../../../assets/images/flores.png");
- 
-  background-size:auto;
-  background-position-y: center;
+  background-image: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)), url("../../../assets/images/flores.png");
+  background-size: 100%;
+  background-position: center;
   background-repeat: no-repeat;
+  
 }
 
-#bienvenida .agendatexto{
-  font-size: 2.5em;
+
+#bienvenida .objetivo {
+  font-size: 2em;
   font-style: italic;
   font-family: 'Times New Roman', Times, serif;
   padding: auto;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
-  margin-left: 50px;
+  margin-left: 5px;
   margin-right: 20px;
   background-color: #f3f0f42b;
 }
@@ -207,8 +158,8 @@ body {
   font-family: 'Times New Roman', Times, serif;
   color: white;
   text-align: end;
-  background-color:   rgba(0, 0, 0, 0.3);
-  border: 2px 2px solid  rgba(77, 62, 6, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px 2px solid rgba(77, 62, 6, 0.5);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   margin-left: 30px;
   margin-right: 30px;
@@ -237,80 +188,102 @@ body {
 }
 
 
-#agenda span{
+#agenda span {
   color: yellow;
 }
 
 
-/* cuando la pantalla supere los 720px se realizarán los siguientes cambios */
+@media (max-width: 767px) {
+  .container-carrucel {
+    width: 100%;
+    height: auto;
+    
+  }
 
-
-@media (min-width: 720px){
-  /* Carrusel */
-.container-carrucel {
-  max-width: 70%;
-  position: center;
-  padding: 20px;
-  margin-top: 10px;
-  background-image: linear-gradient(
-  0deg, 
-  rgba(237, 147, 255, 0.1),
-  rgba(15, 39, 146, 0.1));
-  background-size: cover;
+  #card1 img{
+    width: 100%;
+    height: 30vh;
+  }
+  .descrpservicios{
+    padding: 0px 12px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 0.9em;
+  }
+  
+  #bienvenida{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    background-size: auto;
   background-position-y: center;
   background-repeat: no-repeat;
-}
-
-#tituloServicios{
-  font-family: 'Times New Roman', Times, serif;
-  font-style: italic;
-  font-size: 2em;
-}
 
 
+  }
 
-#card1 .descrpservicios {
-  display: block;
-}
 
-.image-item{
-  width: 100%;
-  padding: 10px;
- 
-  background-image: linear-gradient(
-  0deg, 
-  rgba(213, 178, 216, 0.8),
-  rgba(230, 224, 234, 0.8));
+  #agenda {
+
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)), url("../../../assets/images/flores.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   
 }
+@media (max-width: 575px) {
+  .container-carrucel {
+    width: 100%;
+    height: auto;
+  }
 
-#bienvenida  .container{
-  display: flex;
-  padding: 10px;
-  margin-top: 50px;
-  font-size: 1.5em;
+  #card1 img {
+    width: 50%;
+    height: 30vh;
+    
+  }
+
+  .descrpservicios {
+    padding: 0px 6px;
+    margin-left: 20px ;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 1em;
+    text-align: justify;
+  }
+
+  #card1 button{
+    margin-left: 20px;
+
+  }
+
+  #bienvenida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    background-size: auto;
+    background-position-y: center;
+    background-repeat: no-repeat;
+  }
+
 
 }
 
-#agenda {
-  /* display: flex; */
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  /* height: 30vh; */
-  background-image: linear-gradient(
-  0deg, 
-  rgba(0, 0, 0, 0.5),
-  rgba(0, 0, 0, 0.5))
-  ,url("../../../assets/images/flores.png");
- 
-  background-size: cover;
-  background-position-x: center;
-  background-position-y: center;
-
-  background-repeat: no-repeat;
-}
 
 
 
@@ -322,6 +295,3 @@ body {
 
 
 
-
-
-}
