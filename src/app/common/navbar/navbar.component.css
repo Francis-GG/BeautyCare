@@ -7,13 +7,13 @@
 
 /* @media (max-width: 1400px) { */
 .navbar {
-  margin: 0;
-  padding: 0;
+  max-width: 1400px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
   background: rgba(146, 48, 185, 0.53);
   padding: 10px 10px;
+  
 }
 
 .logo-container {
