@@ -109,23 +109,8 @@
     font-size: large;
     font-weight: bold;
   }
-  .cancel-btn {
-    background-color: #dc3545;
-    border: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color .3s ease;
-    display: inline-block;
-   
-  }
-  
-  .cancel-btn:hover {
-    background-color: #c82333;
-    transform: scale(0.9);
-  }
-  
+
+   /*hisotial de reservas  */
   .date, .service, .time {
     display: inline-block;
     vertical-align: middle;
@@ -178,8 +163,44 @@
   
  
 
+  /* boton eliminar */
+  .botonEliminar{
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #eae3ee95;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 40%;
+  }
+
+  .botonEliminar h2{
+    font-size: 1.8em;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+  }
+  .cancel-btn {
+    font-size: 1.2em;
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    display: inline-block;
+   
+  }
   
- 
+  .cancel-btn:hover {
+    background-color: #c82333;
+    transform: scale(0.9);
+  }
+
   
 
     

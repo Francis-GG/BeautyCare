@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-6">
       <div class="profile-card">
@@ -62,7 +62,7 @@
 
         <!-- boton para cambiar el correo electronico -->
         <div class="profile-actions">
-          <button class="change-email" data-bs-toggle=                                                                                                                                                                                                                                            "modal" data-bs-target="#cambiarEmailModal">Cambiar correo
+          <button class="change-email" data-bs-toggle="modal" data-bs-target="#cambiarEmailModal">Cambiar correo
             electrónico</button>
 
           <!-- boton para cambiar la contraseña -->
@@ -83,10 +83,11 @@
             <div class="modal-body">
               <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
 
-              <form #cambiarEmailForm="ngForm" (ngSubmit)="handleEditarCorreo(cambiarEmailForm.value)" >
+              <form #cambiarEmailForm="ngForm" (ngSubmit)="handleEditarCorreo(cambiarEmailForm.value)">
                 <div class="mb-3">
                   <label for="recipient-email-actual" class="col-form-label">Correo electrónico actual</label>
-                  <input type="email" class="form-control" id="email-actual" name="email-actual" readonly [(ngModel)]="userEmail">
+                  <input type="email" class="form-control" id="email-actual" name="email-actual" readonly
+                    [(ngModel)]="userEmail">
                 </div>
                 <div class="mb-3">
                   <label for="recipient-email-nuevo" class="col-form-label"> Nuevo Correo Electrónico</label>
@@ -99,30 +100,31 @@
 
               </form>
               <div class="modal-footer">
-                
+
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="cambiarEmailForm.ngSubmit.emit()" >Actualizar Cambios</button>
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="cambiarEmailForm.ngSubmit.emit()">Actualizar Cambios</button>
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 
 
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
 
-        <!-- modal para cambiar la contraseña -->
-        <div class="modal fade" id="cambiarPasswordModal" tabindex="-1" aria-labelledby="cambiarPasswordModal"
-          aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="cambiarPasswordLabel">Editar contraseña</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <!-- <form #editarPasswordForm="ngForm" (ngSubmit)="handleEditarPassword(EditarPasswordForm.value)">
+      <!-- modal para cambiar la contraseña -->
+      <div class="modal fade" id="cambiarPasswordModal" tabindex="-1" aria-labelledby="cambiarPasswordModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="cambiarPasswordLabel">Editar contraseña</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- <form #editarPasswordForm="ngForm" (ngSubmit)="handleEditarPassword(EditarPasswordForm.value)">
                <div class="mb-3">
                   <label for="recipient-password-actual" class="col-form-label">Contraseña actual</label>
                   <input type="password" class="form-control" id="password-actual" name="password-actual" readonly [(ngModel)]="passwordActual">
@@ -140,92 +142,94 @@
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                   
                 </div> -->
-              </div>
             </div>
           </div>
-
-
-
-
         </div>
-        <div class="col-6">
-          <div class="profile-card-reserva">
-            <h3 id="misreservas">Mis Reservas</h3>
-            <div class="reservation" *ngFor="let reserva of dataReservas; let i = index">
-              <h4>Reserva #{{ i + 1 }}</h4>
-              <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
-              <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
-              <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
-              <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar reserva</button>
-            </div>
+
+
+
+
+      </div>
+      <div class="col-6">
+        <div class="profile-card-reserva">
+          <h3 id="misreservas">Mis Reservas</h3>
+          <div class="reservation" *ngFor="let reserva of dataReservas; let i = index">
+            <h4>Reserva #{{ i + 1 }}</h4>
+            <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
+            <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+            <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
+            <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar reserva</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- historial de reserva  -->
-    <div class="col">
-      <div class="profile-card-reserva-historial">
-        <h3>Historial de Reservas Realizadas</h3>
-        <div class="reservation">
-          <h4>Reserva #1</h4>
-          <div class="details">
-            <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
-            <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-            <p class="time"><strong>Hora:</strong> 3:00 PM</p>
-          </div>
-          <div class="comentarios">
-            <h5>Comentarios:</h5>
-            <div class="comentario">
-              <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
-              <span class="fecha">- 25 de Mayo, 2023</span>
-            </div>
+
+
+
+
+
+  <!-- historial de reserva  -->
+  <div class="col">
+    <div class="profile-card-reserva-historial">
+      <h3>Historial de Reservas Realizadas</h3>
+      <div class="reservation">
+        <h4>Reserva #1</h4>
+        <div class="details">
+          <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
+          <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+          <p class="time"><strong>Hora:</strong> 3:00 PM</p>
+        </div>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
+            <span class="fecha">- 25 de Mayo, 2023</span>
           </div>
         </div>
-        <div class="reservation">
-          <h4>Reserva #2</h4>
-          <div class="details">
-            <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
-            <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-            <p class="time">Hora: 3:00 PM</p>
-          </div>
-          <div class="comentarios">
-            <h5>Comentarios:</h5>
-            <div class="comentario">
-              <strong>Usuario:</strong> "Excelente servicio, lo recomiendo."
-              <span class="fecha">- 30 de Mayo, 2023</span>
-            </div>
+      </div>
+      <div class="reservation">
+        <h4>Reserva #2</h4>
+        <div class="details">
+          <p class="service"><strong>Servicio:</strong> Limpieza de manos</p>
+          <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
+          <p class="time">Hora: 3:00 PM</p>
+        </div>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "Excelente servicio, lo recomiendo."
+            <span class="fecha">- 30 de Mayo, 2023</span>
           </div>
         </div>
-        <div class="reservation">
-          <h4>Reserva #3</h4>
-          <div class="details">
-            <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
-            <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
-            <p class="time"><strong>Hora:</strong> 11:00 AM</p>
-          </div>
-          <div class="comentarios">
-            <h5>Comentarios:</h5>
-            <div class="comentario">
-              <strong>Usuario:</strong> "No me gustó el resultado, esperaba algo mejor."
-              <span class="fecha">- 3 de Junio, 2023</span>
-            </div>
+      </div>
+      <div class="reservation">
+        <h4>Reserva #3</h4>
+        <div class="details">
+          <p class="service"><strong>Servicio:</strong> Corte de pelo</p>
+          <p class="date"><strong>Fecha:</strong> 1 de Junio, 2023</p>
+          <p class="time"><strong>Hora:</strong> 11:00 AM</p>
+        </div>
+        <div class="comentarios">
+          <h5>Comentarios:</h5>
+          <div class="comentario">
+            <strong>Usuario:</strong> "No me gustó el resultado, esperaba algo mejor."
+            <span class="fecha">- 3 de Junio, 2023</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <!-- Para eliminar la cuenta de usuario  -->
+  <!-- Para eliminar la cuenta de usuario  -->
 
-    <div>
-      <h2 class="eliminar">Eliminar cuenta</h2>
+  <section id="elimCliente">
+    <div class="botonEliminar">
+      <h2>Eliminar cuenta</h2>
       <button class="cancel-btn" (click)="eliminarCliente()">Eliminar Cuenta</button>
     </div>
+  </section>
 
-
-
-    <!-- 
-  <button class="cancel-btn"
-    (click)="eliminarReserva(reserva.id)">Cancelar
-    reserva</button> -->
+ 
