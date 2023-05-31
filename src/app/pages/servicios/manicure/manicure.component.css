@@ -1,32 +1,58 @@
+#manicure .container {
+  max-width: 1400px;
+
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  /* font-size: 1.2em; */
   margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 th {
   text-align: center;
-  background-color: #7b117e;
+  background-color:#b13180;
   color: #fff;
-  padding: 8px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 1.4em;
   font-weight: bold;
   letter-spacing: 0.5px;
- 
+
 }
 
 td {
   border: 1px solid #ddd;
-  padding: 10px;
   background-color: #fff;
- 
+  
+  text-align: center;
+  font-size: 1.3em;
+  vertical-align: text-top;
+
 }
 
-.descrip{
+.titulosServ {
+  font-weight: bold;
+  font-size: 1.3em;
+  letter-spacing: 0.5px;
+  padding: 11px 17px;
 
-  text-align: left;
+  /* mayuscula */
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
+
+  vertical-align: text-top;
+
+}
+
+.descrip {
+
+  text-align: justify;
+  padding: 1px 30px
 
 }
 
@@ -35,22 +61,100 @@ tr:nth-child(even) {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color:#b13180;
   border: none;
   color: white;
-  padding: 1.2rem 1.4rem;
+  padding: 8px 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  margin: 8px 16px;
+  font-size: 1em;
+  margin: 5px 11px;
   cursor: pointer;
   border-radius: 4px;
   transition-duration: 0.4s;
 }
+
 button:hover {
   background-color: white;
   color: black;
-  border: 1px solid #4CAF50;
+  border: 1px solid #b13180;
   transform: scale(1.1);
+}
+
+@media (max-width: 750px) {
+  table {
+    font-size: 1em;
+    overflow-x: auto;
+    justify-content: center center;
+  }
+
+  th {
+    font-size: 1em;
+    text-align: center ;
+    vertical-align:middle;
+    padding: 2px 3px;
+  }
+
+  td {
+    font-size: 1em;
+    padding: 0px 3px;
+  }
+
+  .titulosServ {
+    font-size: 1em;
+    padding: 7px 4px;
+    justify-content: center;
+  }
+
+  .descrip {
+    font-size: 1em;
+    padding: 7px 4px;
+    justify-content: center;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+}
+
+
+
+
+@media (max-width: 650px) {
+  table {
+    font-size: 1em;
+    overflow-x: auto;
+    justify-content: center center;
+  }
+
+  th {
+    font-size: 1em;
+    text-align: center ;
+    vertical-align:middle;
+    padding: 2px 3px;
+  }
+
+  td {
+    font-size: 1em;
+    padding: 0px 3px;
+  }
+
+  .titulosServ {
+    font-size: 1em;
+    padding: 7px 4px;
+    justify-content: center;
+  }
+
+  .descrip {
+    font-size: 1em;
+    padding: 7px 4px;
+    justify-content: center;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 8px;
+  }
 }
