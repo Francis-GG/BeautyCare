@@ -11,7 +11,7 @@
         <div class="card-body" id="first-card">
           <h3>Calendario</h3>
           <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
-            [dateFilter]="myFilter"></mat-calendar>
+            [dateFilter]="myFilter" (selectedChange)="selectedDate = $event"></mat-calendar>
         </div>
       </div>
       <div class="card">
@@ -22,9 +22,11 @@
           <table class="horarios">
             <tbody>
               <tr>
-                <td >
-                  <button *ngFor="let timeSlot of getTimeSlots()" (click)="selectTime(timeSlot)">{{ timeSlot }}</button><br><br>
-                </td>
+                <button mat-button *ngFor="let timeSlot of getTimeSlots()"
+                  [ngClass]="{'active': timeSlot.isActive, 'is-disabled': timeSlot.isDisabled, 'active-disabled': timeSlot.isActive && timeSlot.isDisabled}"
+                  (click)="selectTime(timeSlot)" [disabled]="timeSlot.isDisabled">
+                  {{ timeSlot.time }}
+                </button><br><br>
               </tr>
             </tbody>
           </table>
@@ -35,13 +37,14 @@
           <h3>Detalle de reserva</h3>
           <p>Nombre del Servicio: "{{itemSeleccionado.servicio}}"</p>
           <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
-          <p>Hora: {{ selectedTime }} </p>
+          <p>Hora de inicio: {{ selectedStartTime }} </p>
+          <p>Hora de término: {{ selectedEndTime }} </p>
           <p>Dirección del local: {{dataContacto[0]?.direccion}} </p>
           <p>Profesional: {{ dataEmpleados[0]?.nombre }} </p>
 
           <p>Tiempo: {{itemSeleccionado.tiempo}}</p>
           <p>Precio: {{itemSeleccionado.precio}}</p>
-          <button class="confirmar-reserva" (click)="crearReserva()" >Confirmar reserva</button>
+          <button class="confirmar-reserva" (click)="crearReserva()">Confirmar reserva</button>
         </div>
       </div>
     </div>
