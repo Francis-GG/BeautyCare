@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-6">
       <div class="profile-card">
         <div class="profile-avatar">
-          <img src="../../../assets/images/user.png" alt="Avatar">
+          <img [src]="imagePath" alt="Avatar">
 
           <button type="button" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@fat">Editar Perfil</button>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-body">
                   <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
-                  <form #editarPerfilForm="ngForm" (ngSubmit)="handleEditarPerfil(editarPerfilForm.value)">
+                  <form #editarPerfilForm="ngForm" (ngSubmit)="handleEditarPerfil(editarPerfilForm.value, fileInput)">
                     <div class="mb-3">
                       <label for="recipient-nombre" class="col-form-label">Nombre</label>
                       <input type="text" class="form-control" id="nombre-perfil" name="nombre-perfil"
@@ -37,7 +37,7 @@
                       <label for="recipient-imagen" class="col-form-label">Seleccione una imagen</label>
                     </div>
                     <div>
-                      <input type="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" class="form-control" id="inputGroupFile01" #fileInput>
                     </div>
                   </form>
                 </div>
@@ -56,35 +56,86 @@
         <!-- muestra la informacion del usuario debajo del avatar -->
         <div class="profile-info" *ngFor="let user of dataUser">
           <h2>{{user.nombre}} {{user.apellido}}</h2>
-          <p>Correo electrónico: {{ userEmail }}</p>
+          <p>Correo electrónico: {{userEmail}}</p>
           <p>Teléfono: {{user.telefono}}</p>
         </div>
+
+        <!-- boton para cambiar el correo electronico -->
         <div class="profile-actions">
-          <button class="edit-info-btn">Cambiar correo electrónico</button>
+          <button class="change-email" data-bs-toggle="modal" data-bs-target="#cambiarEmailModal">Cambiar correo
+            electrónico</button>
+
+          <!-- boton para cambiar la contraseña -->
           <button class="change-password" data-bs-toggle="modal" data-bs-target="#cambiarPasswordModal">Cambiar
             Contraseña</button>
         </div>
       </div>
+
+      <!-- modal para correo electronico -->
+      <div class="modal fade" id="cambiarEmailModal" tabindex="-1" aria-labelledby="cambiarEmailModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="cambiarEmailModaLabel">Editar correo electronico </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
+
+              <form #cambiarEmailForm="ngForm" (ngSubmit)="handleEditarCorreo(cambiarEmailForm.value)">
+                <div class="mb-3">
+                  <label for="recipient-email-actual" class="col-form-label">Correo electrónico actual</label>
+                  <input type="email" class="form-control" id="email-actual" name="email-actual" readonly
+                    [(ngModel)]="userEmail">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-email-nuevo" class="col-form-label"> Nuevo Correo Electrónico</label>
+                  <input type="email" class="form-control" id="email-nuevo" name="email-nuevo" ngModel>
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-email-confirmar" class="col-form-label"> Confirmar Correo Electrónico</label>
+                  <input type="email" class="form-control" id="email-confirmar" name="email-confirmar" ngModel>
+                </div>
+
+              </form>
+              <div class="modal-footer">
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="cambiarEmailForm.ngSubmit.emit()">Actualizar Cambios</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal para cambiar la contraseña -->
       <div class="modal fade" id="cambiarPasswordModal" tabindex="-1" aria-labelledby="cambiarPasswordModal"
         aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Editar contraseña</h1>
+              <h1 class="modal-title fs-5" id="cambiarPasswordLabel">Editar contraseña</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <!-- cuando se envie la informacion se ejecuta la funcion de edit  -->
               <!-- <form #editarPasswordForm="ngForm" (ngSubmit)="handleEditarPassword(EditarPasswordForm.value)">
-                    <div class="mb-3">
-                      <label for="recipient-nombre" class="col-form-label">Nueva Contraseña </label>
-                      <input type="text" class="form-control" id="nueva-password" name="nueva-password" [(ngModel)]="nueva-password">
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-apellido" class="col-form-label">Confirmar Contraseña</label>
-                      <input type="text" class="form-control" id="confirmar-password" name="confirmar-password" [(ngModel)]="confirmar-password">
-                    </div>
-                  </form>
+               <div class="mb-3">
+                  <label for="recipient-password-actual" class="col-form-label">Contraseña actual</label>
+                  <input type="password" class="form-control" id="password-actual" name="password-actual" readonly [(ngModel)]="passwordActual">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-password-nuevo" class="col-form-label"> Nueva Contraseña</label>
+                  <input type="password" class="form-control" id="password-nuevo" name="password-nuevo" ngModel>
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-password-confirmar" class="col-form-label"> Confirmar Contraseña</label>
+                  <input type="password" class="form-control" id="password-confirmar" name="password-confirmar" ngModel>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="editarPasswordForm.ngSubmit.emit()">Actualizar Cambios</button>
@@ -111,9 +162,13 @@
           </div>
         </div>
       </div>
-        
     </div>
   </div>
+
+
+
+
+
 
   <!-- historial de reserva  -->
   <div class="col">
@@ -166,3 +221,15 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Para eliminar la cuenta de usuario  -->
+
+  <section id="elimCliente">
+    <div class="botonEliminar">
+      <h2>Eliminar cuenta</h2>
+      <button class="cancel-btn" (click)="eliminarCliente()">Eliminar Cuenta</button>
+    </div>
+  </section>
+
+ 

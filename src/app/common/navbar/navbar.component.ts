@@ -12,9 +12,14 @@ import { Auth } from '@angular/fire/auth';
 export class NavbarComponent implements AfterViewInit, OnInit {
   public data: any = [];
   private subMenu!: HTMLElement;
+  public loggedIn= false;
+  public imagePath: string = '';
+  public dataUser: any = [];
+
 
   constructor(public auth: Auth, public firestore: Firestore, private router: Router) {
     this.subMenu = document.getElementById("subMenu")!
+    this.getData();
     
   }
 
@@ -22,11 +27,13 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.getData();
+        this.changeAvatar();
+
       }
     });
   }
   
-  
+  //submenu del navbar
   ngAfterViewInit() {
     this.subMenu = document.getElementById("subMenu")!;
     if (!this.subMenu) {
@@ -34,6 +41,9 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     }
     //this.getData();
   }
+
+
+  
   //Función que abre y cierra el menú
   toggleMenu() {
     const subMenu = document.getElementById("subMenu");
@@ -70,15 +80,56 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       }
     } else {
       console.log('No authenticated user.');
+      
     }
   }
 
+
+  //funcion para cambiar estado del avatar del navbar
+  async changeAvatar() {
+    const user: User | null = this.auth.currentUser;
+    if (user) {
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      try {
+        const docSnapshot = await getDoc(userDocRef);
+
+        if (docSnapshot.exists()) {
+          const userData = { ...docSnapshot.data(), id: docSnapshot.id };
+          this.dataUser = [userData];
+          this.loggedIn = true; // asigna el valor de loggedIn a true
+          this.imagePath = this.dataUser[0].imagenPath;
+          console.log('imagen de usuario: ' + this.dataUser[0].imagenPath);
+        } else {
+          this.loggedIn = true; // asigna el valor de loggedIn a true
+          console.log('El usuario no tiene imagen guardada');
+          this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
+        }
+      } catch (error) {
+        console.log('Error en traer los datos al navbar:', error);
+      }
+    } else {
+      this.loggedIn = false;
+      console.log('No authenticated user.');
+    }
+  }
+
+
+
+
+
+
   // //funcion para cerrar sesion
-  signOut() {
+  async signOut() {
     this.auth.signOut().then(() => {
       this.router.navigate(['/login']);
+      console.log('adiosito! con éxito;')
+      alert(`Adios!` + this.data[0].nombre); 
+      this.loggedIn = false;
     }).catch((error) => {
       console.log('Error during sign out:', error);
     });
   }
+
+
+
 }  

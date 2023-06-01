@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import {Firestore, collection, getDocs, doc, setDoc} from '@angular/fire/firestore';
+import {Firestore, collection, getDocs, doc, setDoc, getDoc} from '@angular/fire/firestore';
 
 
 declare var document: any;
@@ -14,7 +14,10 @@ declare var document: any;
 })
 export class LoginComponent {
   
-  constructor(public auth: Auth, private router: Router, public firestore: Firestore){
+  constructor(
+    public auth: Auth, 
+    private router: Router, 
+    public firestore: Firestore){
 
   }
 
@@ -29,7 +32,13 @@ export class LoginComponent {
     createUserWithEmailAndPassword(this.auth, value.email, value.password)
     .then((response: any) => {
       console.log(response.user);
-      this.registerUserData( value.nombre, value.apellido, value.telefono); 
+      this.registerUserData( value.nombre, value.apellido, value.telefono, value.email);
+      alert(`Registro exitoso! Bienvenido ${value.nombre}!`); 
+      if(response.user.email?.includes('@admin.cl')){
+        this.router.navigate(['admin']);
+      }else{
+        this.router.navigate(['']);
+      }
       
       
     })
@@ -39,30 +48,49 @@ export class LoginComponent {
     })
   }
   // Corresponde a las funciones del Login
-  async handleLogin(value: any){
+  async handleLogin(value: any) {
     signInWithEmailAndPassword(this.auth, value.email, value.password)
-    .then((response: any) => {
-      console.log(response.user);
-      this.router.navigate(['']);
-
+      .then(async (response: any) => {
+        console.log(response.user);
+        const user = response.user;
+        const userId = user.uid;
+  
+        if (user.email?.includes('@admin.cl')) {
+          this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['']);
+        }
+  
+        const userDocRef = doc(this.firestore, `users/${userId}`);
+        const userSnapshot = await getDoc(userDocRef);
+        if (userSnapshot.exists()) {
+          const userData = userSnapshot.data();
+          const userName = userData[0].nombre;
+          console.log('Variable userData: ' + userData)
+          alert('Hello, ' + userName + 'Welcome back!');
+        }
       })
       .catch((err) => {
-        const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al iniciar sesión.';
+        const errorMessage = this.authErrorMessages.get(err.code) || 'An error occurred while logging in.';
         alert(errorMessage);
       });
   }
 
-   async registerUserData(nombre: string, apellido: string, telefono: string) {
+  
+
+   async registerUserData(nombre: string, apellido: string, telefono: string, email: string) {
 	 	try {
 	 		const user = this.auth.currentUser; 
 	 		const userDocRef = doc(this.firestore, `users/${user?.uid}`);
-	 		setDoc(userDocRef, {nombre, apellido, telefono});
+	 		setDoc(userDocRef, {nombre, apellido, telefono, email});
 	 		return true;
 	 	} catch (error) {
 	 		console.log(error);
 	 		return false;
 	 	}
 	 }
+
+   
   
   
   ngOnInit() {

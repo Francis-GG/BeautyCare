@@ -1,28 +1,45 @@
-<footer>
-   <ul>
-      <li>
+<section id="footer">
+   <footer class="container">
+
+      <div>
          <h1>BeautyCare</h1>
          <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
-      </li>
-      <li>
-         <h4>Dirección</h4>
-         <p>Avenida Apoquindo 6415, Las Condes,RM</p>
-      </li>
-      <li>
-         <h4>Horario de atención</h4>
-         <p>Lunes a Viernes de 09:00 a 20:00 horas</p>
-      </li>
-      <li>
+      </div>
+
+
+
+      <div>
+         <ul id="listado">
+            <a href="#">
+               <li>Inicio</li>
+            </a>
+            <a routerLink="/servicios/depilacion">
+               <li>Servicios</li>
+            </a>
+            <a routerLink="/contacto">
+               <li>Contacto</li>
+            </a>
+            <a routerLink="/preguntfrecuent">
+               <li>Preguntas frecuentes</li>
+            </a>
+
+         </ul>
+      </div>
+
+
+      <div>
          <h4>Contacto</h4>
-         <p>Teléfono: +56912345678</p>
-         <p>Email: email@beautycare.com</p>
-      </li>
-   </ul>
-</footer>
-<div class="container-fluid">
-   <div class="row">
-      <div class="col-md-12 text-center">
-         <p id="copyderecho">©2023 Creado por KaizenGO portafolio de título.</p>
+         <p>Teléfono:{{data[0]?.telefono}}</p>
+         <p>Email: {{data[0]?.email}}</p>
+
+      </div>
+
+   </footer>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12 text-center">
+            <p id="copyderecho">©2023 Creado por KaizenGO portafolio de título.</p>
+         </div>
       </div>
    </div>
-</div>
+</section>

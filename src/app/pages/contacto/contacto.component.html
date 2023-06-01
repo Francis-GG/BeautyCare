@@ -1,85 +1,95 @@
-<div class="container-fluid text-center">
-  <div class="row">
-    <div class="col-md-12">
-      <h1 id="titulo-pagina">Contacto</h1>
-      <div class="card" id="descripcion-pagina">
-        <div class="card-body">
-          En BeautyCare nos importa mucho estar en contacto con nuestros clientes. Si tienes alguna duda, comentario o
-          sugerencia, no dudes en ponerte en contacto con nosotros.
-          Puedes contactarnos por teléfono o por correo electrónico. Si prefieres, también puedes utilizar nuestro
-          formulario de contacto en línea para hacernos llegar tus comentarios. <br>Estaremos encantados de ayudarte.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container text-center" id="cards-contacto">
-  <div class="card-group">
-    <div class="card">
-      <div class="card-body" id="first-card">
-        <h3>Teléfono</h3>
-        <p>{{data[0]?.telefono}}</p>
-        <h3>Email</h3>
-        <p>{{data[0]?.email}}</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body" id="second-card">
-        <h3 id="titulo-tarjetas-contacto">Horario laboral:</h3>
-        <p>Lunes 09:00 - 20:00</p>
-        <p>Martes 09:00 - 20:00</p>
-        <p>Miércoles 09:00 - 20:00</p>
-        <p>Jueves 09:00 - 20:00</p>
-        <p>Viernes 09:00 - 20:00</p>
-        <p>Sábado 10:00 - 16:00</p>
-        <p>Domingo Cerrado</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body" id="third-card">
-        <h3 id="titulo-tarjetas-contacto">Dirección</h3>
-        <p>{{data[0]?.direccion}}</p>
-      </div>
-    </div>
-  </div>
-</div>
+<section id="contactoFormulario">
+  <div class="container">
 
-<!-- Formulario de contacto  -->
-<div class="container-fluid" id="formularioContacto">
-  <div class="row">
-    <form #contactoForm="ngForm" (ngSubmit)="handleContacto(contactoForm.value)">
-        <div class="col">
-          <label for="formularioContacto" class="form-label">Nombre</label>
-          <input type="text" id="formcontactnombre" class="form-control" placeholder="Ana" aria-label="Nombre" name="formcontactnombre" ngModel>
+
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="titulo-pagina">Contacto</h1>
+          <div class="card" id="descripcion-pagina">
+            <div class="card-body">
+              {{data[0]?.descripcion}}
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <label for="formularioContacto" class="form-label">Apellido</label>
-          <input type="text" id="formcontactapellido" class="form-control" placeholder="Pérez" aria-label="Apellido" name="formcontactapellido" ngModel>
-        </div>
-    <div class="row">
-      <div class="col">
-        <label for="formularioContacto" class="form-label">Email</label>
-        <input type="text"  id="formcontactaemail" class="form-control" placeholder="anaperez@email.com" aria-label="Email" name="formcontactaemail" ngModel>
-      </div>
-      <div class="col">
-        <label for="formularioContacto" class="form-label">Teléfono</label>
-        <input type="text" id="formcontactatelefono" class="form-control" placeholder="+56912345678" aria-label="Teléfono" name="formcontactatelefono" ngModel>
       </div>
     </div>
-    <div class="mb-3">
-      <label for="formularioContacto" class="form-label">Déjanos un mensaje</label>
-      <textarea id="formcontacttexto" placeholder="Escribe tu mensaje aquí..." class="form-control" name="formcontacttexto" rows="3" ngModel></textarea>
+    <div class="container text-center" id="cards-contacto">
+      <div class="card-group">
+        <div class="card">
+          <div class="card-body" id="first-card">
+            <h3>Teléfono</h3>
+            <p>{{data[0]?.telefono}}</p>
+            <h3>Email</h3>
+            <p>{{data[0]?.email}}</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" id="second-card">
+            <h3 id="titulo-tarjetas-contacto">Horario</h3>
+            <p>Lunes 09:00 - 20:00</p>
+            <p>Martes 09:00 - 20:00</p>
+            <p>Miércoles 09:00 - 20:00</p>
+            <p>Jueves 09:00 - 20:00</p>
+            <p>Viernes 09:00 - 20:00</p>
+            <p>Sábado 10:00 - 16:00</p>
+            <p class="domingo">Domingo Cerrado</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" id="third-card">
+            <h3 id="titulo-tarjetas-contacto">Dirección</h3>
+            <p>{{data[0]?.direccion}}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col text-center">
-      <button  class="btn btn-primary" type="submit" class="edit-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
-      data-bs-whatever="@fat" >Enviar</button>
-      
+
+    <!-- Formulario de contacto  -->
+    <div class="container-fluid" id="formularioContacto">
+      <div class="row">
+        <form #contactoForm="ngForm" (ngSubmit)="handleContacto(contactoForm.value)">
+          <div class="col">
+            <label for="formularioContacto" class="form-label">Nombre</label>
+            <input type="text" id="formcontactnombre" class="form-control" placeholder="Ana" aria-label="Nombre"
+              name="formcontactnombre" ngModel>
+          </div>
+          <div class="col">
+            <label for="formularioContacto" class="form-label">Apellido</label>
+            <input type="text" id="formcontactapellido" class="form-control" placeholder="Pérez" aria-label="Apellido"
+              name="formcontactapellido" ngModel>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="formularioContacto" class="form-label">Email</label>
+              <input type="text" id="formcontactaemail" class="form-control" placeholder="anaperez@email.com"
+                aria-label="Email" name="formcontactaemail" ngModel>
+            </div>
+            <div class="col">
+              <label for="formularioContacto" class="form-label">Teléfono</label>
+              <input type="text" id="formcontactatelefono" class="form-control" placeholder="+56912345678"
+                aria-label="Teléfono" name="formcontactatelefono" ngModel>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="formularioContacto" class="form-label">Déjanos un mensaje</label>
+            <textarea id="formcontacttexto" placeholder="Escribe tu mensaje aquí..." class="form-control"
+              name="formcontacttexto" rows="3" ngModel></textarea>
+          </div>
+          <div class="col text-center">
+            <button class="btn-enviar" type="submit">Enviar</button>
+
+          </div>
+
+
+
+        </form>
+      </div>
+      <div class="container-fluid">
+        <div id="map"></div>
+      </div>
+
+
     </div>
-     
-      
-    
-  </form>
-</div>
-<div class="container-fluid">
-  <div id="map"></div>
-</div>
+  </div>
+</section>

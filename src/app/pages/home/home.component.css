@@ -1,194 +1,297 @@
-*{
-    box-sizing: border-box; 
+
+.container {
+  max-width: 1400px;
+  margin: auto;
 }
 
 
-#fondo{
-    max-width: 100%;
-    
+.container-carrucel {
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  margin: 0px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-height: 40%;
+  
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+ border-radius: 5px;
+  
+  
+}
+
+#tituloServicios h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  margin-top: 50px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px black;
+  color: #ae2abf;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1em;
 }
 
 
-
-.container{
-    max-width: 85%;
-    
-}
-
-#carruselHome{
-    padding-left: 9.1%;
-    padding-right: 9.1%;
-}
-
-
-.carousel-item img{
-    height: 70vh;
-    
+#card1 img{
+  width: 90%;
+  height: 45vh;
+  object-position: center;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 12px 12px;
+  margin-top: 12px;
+  border-radius: 1%;
 }
 
 
-.tituloLogo{
-    font-family: 'Dancing Script';
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    text-align: center;
-    text-shadow: 1px 1px 2px black;
+#card1 button {
+  font-weight: bold;
+  text-shadow: #000;
+  font-size: 1.2em;
+  padding: 10px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: hsl(271, 78%, 56%);
+
 }
 
-.tituloServicios{
-    font-size: 50px;
-    color: #222222;
-    line-height: 55px;
-    text-align: center;
-    letter-spacing: 0.5px;
-    margin: 5px 0px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;  
-    text-shadow: 1px 1px 2px black;
-    background-color: rgba(137, 43, 226, 0.041);
-    
+#card1 button:hover {
+  background-color: rgb(101, 33, 165);
 }
 
-#cards-servicios{
-    margin: 5px 0px;
-    max-width: 100%;
-    height: 50%;
-      
+
+.image-item{
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 1px 2px;
+  margin-top: 20px;
+  background-image: linear-gradient(0deg,
+  rgba(181, 28, 192, 0.1),
+  rgba(230, 224, 234, 0.197));
+  transition: box-shadow 0.3s ease-in-out;
+  transition: all 1s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: justify;
 }
 
-#cards-servicios img{
-    height: 45vh;
+
+.image-item:hover {
+
+  transform: translateY(-1%);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.descrpservicios{
+  padding: 0px 12px;
+  background-color: rgba(240, 233, 240, 0.163);
+}
+
+#bienvenida .container {
+  display: flex;
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: bold;
+  text-shadow: #000;
+  padding: 0px 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+  opacity: 1;
+}
+
+#agenda {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)), url("../../../assets/images/flores.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+
+#bienvenida .objetivo {
+  font-size: 2em;
+  font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
+  padding: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 20px;
+  background-color: #f3f0f42b;
+}
+
+#agenda h2 {
+
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #f4f4f4;
+  text-shadow: 2px 2px 2px rgba(77, 62, 6, 0.5);
+
+}
+
+#agenda p {
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  text-align: end;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px 2px solid rgba(77, 62, 6, 0.5);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 10px;
+
+}
+
+
+#agenda button {
+  font-weight: bold;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: hsl(271, 78%, 56%);
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+
+}
+
+#agenda button:hover {
+  background-color: rgb(101, 33, 165);
+  color: yellow;
+}
+
+
+#agenda span {
+  color: yellow;
+}
+
+
+@media (max-width: 767px) {
+  .container-carrucel {
     width: 100%;
-    padding: 1%;
-    border-radius:52% 48% 44% 56% / 54% 0% 0% 46% ;
-    transition: all 1s;
-    bottom: -10%;
-    border-radius: 45%;
-    box-shadow: -5px 15px
-      15px rgba(0, 0, 0, 0.1);
-}
-
-#cards-servicios img:hover{
-    /* height: 50vh; */
-    width: 100%;
-    transform: translateY(-3%);
-}
-
-#titulo_servicios{
-    background-color:rgba(146, 48, 185, 0.53);
-    max-width: 100%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    cursor: pointer;
-    align-content: center;
-    margin-top: 5%;
-    text-align: center;
-    margin-bottom: 5%;
-}
-
-#titulo_servicios:hover{
-    background-color:rgba(146, 48, 185, 0.367);
-    max-width: 100%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    cursor: pointer;
-    align-content: center;
-    margin-top: 5%;
-    text-align: center;
-    margin-bottom: 5%;
-    transform: scale(1.1);
-}
-
-.espacio{
-    height: 40px;
-}
-
-.btn-outline-light {
-    --bs-btn-border-radius: 0%;
+    height: auto;
+    
   }
 
-#contenido{
+  #card1 img{
     width: 100%;
-}
-
-.image-item img {
-    cursor: pointer;
-    /* padding: 30px; */
-}
-
-.image-item {
+    height: 30vh;
+  }
+  .descrpservicios{
+    padding: 0px 12px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 0.9em;
+  }
+  
+  #bienvenida{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-
-
-.agendar{
-    box-sizing: border-box;
-    width: 100%;
-    background-color: #ba438e !important;
-    padding: 10px;
-
-}
-
-.tituloAgenda{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 60px;
-    font-weight: bold;
-    color: #d97d86;
-    line-height: 55px;
-    text-align: left;
-    text-shadow: 1px 1px 2px #d7a9ad;
-    margin-bottom: 10px;
-    margin: 30px 25px;
-
-}
-
-.tituloLogo2{
-    font-family: 'Dancing Script';
-    font-size: 50px;
-    color: #030000;
-    line-height: 55px;
-    text-align: left;
-    margin: 30px 25px
-
-}
-
-.logoAgenda{
-    
-    align-content: start;
-    margin: 30px 25px;
-    height: 100%;
-    width: auto;
-    border-radius: 100px;
-    box-shadow: -5px 15px
-      15px rgba(0, 0, 0, 0.1);
-}
-
-
-.descripagendar{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 25px;
-    margin-bottom: 10px;
-    text-align: justify;
-    color: #ffff;
-    background: rgba(192, 187, 190, 0.1);
-    text-shadow: 1px 1px 2px black;
-
-}
-
-.btn-agenda{
-    border-radius: 2em;
-    background-color: #D97D86;
-    color: #ffff;
-    font-size: 25px;
-    padding: 15px 35px;
-    display: inline-block;
-    margin-bottom: 0;
     text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid transparent;
-    box-sizing: border-box;
-    word-wrap: break-word;
+    font-size: 0.8em;
+    background-size: auto;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+
+  }
+
+
+  #agenda {
+
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)), url("../../../assets/images/flores.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  
 }
+@media (max-width: 575px) {
+  .container-carrucel {
+    width: 100%;
+    height: auto;
+  }
+
+  #card1 img {
+    width: 50%;
+    height: 30vh;
+    
+  }
+
+  .descrpservicios {
+    padding: 0px 6px;
+    margin-left: 20px ;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 1em;
+    text-align: justify;
+  }
+
+  #card1 button{
+    margin-left: 20px;
+
+  }
+
+  #bienvenida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    background-size: auto;
+    background-position-y: center;
+    background-repeat: no-repeat;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

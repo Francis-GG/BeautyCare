@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { Auth, User } from '@angular/fire/auth';
-import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs } from '@angular/fire/firestore';
+import { Auth, User, deleteUser, getAuth, updateEmail } from '@angular/fire/auth';
+import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
+import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
-interface userData{
+
+
+
+interface userData {
   id: string;
   nombre: string;
   apellido: string;
@@ -22,6 +27,7 @@ export class PerfilClienteComponent {
   public nombrePerfil: string = '';
   public apellidoPerfil: string = '';
   public telefonoPerfil: string = '';
+  public emailPerfil: string = '';
   public newPassword: any;
   public dataReservas: any = [];
   public idReserva: string = '';
@@ -30,19 +36,26 @@ export class PerfilClienteComponent {
   public servicioReserva: string = '';
   public precioReserva: string = '';
   public tiempoReserva: string = '';
+  public imagePath: string = '';
+  public emailActual: string = '';
 
 
 
-  constructor(public auth: Auth, public firestore: Firestore) {
+
+  constructor(public auth: Auth,
+    public firestore: Firestore,
+    private storage: Storage,
+    private router: Router) {
     this.getDataUser();
     this.getUserEmail();
     this.getDataReserva();
   }
 
-  obtenerDatosPerfil(nombrePerfil: string, apellidoPerfil: string, telefonoPerfil: string) {
+  obtenerDatosPerfil(nombrePerfil: string, apellidoPerfil: string, telefonoPerfil: string, emailPerfil: string) {
     this.nombrePerfil = nombrePerfil;
     this.apellidoPerfil = apellidoPerfil;
     this.telefonoPerfil = telefonoPerfil;
+    this.emailPerfil = emailPerfil;
   }
 
   getUserEmail() {
@@ -52,6 +65,40 @@ export class PerfilClienteComponent {
     } else {
       console.log('No authentiica el email del usuario.');
     }
+  }
+
+  //Actualizar email
+
+  async actualizarEmail(email: string){
+    const user: User | null = this.auth.currentUser
+    const auth = getAuth()
+    updateEmail(user!, email).then(() => {
+      alert("Email actualizado.")
+      this.getUserEmail();
+    }).catch((error) => {
+      alert("Error al intentar actualizar el correo.")
+    });
+    if(user){
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      updateDoc(userDocRef, {email});
+      return true;
+    }else{
+      return false;
+    }
+    
+  }
+
+  handleEditarCorreo(formValue: any){
+    const correoActual = formValue['email-actual'];
+    const correoNuevo = formValue['email-nuevo'];
+    const correoConfirmar = formValue['email-confirmar'];
+
+    if(correoNuevo === correoConfirmar){
+      this.actualizarEmail(correoNuevo);
+    }else{
+      
+      alert("Los correos no coinciden.")
+    }  
   }
 
   //funcion para obtener datos de la coleccion USERS de firebase
@@ -66,7 +113,8 @@ export class PerfilClienteComponent {
             this.dataUser = [userData];
             this.nombrePerfil = this.dataUser[0].nombre;
             this.apellidoPerfil = this.dataUser[0].apellido;
-            this.telefonoPerfil = this.dataUser[0].telefono;           
+            this.telefonoPerfil = this.dataUser[0].telefono;
+            this.imagePath = this.dataUser[0].imagePath || '';
             console.log('nombre de usuario: ' + this.dataUser[0].nombre);
           }
         })
@@ -89,7 +137,7 @@ export class PerfilClienteComponent {
             const reservaData = { ...docSnapshot.data(), id: docSnapshot.id };
             this.dataReservas.push(reservaData);
           });
-  
+
           // Assuming you want to access the first reservation in the array
           if (this.dataReservas.length > 0) {
             this.fechaReserva = this.dataReservas[0].fecha;
@@ -106,39 +154,79 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
-  
-  
-  
 
-//se invoca con el name del HTML
-  async handleEditarPerfil(formValue: any){
+
+
+
+  //se invoca con el name del HTML
+  async handleEditarPerfil(formValue: any, fileInput: HTMLInputElement) {
     const nombre = formValue['nombre-perfil'];
     const apellido = formValue['apellido-perfil'];
-    const telefono = formValue ['telefono-perfil'];
+    const telefono = formValue['telefono-perfil'];
+    const file = fileInput.files?.[0];
 
-    try{
-      console.log(nombre)
-      await this.editarPerfil(nombre, apellido, telefono);
-      alert('Perfil editado correctamente');
+    try {
+      if (file) {
+        await this.uploadAvatar(file); // Upload the new image
+        await this.editarPerfil(nombre, apellido, telefono); // Update profile data
+        alert('Perfil editado correctamente');
+      } else {
+        await this.editarPerfil(nombre, apellido, telefono); // Update profile data without uploading an image
+        alert('Perfil editado correctamente');
+      }
+
       this.getDataUser();
       this.getUserEmail();
-    }catch{
+    } catch {
       console.log('Error al intentar editar el perfil.')
       alert('Error al intentar editar el perfil.')
     }
-  } 
+  }
 
-  async editarPerfil(nombre: string, apellido: string, telefono: string){
+ 
+
+  async uploadAvatar(file: File) {
     const user: User | null = this.auth.currentUser;
-    if (user){
-      const userDocRef = doc(this.firestore, 'users', user.uid);
-      setDoc(userDocRef, {nombre, apellido, telefono});
+
+    if (!user) {
+      return false;
+    }
+
+    const path = `users/${user.uid}/profile-image`;
+    const storageRef = ref(this.storage, path);
+
+    try {
+      await uploadBytes(storageRef, file);
+      const imagePath = await getDownloadURL(storageRef);
+      this.imagePath = imagePath; // Update the imagePath property
+
+      const userDocRef = doc(this.firestore, `users/${user.uid}`);
+      await updateDoc(userDocRef, { imagePath });
+
       return true;
-    }else {
+    } catch (error) {
+      console.log('Error while retrieving the download URL:', error);
+      return false;
+    }
+  }
+
+
+
+
+
+
+  async editarPerfil(nombre: string, apellido: string, telefono: string) {
+    const user: User | null = this.auth.currentUser;
+    if (user) {
+      const userDocRef = doc(this.firestore, 'users', user.uid);
+      updateDoc(userDocRef, { nombre, apellido, telefono, imagePath: this.imagePath });
+      return true;
+    } else {
       console.log('Error al intentar actualizar los datos.')
       return false;
     }
   }
+
 
   eliminarReserva(reservaId: string) {
     const user: User | null = this.auth.currentUser;
@@ -159,30 +247,114 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
+
+
   
+
+
+  //Para eliminar un cliente determinado     
+
+
+
+  async eliminarCliente() {
+    if (confirm('¿Está seguro que desea eliminar su cuenta?')) {
+      const user = this.auth.currentUser; // Obtener el usuario actual
+      if (user) {
+        const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
+        try {
+          // Eliminar el documento del usuario en Firestore
+          await deleteDoc(clienteDocRef);
+          //  eliminarla imagen de avatar}
+          const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
+          await deleteObject(storageRef);
+
+          // Eliminar el usuario en Authentication
+          await deleteUser(user);
+          console.log('Cliente eliminado correctamente');
+          alert('Cliente eliminado correctamente');
+          this.router.navigate(['/login']);
+        } catch (error) {
+          console.log('Error al intentar eliminar el cliente:', error);
+          alert('Error al intentar eliminar el cliente');
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // para la contraseña 
 
-//   async handleEditarPassword(formValue: any){
-//     const nuevaPassword = formValue['nueva-password'];
-//     const confirmarPassword = formValue['confirmar-password'];
+  //   async handleEditarPassword(formValue: any){
+  //     const nuevaPassword = formValue['nueva-password'];
+  //     const confirmarPassword = formValue['confirmar-password'];
 
-//     try{
-//       this.newPassword = nuevaPassword;
-//       alert('contraseña actualizada correctamente');
-      
-//     }catch{
-//       console.log('Error al intentar actualizar la constraseña.')
-//       alert('Error al intentar  actualizar la constraseña')
-//     }
-//   }
+  //     try{
+  //       this.newPassword = nuevaPassword;
+  //       alert('contraseña actualizada correctamente');
+
+  //     }catch{
+  //       console.log('Error al intentar actualizar la constraseña.')
+  //       alert('Error al intentar  actualizar la constraseña')
+  //     }
+  //   }
 
 
-//  updatePassword(user, newPassword){
-  
-//  } 
+  //  updatePassword(user, newPassword){
+
+  //  } 
 }
-  
+
 
 
 

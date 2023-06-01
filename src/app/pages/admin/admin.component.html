@@ -26,11 +26,17 @@
                 </a></li>
                 <li><a>
                     <i class="uil uil-schedule"></i>
-                    <span class="link-name">Reservas</span>
+                    <span class="link-name" routerLink="reservas">Reservas</span>
                 </a></li> 
                 <li><a>
                     <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="servicios/cliente-admin">Clientes</span>
+                    <span class="link-name" routerLink="cliente-admin">Clientes</span>
+                </a>
+                
+            </li>
+                <li><a>
+                    <i class="uil uil-server-alt"></i>
+                    <span class="link-name" routerLink="mensajes-admin">Mensajes</span>
                 </a></li>
 
                 
@@ -38,7 +44,7 @@
             <ul class="logout-mode">
                 <li><a>
                     <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
+                    <span  (click)="signOut()" class="link-name">Logout</span>
                 </a></li>
                 <li class="mode"><a>
                     <i class="uil uil-moon"></i>

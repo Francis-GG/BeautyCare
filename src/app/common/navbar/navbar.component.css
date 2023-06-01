@@ -1,148 +1,438 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
 
-/*Nuevo CSS del indio APUS*/
-*{
-    margin: 0;
-    padding: 0;
-    font-family:'Times New Roman', Times, serif;
-    font-size: 25px;
-    box-sizing: border-box;
+/* @media (max-width: 1400px) { */
+.navbar {
+  max-width: 1400px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(146, 48, 185, 0.53);
+  padding: 10px 10px;
+  
 }
-.hero{
-    width: 100%;
-    min-height: 10vh;
-    background: #eceaff;
-    color: #7d0d6ca9;
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
-nav{
-    background:rgba(146, 48, 185, 0.53);
-    width: 100%;
-    padding: 10px 5%;
-    display: flex;
+
+.titulonav {
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: 'Dancing Script';
+  margin-left: 3px;
+  margin-top: 10px;
+}
+
+
+.logo {
+  width: 60px;
+  border-radius: 10em;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fcfcfc;
+  font-size: 2em;
+  font-family: 'Times New Roman', Times, serif;
+  cursor: pointer;
+  font-style: italic;
+}
+
+.nav-link:hover {
+  transform: scale(1.1);
+}
+
+.avatar-container {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+
+
+button{
+  font-size: 1.25em;
+  /* es la negrita de word */
+  font-weight: bold;
+  /* 10 de alto y 40 de ancho */
+  padding: 10px 30px; 
+   /*borde del radio del boton  */
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.3);
+  /* eje X eje y proyeccion de sombra + color */
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  /* color letra */
+  color: white;
+  /* color de fondo */
+  background-color: rgb(149, 58, 234);
+
+}
+
+button:hover{
+  background-color: rgb(63, 25, 99);
+}
+
+
+
+
+/* foto del navbar */
+.user-pic {
+  width: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 5px;
+  background-image: -webkit-radial-gradient();
+  background-image: radial-gradient();
+  background-color: #fff;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+
+.user-pic:hover {
+  transform: scale(1.1);
+}
+
+/* submenu  */
+
+
+/* menu desplegable */
+/* es para mover la caja blanca del menu que se despliega */
+.sub-menu-wrap {
+  position: absolute;
+  top: 80%;
+  right: 3%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+/* ancho de la caja dejarlo asi */
+.sub-menu-wrap.open-menu {
+  max-height: 400px;
+}
+
+.sub-menu {
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+/* titulo nombre del menu desplegable listo  */
+.user-info h3 {
+  font-weight: bolder;
+  font-size: 1.6rem;
+  color: #781184;
+  text-align: start;
+}
+
+/* letras del submenu */
+.user-info p {
+  font-size: 1.2rem;
+  color: #0d0b0b;
+  text-align: start;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0px 0px 5px;
+}
+
+
+
+/* imagen del menu desplegable */
+.user-info img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* flecha del menu desplegable */
+.sub-menu-link span {
+  font-size: 22px;
+  transition: transform 0.5s;
+}
+
+.sub-menu hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+  margin: 0px 0px 5px;
+
+}
+
+/* letras editar perfil y cerrar sesion */
+.sub-menu-link p {
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 0px 0px 5px;
+}
+
+/* imagenes de iconos del sub menu */
+.sub-menu-link img {
+  width: 40px;
+  background: #e5e5e5;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 15px;
+}
+
+.sub-menu-link img:hover {
+  background: #f2efef;
+  transform: scale(1.1);
+}
+
+.sub-menu-link:hover p {
+  font-weight: 600;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* } */
+
+
+/* Media Query para pantallas medianas */
+@media (max-width: 990px) {
+  .navbar {
+    font-size: 1em;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .logo-container {
+    order: 1;
+    flex-basis: 30%;
+    justify-content: flex-center;
     align-items: center;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1;
+  }
+
+  .titulonav {
+    font-size: 2.5em;
+  }
+
+  .logo {
+    width: 50px;
+    margin-bottom: 10px;
+
+  }
+
+  .nav {
+    order: 2;
+    flex-basis: 100%;
+    justify-content: flex-center;
+  }
+
+  .avatar-container {
+    order: 3;
+    justify-content: flex-end;
+    margin: 5px
+  }
 }
 
-.sub-menu .sub-menu-link{
-    cursor: pointer;
+
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 720px) {
+  .navbar {
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+  }
+
+  /* .logo-container {
+    order: 1;
+    flex-basis: 40%;
+    justify-content: flex-start;
+  } */
+
+
+  .logo {
+    width: 50px;
+    margin-bottom: 10px;
+
+  }
+
+  .titulonav {
+    font-size: 2.5em;
+  }
+
+  .nav {
+    order: 2;
+    flex-basis: 100%;
+    justify-content: flex-center;
+  }
+
+  .nav-link {
+    font-size: 1.5em;
+  }
+
+  .avatar-container {
+    order: 3;
+    justify-content: flex-end;
+  }
 }
 
-@media (max-width: 500.98px) {
-    nav ul li a{
-        display: flexbox;
-        margin: 1px 2px;      
-    }
-}
-.logo{
-    width: 90px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 5px;
+@media (max-width: 540px) {
+  .navbar {
+    /* font-size: 0.8em; */
+    flex-direction: row;
+    justify-content: center;
+  }
 
-}
-.logo:hover{
-    transform: scale(1.1);
+  .logo-container {
+    order: 1;
+    flex-basis: 50%;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .titulonav {
+    font-size: 2.5em;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .nav {
+    order: 2;
+    flex-basis: 100%;
+    justify-content: flex-center;
+  }
+
+  .nav-link {
+    font-size: 1.5em;
+  }
+
+  .avatar-container {
+    order: 3;
+    justify-content: flex-end;
+    margin: 5px
+  }
 }
 
-.user-pic{
+
+@media (max-width: 350px) {
+  .navbar {
+    font-size: 0.8em;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .logo-container {
+    order: 1;
+    flex-basis: 50%;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* .titulonav{
+    font-size: 2em;
+  } */
+  .logo {
     width: 70px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 30px;
-}
-.user-pic:hover{
-    transform: scale(1.1);
-}
-nav ul{
-    width: 100%;
-    text-align: center;
-}
+    height: 30px;
+  }
 
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
-   
-}
+  .nav {
+    order: 2;
+    font-size: 0.8;
+    flex-basis: 100%;
+    justify-content: flex-center;
+  }
 
-nav ul li a{
-    color: #fff;
-    text-decoration: none;
+  .avatar-container {
+    order: 3;
+    justify-content: flex-end;
+    margin: 5px
+  }
 }
-
-nav ul li:hover{
-    transform: scale(1.1);
-}
-
-nav ul li a:hover{
-    color: yellow;
-}
-
-.sub-menu-wrap{
-    position: absolute;
-    top: 100%;
-    right: 10%;
-    width: 320px;
-    max-height: 0px;
-    overflow: hidden;
-    transition: max-height 0.5s;
-}
-.sub-menu-wrap.open-menu{
-    max-height: 400px;
-}
-.sub-menu{
-    background: #fff;
-    padding: 20px;
-    margin:10px;   
-}
-.user-info{
-    display: flex;
-    align-items: center;
-}
-.user-info h3{
-    font-weight:bolder;
-    font-size: 1.6rem;
-}
-.user-info img{
-    width: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-.sub-menu hr{
-    border: 0;
-    height: 1px;
-    width: 100%;
-    background: #ccc;
-    margin: 15px 0 10px;
-}
-.sub-menu-link{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #525252;
-    margin: 12px 0;
-
-}
-.sub-menu-link p{
-    width: 100%;
-}
-.sub-menu-link img{
-    width: 40px;
-    background: #e5e5e5;
-    border-radius: 50%;
-    padding: 8px;
-    margin-right: 15px;
-}
-.sub-menu-link span{
-    font-size: 22px;
-    transition: transform 0.5s;
-}
-.sub-menu-link:hover span{
-    transform: translateX(5px);
-}
-.sub-menu-link:hover p{
-    font-weight: 600;
-
-}
-

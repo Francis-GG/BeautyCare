@@ -1,22 +1,11 @@
 <section class="faq-section">
-  <h2 class="section-title">Preguntas Frecuentes</h2>
-  <div class="faq-container">
-    <div class="faq-item">
-      <h3 class="question">¿Cómo puedo hacer una reserva?</h3>
-      <p class="answer">Puedes hacer una reserva en línea a través de nuestra página web o llamando a nuestro número de atención al cliente.</p>
-    </div>
-    <div class="faq-item">
-        <h3 class="question">¿Cuánto tiempo antes de mi cita debo llegar?</h3>
-        <p class="answer">Le recomendamos llegar al menos 10 minutos antes de su cita programada para tener tiempo suficiente para llenar cualquier formulario necesario y prepararse para su tratamiento.</p>
-		
+  <div class="container">
+    <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+    <div class="faq-container">
+      <div class="faq-item" *ngFor="let item of data">
+        <h3 class="question">{{item.pregunta}}</h3>
+        <p>{{item.respuesta}}</p>
       </div>
-    <div class="faq-item">
-      <h3 class="question">¿Cuál es el tiempo de anticipación para cancelar una reserva?</h3>
-      <p class="answer">Pedimos que las cancelaciones se realicen al menos 24 horas antes de la cita programada.</p>
-    </div>
-    <div class="faq-item">
-      <h3 class="question">¿Qué métodos de pago aceptan?</h3>
-      <p class="answer">El pago del servico se realiza exclusivamente en el local. Aceptamos pagos en efectivo, tarjetas de crédito y débito.</p>
     </div>
   </div>
 </section>

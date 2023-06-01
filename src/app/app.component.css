@@ -1,13 +1,44 @@
-body{
-   background-image: url("../assets/images/fondo3.png") ;
+/* body{
+    
+   background-image: url("../assets/images/fondoIntenso.png") ;
    background-repeat: no-repeat;
    background-size: cover;     
 }
 
 .container{
-    max-width: 100%;
+    max-width: 80%;
     background-image: url("../assets/images/fondo3.png") ;
     background-repeat: no-repeat;
     background-size: cover;    
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  /* si  la pantalla se extiende más de 1400px el contenido se centra */
+  max-width: 1400px;
+  /* margin: 2px;
+  padding: 1px; */
+  background-image: linear-gradient(0deg,
+      rgba(251, 242, 253, 0),
+      rgba(15, 39, 146, 0),
+      rgba(241, 242, 245, 1)), url("../assets/images/fondoIntenso.png");
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
 }
 

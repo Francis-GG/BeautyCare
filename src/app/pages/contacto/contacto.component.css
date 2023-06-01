@@ -1,19 +1,30 @@
-#titulo-pagina{
-    font-family: 'Playfair Display', serif;
-    margin-top: 2%;
-    margin-bottom: 1%;
+#contactoFormulario .container{
+  max-width: 1400px;
+}
+
+#titulo-pagina {
+  font-family: 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 20px;
+font-weight: bold;
+  font-size: 2.5em;
+  text-align: center;
+  color: #0e0d0d;
+  padding: 0 18px;
+  font-style: italic;
    
 }
 
-#descripcion-pagina{
-    margin-left: 7%;
-    margin-right: 7%;
-    margin-bottom: auto;
-    text-align: center;
-    color:#0e0d0d;
-    padding: 0 18px;    
+#descripcion-pagina {
+  margin-left: 7%;
+  margin-right: 7%;
+  margin-bottom: auto;
+  text-align: center;
+  color: #0e0d0d;
+  padding: 0 18px;
 
-   
+
 }
 
 #cards-contacto {
@@ -25,50 +36,73 @@
   background-color: #e5cff8;
   color: #0e0d0d;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.2em;
-  
+}
+#first-card h3 {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+#first-card p {
+    font-size: 1.2em;
+}
+#second-card h3 {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+#second-card p {
+    font-size: 1.2em;
 }
 
 #second-card {
   background-color: #f7f8f3;
   color: #212121;
-  font-size: 1.2em;
   font-family: 'Times New Roman', Times, serif;
   ;
 }
 
 #third-card {
-  background-color:#e5cff8;
+  background-color: #e5cff8;
   color: #0e0d0d;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.2em;
+  
 }
+#third-card h3 {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+#third-card p {
+    font-size: 1.2em;
+}
+
 
 .card {
   border-radius: 0%;
   display: flex;
   margin-bottom: 5%;
   border: none;
-  
-}
-
-.card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.domingo{
+  font-weight: bold;
+}
 p {
   margin: 0%;
 }
 
 h3 {
-  font-size: 25px;
   padding-bottom: 5%;
   padding-top: 5%;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.5em;
 
 }
 
@@ -84,14 +118,136 @@ h3 {
   margin-bottom: 1%;
 }
 
-.btn-primary {
-  background-color: #212121;
-  border: 1px solid #212121;
-  border-radius: 0%;
+.btn-enviar {
+  background-color: rgb(101, 33, 165);
   font-family: 'futura-lt-w01-book', sans-serif;
   margin-bottom: 3%;
+  text-shadow: 1px 1px 3px black;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.btn-enviar:hover {
+  background-color: rgb(51, 19, 82);
+
 }
 
 #map {
   height: 60vh;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 770px) {
+  #titulo-pagina {
+    font-size: 2em;
+  }
+
+  #descripcion-pagina {
+    font-size: 1em;
+    margin-left: 0px;
+  }
+
+  #cards-contacto {
+    flex-direction: column;
+    font-size: 1em;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  #formularioContacto {
+    max-width: 100%;
+  }
+
+  .btn-enviar {
+    margin-bottom: 5%;
+  }
+
+  #map {
+    height: 60vh;
+  }
+
+}
+
+
+@media (max-width: 650px) {
+  #first-card h3{
+    font-size: 1em;
+    padding: 0px 1px;
+  }
+  #first-card p{
+
+    font-size: 1em;
+    padding: 0px 0px;
+  }
+
+  #second-card  h3{
+    font-size: 1em;
+  }
+  #second-card p{
+    font-size: 0.9em; 
+    padding: 1px 1px;
+  }
+
+
+  #third-card h3{
+    font-size: 1.2em;
+    padding: 1px 2px; 
+    vertical-align: text-top;
+  }
+  #third-card p{
+    font-size: 0.8em;
+    padding: 1px 2px; 
+  }
+
+  
+}
+
+@media (max-width: 575px) {
+  #first-card h3{
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px 1px;
+    margin: 3px 2px;
+  }
+  #first-card p{
+    font-size: 1.1em;
+    padding: 5px 1px;
+    margin: 3px 2px;
+    line-height: 0.2em;
+  }
+ 
+
+  #second-card  h3{
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px 1px;
+    margin: 3px 2px;
+  }
+  #second-card p{
+    font-size: 1.1em;
+    padding: 5px 1px;
+    margin: 4px 2px;
+    line-height: 0.5em;
+  }
+  #third-card h3{
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px 1px;
+    margin: 3px 2px; 
+    vertical-align: text-top;
+  }
+  #third-card p{
+    font-size: 1.1em;
+    padding: 5px 1px;
+    margin: 4px 2px;
+    line-height: 1em;
+  }
+
 }

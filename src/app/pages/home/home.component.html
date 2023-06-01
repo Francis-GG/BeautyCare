@@ -1,61 +1,127 @@
-<div class="container  mt-4 mb-4" id="fondo">
-  <div class="row">
+<!-- carrucel con preguntas  -->
+<section id="carrucelFotos">
+  <div class="container">
     <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../assets/images/depilacion1.jpg" class="d-block w-100" alt="Imagen de depilación">
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/images/peluqueria1.jpg" class="d-block w-100" alt="Imagen de peluquería">
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/images/manicure1.jpg" class="d-block w-100" alt="Imagen de manicure">
+      <!-- código del carrusel -->
+      <div class="container-carrucel">
+        <div class="row">
+          <div col col-12>
+            <div id="carruselHome" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="../assets/images/depilacion1.jpg"  alt="Imagen de depilación">
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/images/peluqueria1.jpg"  alt="Imagen de peluquería">
+                </div>
+                <div class="carousel-item">
+                  <img src="../assets/images/manicure1.jpg"  alt="Imagen de manicure">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
+                <p class="carousel-control-prev-icon" aria-hidden="true"></p>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carruselHome" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carruselHome" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
   </div>
+</section>
 
-  <!-- servicios -->
-  <div>
-    <h2 class="tituloLogo"> ~ BeautyCare ~ </h2>
+
+<!-- código de la sección "Nuestros servicios" -->
+<section id="tituloServicios">
+  <div class="container">
+    <h1>NUESTROS SERVICIOS</h1>
   </div>
-  <div>
-    <h1 class="tituloServicios">NUESTROS SERVICIOS</h1>
-  </div>
-  <div class="espacio"></div>
+</section>
+
+
+
+<!-- código de la sección "Nuestros servicios" -->
+<section>
+
   <div id="cards-servicios">
     <div class="row">
-      <div class="col-sm-4" *ngFor="let item of data">
+      <!-- <div class="col-sm-4" *ngFor="let item of data">
         <div class="image-item text-center">
-          <img src="{{item.imagen_vertical}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
+          <img src="{{item.imagen_horizontal}}" class="card-img-top" alt="Imagen vertical {{item.nombre}}"
             routerLink="{{item.ruta}}">
-          <button type="button" class="btn btn-outline-light" id="titulo_servicios"
+          <button type="button" class="btn btn-outline-light" id="botonServicios"
             routerLink="{{item.ruta}}">{{item.nombre}}</button>
           <p class="descrpservicios">{{item.descripcion}}</p>
         </div>
+      </div> -->
+
+
+      <!-- reemplazo para el css mientras tanto  -->
+      <div class="col-sm-4" id="card1">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/depilacion2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/depilacion">
+          <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/depilacion">Depilación</button>
+          <p class="descrpservicios">¡Adiós a los vellos indeseados! Nuestro servicio de depilación te dejará suave y
+            sin vellos en las áreas que desees. Contamos con profesionales altamente capacitados y productos de alta
+            calidad para brindarte una experiencia de depilación efectiva y cómoda.</p>
+        </div>
       </div>
+      <div class="col-sm-4" id="card1">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/peluqueria2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/peluqueria">
+          <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/peluqueria">Peluquería</button>
+          <p class="descrpservicios">¡Transforma tu cabello en un look espectacular! Con nuestro servicio de peluquería,
+            podrás lucir el estilo que siempre has deseado. Ofrecemos cortes, peinados, coloración, tratamientos
+            capilares y más, todo realizado por nuestros estilistas expertos.</p>
+        </div>
+      </div>
+      <div class="col-sm-4" id="card1">
+        <div class="image-item text-center">
+          <img src="../../../assets/images/manicure2.jpg" class="card-img-top" alt="Imagen vertical"
+            routerLink="/servicios/manicure">
+          <button type="button" class="btn btn-outline-light" id="botonServicios"
+            routerLink="/servicios/manicure">Manicure</button>
+          <p class="descrpservicios">¡Luce unas uñas impecables! Con nuestro servicio de manicure, podrás disfrutar de
+            una gran variedad de opciones para cuidar y embellecer tus manos. Ofrecemos diferentes estilos de manicure,
+            desde el clásico francés hasta el más innovador diseño, con productos de calidad y atención personalizada.
+          </p>
+        </div>
+      </div>
+
+
+
+
     </div>
   </div>
+</section>
 
-  <div class="agendar">
-    <h2 class="tituloAgenda">Agenda tu <br>Hora</h2>
-    <div>
-      <h1 class="tituloLogo2">BeautyCare </h1>
+
+<!-- código de la sección "Bienvenida" -->
+<section id="bienvenida">
+  <div class="container">
+    <div class="agendatexto">
+      <p class="objetivo">"Nuestro objetivo <br>
+        es realzar tu belleza y hacerte sentir segura y confiada"
+      </p>
     </div>
-    <div class="logoAgenda">
-      <img src="../../../assets/images/logoBeautyCare.png" alt="Logo BeautyCare">
+
+    <div id="agenda">
+      <h2>AGENDA TU HORA</h2>
+      <p>Queremos hacer tu vida más fácil, por eso te invitamos a agendar tu hora de manera
+        rápida y cómoda pinchando en <span>AGENDAR</span></p>
+      <button routerLink="/servicios/depilacion">AGENDAR</button>
+
     </div>
-    <p class="descripagendar"> Queremos hacer tu vida más fácil, por eso te invitamos a agendar tu hota de manera rápida
-      y cómoda pinchando aquí </p>
-    <button class="btn-agenda"> Agendar</button>
 
   </div>
-</div>
+</section>
+
+<div></div>

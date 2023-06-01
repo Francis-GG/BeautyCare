@@ -61,22 +61,14 @@
     }
 
     async submitContacto(id: string ,nombre: string, apellido: string, email: string, telefono: string, texto: string){
-        
-      //try{
-      // const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
-      // setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto});
-      // return true;
-      //} catch(error){
-      // console.log('Error al enviar el formulario contacto');
-      // alert('Error al enviar el formulario contacto');
-      // return false;
-      //}
+      const currentTime = new Date();
+      const fecha = currentTime.toLocaleString();
+      const hora = currentTime.toLocaleTimeString();
 
 
-     
       if(confirm('¿Está seguro que desea enviar el formulario?')){
        const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
-       setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto})
+       setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha, hora})
        .then(() => {
          console.log('Formulario enviado con éxito.')
        })
