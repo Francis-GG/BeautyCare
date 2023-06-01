@@ -1,12 +1,27 @@
 import { Component, Input } from '@angular/core';
-import { Firestore, doc, getDocs, collection } from '@angular/fire/firestore';
+import { Firestore, doc, getDocs, collection, query, where } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { addDoc } from 'firebase/firestore';
 
 
+interface Appointment {
+  fecha: string;
+  horaInicio: string;
+  horaTermino: string;
+  precio: string;
+  profesional: string;
+  servicio: string;
+  tiempo: string;
+  userId: string;
+}
 
+interface TimeSlot {
+  time: string;
+  isActive: boolean;
+  isDisabled: boolean;
+}
 
 @Component({
   selector: 'app-calendario',
@@ -22,20 +37,22 @@ export class CalendarioComponent {
   public dataEmpleados: any = [];
   minDate!: Date;
   maxDate!: Date;
+  @Input()
   selected!: Date | null;
-  timeSlots: { time: string, isActive: boolean }[][] = [
+  timeSlots: TimeSlot[][] = [
     [], // Sunday (not used)
-    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
-    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
-    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
-    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
-    [{ time: '09:00', isActive: false }, { time: '09:30', isActive: false }, { time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }, { time: '18:00', isActive: false }, { time: '18:30', isActive: false }, { time: '19:00', isActive: false }, { time: '19:30', isActive: false }, { time: '20:00', isActive: false }],
-    [{ time: '10:00', isActive: false }, { time: '10:30', isActive: false }, { time: '11:00', isActive: false }, { time: '11:30', isActive: false }, { time: '12:00', isActive: false }, { time: '12:30', isActive: false }, { time: '13:00', isActive: false }, { time: '13:30', isActive: false }, { time: '14:00', isActive: false }, { time: '14:30', isActive: false }, { time: '15:00', isActive: false }, { time: '15:30', isActive: false }, { time: '16:00', isActive: false }, { time: '16:30', isActive: false }, { time: '17:00', isActive: false }, { time: '17:30', isActive: false }]// Saturday
+    [{ time: '09:00', isActive: false, isDisabled: false }, { time: '09:30', isActive: false, isDisabled: false }, { time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }, { time: '18:00', isActive: false, isDisabled: false }, { time: '18:30', isActive: false, isDisabled: false }, { time: '19:00', isActive: false, isDisabled: false }, { time: '19:30', isActive: false, isDisabled: false }, { time: '20:00', isActive: false, isDisabled: false }],
+    [{ time: '09:00', isActive: false, isDisabled: false }, { time: '09:30', isActive: false, isDisabled: false }, { time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }, { time: '18:00', isActive: false, isDisabled: false }, { time: '18:30', isActive: false, isDisabled: false }, { time: '19:00', isActive: false, isDisabled: false }, { time: '19:30', isActive: false, isDisabled: false }, { time: '20:00', isActive: false, isDisabled: false }],
+    [{ time: '09:00', isActive: false, isDisabled: false }, { time: '09:30', isActive: false, isDisabled: false }, { time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }, { time: '18:00', isActive: false, isDisabled: false }, { time: '18:30', isActive: false, isDisabled: false }, { time: '19:00', isActive: false, isDisabled: false }, { time: '19:30', isActive: false, isDisabled: false }, { time: '20:00', isActive: false, isDisabled: false }],
+    [{ time: '09:00', isActive: false, isDisabled: false }, { time: '09:30', isActive: false, isDisabled: false }, { time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }, { time: '18:00', isActive: false, isDisabled: false }, { time: '18:30', isActive: false, isDisabled: false }, { time: '19:00', isActive: false, isDisabled: false }, { time: '19:30', isActive: false, isDisabled: false }, { time: '20:00', isActive: false, isDisabled: false }],
+    [{ time: '09:00', isActive: false, isDisabled: false }, { time: '09:30', isActive: false, isDisabled: false }, { time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }, { time: '18:00', isActive: false, isDisabled: false }, { time: '18:30', isActive: false, isDisabled: false }, { time: '19:00', isActive: false, isDisabled: false }, { time: '19:30', isActive: false, isDisabled: false }, { time: '20:00', isActive: false, isDisabled: false }],
+    [{ time: '10:00', isActive: false, isDisabled: false }, { time: '10:30', isActive: false, isDisabled: false }, { time: '11:00', isActive: false, isDisabled: false }, { time: '11:30', isActive: false, isDisabled: false }, { time: '12:00', isActive: false, isDisabled: false }, { time: '12:30', isActive: false, isDisabled: false }, { time: '13:00', isActive: false, isDisabled: false }, { time: '13:30', isActive: false, isDisabled: false }, { time: '14:00', isActive: false, isDisabled: false }, { time: '14:30', isActive: false, isDisabled: false }, { time: '15:00', isActive: false, isDisabled: false }, { time: '15:30', isActive: false, isDisabled: false }, { time: '16:00', isActive: false, isDisabled: false }, { time: '16:30', isActive: false, isDisabled: false }, { time: '17:00', isActive: false, isDisabled: false }, { time: '17:30', isActive: false, isDisabled: false }]// Saturday
   ];
   selectedTime: string | null = null;
   selectedStartTime: string | null = null;
   selectedEndTime: string | null = null;
   public serviceDurationSlots: number = 1;
+  bookedAppointments: Appointment[] = [];
 
 
   myFilter = (d: Date | null): boolean => {
@@ -50,6 +67,24 @@ export class CalendarioComponent {
   @Input('matDatepickerFilter')
   dateFilter!: DateFilterFn<Date>
 
+  //Obtiene fecha seleccionada
+
+  get selectedDate(): Date | null {
+    return this.selected;
+  }
+
+  //Establece fecha seleccionada
+
+  set selectedDate(date: Date | null) {
+    this.selected = date;
+    if (date) {
+      console.log('Fecha seleccionada:', this.selectedDate);
+      console.log('Obteniendo datos de fecha:', date);
+      this.fetchAppointments(date); // Fetch appointments when the selected date changes.
+    }
+  }
+
+  //Obtiene fecha actual
 
   constructor(public auth: Auth, private router: Router, public firestore: Firestore) {
     const navigation = this.router.getCurrentNavigation();
@@ -59,50 +94,164 @@ export class CalendarioComponent {
       this.getData();
     }
   }
+
+  //Determina la duración de los slots de tiempo
+
   setServiceDurationSlots() {
     const duration = this.itemSeleccionado.tiempo || '';
     const durationMinutes = Number(duration.split(' ')[0]);
     this.serviceDurationSlots = Math.ceil(durationMinutes / 30);
   }
 
-  getTimeSlots(): { time: string, isActive: boolean }[] {
-    const selectedDay = this.selected?.getDay() || 0; // Sunday is 0
+
+
+  isOverlap(start1: Date, end1: Date, start2: Date, end2: Date): boolean {
+    return start1 < end2 && start2 < end1;
+  }
+  
+  //Pasa las fechas de string a DateTime
+
+  stringToDateTime(date: string, time: string): Date {
+    const [day, month, year] = date.split('-').map(Number);
+    const [hours, minutes] = time.split(':').map(Number);
+    return new Date(year, month - 1, day, hours, minutes);
+  }
+
+  //Función para obtener las horas reservadas
+
+  async fetchAppointments(date: Date) {
+    const formattedDate = date.toLocaleDateString();
+    const appointmentCollectionRef = collection(this.firestore, 'reservas');
+    const querySnapshot = await query(appointmentCollectionRef, where('fecha', '==', formattedDate));
+    const snapshotDocs = await getDocs(querySnapshot);
+  
+    console.log('Datos colleción:', snapshotDocs.docs.map(doc => doc.data()));
+  
+    this.bookedAppointments = snapshotDocs.docs.map(doc => {
+      const data = doc.data();
+      return {
+        fecha: data['fecha'],
+        horaInicio: data['horaInicio'],
+        horaTermino: data['horaTermino'],
+        precio: data['precio'],
+        profesional: data['profesional'],
+        servicio: data['servicio'],
+        tiempo: data['tiempo'],
+        userId: data['userId'],
+      } as Appointment;
+    });
+  
+    console.log('Horas reservadas:', this.bookedAppointments);
+    this.getTimeSlots();
+  }
+  
+  
+  //Función para obtener los slots de tiempo
+  
+
+  getTimeSlots(): TimeSlot[] {
+    const selectedDay = this.selectedDate?.getDay() || 0;  // Sunday is 0
     const daySlots = this.timeSlots[selectedDay];
-    const validSlots = [];
-    for (let i = 0; i <= daySlots.length - this.serviceDurationSlots; i++) {
-      validSlots.push(daySlots[i]);
+    const validSlots: TimeSlot[] = [];
+
+    if (this.selectedDate) {
+      for (let i = 0; i < daySlots.length - this.serviceDurationSlots + 1; i++) {
+        const slotStartTime = new Date(this.selectedDate);
+        const [slotStartHours, slotStartMinutes] = daySlots[i].time.split(':').map(Number);
+        slotStartTime.setHours(slotStartHours, slotStartMinutes);
+        const slotEndTime = new Date(slotStartTime.getTime() + this.serviceDurationSlots * 30 * 60000);
+        
+        let slotIsBooked = this.bookedAppointments.some(appointment =>
+          this.isOverlap(
+            slotStartTime, slotEndTime,
+            this.stringToDateTime(appointment.fecha, appointment.horaInicio),
+            this.stringToDateTime(appointment.fecha, appointment.horaTermino)
+          )
+        );
+
+        // Also check the next slots if the service lasts longer than 30 minutes
+        for (let j = 1; j < this.serviceDurationSlots; j++) {
+          const nextSlot = daySlots[i + j];
+          if (nextSlot) {
+            const nextSlotStartTime = new Date(this.selectedDate);
+            const [nextSlotStartHours, nextSlotStartMinutes] = nextSlot.time.split(':').map(Number);
+            nextSlotStartTime.setHours(nextSlotStartHours, nextSlotStartMinutes);
+
+            const nextSlotIsBooked = this.bookedAppointments.some(appointment =>
+              this.isOverlap(
+                nextSlotStartTime, slotEndTime,
+                this.stringToDateTime(appointment.fecha, appointment.horaInicio),
+                this.stringToDateTime(appointment.fecha, appointment.horaTermino)
+              )
+            );
+
+            if (nextSlotIsBooked) {
+              slotIsBooked = true;
+              break;
+            }
+          }
+        }
+
+        if (slotIsBooked) {
+          validSlots.push({ ...daySlots[i], isDisabled: true });
+        } else {
+          validSlots.push({ ...daySlots[i], isDisabled: false });
+        }
+      }
     }
+
     return validSlots;
   }
 
-  selectTime(timeSlot: { time: string, isActive: boolean }) {
+  //Función para seleccionar el slot de tiempo y cambiarlos a verde cuando el usuario los clickea
+  
+
+  selectTime(timeSlot: { time: string, isActive: boolean, isDisabled: boolean }) {
+    if (timeSlot.isDisabled) {
+      return;
+    }
+  
     // Deselect other times
     this.timeSlots.forEach(day =>
       day.forEach(slot => slot.isActive = false)
     );
-
+  
     // Select the needed slots
-    const selectedDay = this.selected?.getDay() || 0;
+    const selectedDay = this.selectedDate?.getDay() || 0;
     const selectedSlotIndex = this.timeSlots[selectedDay].findIndex(slot => slot.time === timeSlot.time);
     const serviceDurationSlots = this.serviceDurationSlots;
-
+  
     for (let i = 0; i < serviceDurationSlots; i++) {
       this.timeSlots[selectedDay][selectedSlotIndex + i].isActive = true;
     }
-
     this.selectedStartTime = this.timeSlots[selectedDay][selectedSlotIndex].time;
-    this.selectedEndTime = this.timeSlots[selectedDay][selectedSlotIndex + serviceDurationSlots - 1].time;
+  
+    if (this.selectedStartTime) {
+      // Parse the start time into a Date object
+      const [startHours, startMinutes] = this.selectedStartTime.split(':').map(Number);
+      const startTime = new Date();
+      startTime.setHours(startHours, startMinutes);
+  
+      // Add the duration of the service to the start time to get the end time
+      const endTime = new Date(startTime.getTime() + this.serviceDurationSlots * 30 * 60000);
+  
+      // Format the end time as a string
+      this.selectedEndTime = endTime.getHours().toString().padStart(2, '0') + ':' + endTime.getMinutes().toString().padStart(2, '0');
+    }
   }
+  
 
 
   ngOnInit() {
     // Le da formato de fecha con palabras al calendario
     this.minDate = new Date();
+    this.selectedDate = this.minDate;
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 3);
     this.maxDate = maxDate;
   }
 
+  //Función para crear la reserva
 
   async crearReserva() {
     try {
@@ -110,21 +259,26 @@ export class CalendarioComponent {
       if (user && this.itemSeleccionado) {
         const reservaData = {
           servicio: this.itemSeleccionado?.servicio,
-          fecha: this.selected?.toLocaleDateString(),
+          fecha: this.selectedDate?.toLocaleDateString(),
           horaInicio: this.selectedStartTime,
           horaTermino: this.selectedEndTime,
           profesional: this.dataEmpleados[0]?.nombre || '',
           tiempo: this.itemSeleccionado.tiempo || '',
           precio: this.itemSeleccionado.precio || '',
+          userId: user.uid // Add the userId field to associate the reservation with the user
         };
-        const reservaCollectionRef = collection(this.firestore, `users/${user?.uid}/reservas`);
+        const reservaCollectionRef = collection(this.firestore, 'reservas');
         await addDoc(reservaCollectionRef, reservaData);
+        alert('Su hora ha sido reservada con éxito!');
+        this.router.navigate(['/']);
       }
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
   }
+  
 
+  //Función para obtener los datos de la base de datos para el contacto y empleados  
 
   getData() {
 
