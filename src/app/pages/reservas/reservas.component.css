@@ -1,0 +1,146 @@
+#depilacion-sub-dropdown,
+#peluqueria-sub-dropdown,
+#manicure-sub-dropdown {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+/* Estilos para las tarjetas */
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .card {
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  #Selecion {
+    font-size: 24px; /* Ajustar el tamaño de la fuente según tus necesidades */
+    text-align: start;
+    border-bottom: 8px solid purple; /* Agregar una línea sólida de color púrpura debajo del texto */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  /* Estilos para el primer card */
+  #first-card h3 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #Calendario {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para el segundo card */
+  #second-card h3 {
+    margin-top: 20;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .horarios {
+    margin-top: 0px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .horarios td {
+    padding: 10px;
+    text-align: center;
+    
+  }
+  
+  .horarios button {
+    background-color: #a46ee7;
+    border: none;
+    color: white;
+    padding: 7px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .horarios button:hover {
+    background-color: #630374;
+  }
+
+  .horarios button.active {
+    /* Your styles for the active state */
+    background-color: #00a822;
+    color: white;
+  }
+
+  .horarios button.is-disabled {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+  }
+
+  .horarios button.active-disabled {
+    background-color: #00a822;
+    color: white;
+  }
+
+
+  
+  /* Estilos para el tercer card */
+  #third-card h3 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #third-card p {
+    text-align: justify;
+    font-size: 16px;
+    margin-bottom: 10px;
+ }
+  
+  .confirmar-reserva {
+    background-color: #35ba00;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .confirmar-reserva:hover {
+    background-color: #0b8000;
+    border: 1px solid #67C5E5;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  

@@ -24,6 +24,9 @@ export class DepilacionComponent {
       })]
     })
   }
+
+
+  // selecciona un servicio en particular y lo redirige a calendario
   reservar(itemSeleccionado: any) {
     // Pass the selected data to the 'calendario' page using Angular's Router
     this.router.navigate(['/calendario'], { state: { data: itemSeleccionado } });

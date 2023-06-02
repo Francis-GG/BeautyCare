@@ -12,7 +12,7 @@
         <div class="col col-md-12 ">
             <input type="text" class="form-control" id="searchTerm" name="searchTerm" [(ngModel)]="nombreCliente"
                 (keyup)="search()" placeholder="Busca por nombre del cliente">
-            <div *ngIf="noResultsFound">
+            <div class="noEncontrado" *ngIf="noResultsFound">
                 No se ha encontrado el registro del nombre ingresado.
             </div>
         </div>
@@ -71,9 +71,9 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button title="AgregarReserva" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#modalReservasCliente" class="btn btn-success btn-sm px-3"
-                                        (click)="getDataReserva(item.id)">
+                                    <button title="AgregarReserva" type="button"
+                                         class="btn btn-success btn-sm px-3"
+                                        (click)="agregarReserva(item.id)">
                                         <i class="uil uil-plus-circle"></i>
                                     </button>
                                 </td>
@@ -199,15 +199,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="profile-card-reserva">
                                     <h3 id="misreservas">Mis Reservas</h3>
                                     <div class="reservation" *ngFor="let reserva of dataReservas; let i = index">
                                         <h4>Reserva #{{ i + 1 }}</h4>
                                         <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
                                         <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
-                                        <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
-                                        <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar
+                                        <p class="time"><strong>Hora:</strong> {{ reserva.horaInicio }}</p>
+                                        <button class="btn btn-danger cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar
                                             reserva</button>
                                     </div>
                                 </div>
