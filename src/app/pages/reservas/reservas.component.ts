@@ -51,6 +51,7 @@ export class ReservasComponent {
   public dataContacto: any = [];
   public dataEmpleados: any = [];
   public idUsuario: any;
+  public nombreCliente: any;
   minDate!: Date;
   maxDate!: Date;
   @Input()
@@ -105,8 +106,9 @@ export class ReservasComponent {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
       this.idUsuario = navigation?.extras.state["data"];
+      this.nombreCliente = navigation?.extras.state["nombre"];
       this.getData();
-    }
+      }
   }
 
   getServiceData() {
@@ -279,6 +281,7 @@ export class ReservasComponent {
             tiempo: this.selectedService.tiempo || '',
             precio: this.selectedService.precio || '',
             userId: this.idUsuario, // Add the userId field to associate the reservation with the user
+            nombre: this.nombreCliente,
           };
           const reservaCollectionRef = collection(this.firestore, 'reservas');
           await addDoc(reservaCollectionRef, reservaData);
