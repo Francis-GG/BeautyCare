@@ -30,7 +30,7 @@
   padding: 2px 2px 2px;
   
 }
-#botonAgregarCliente:hover{
+#botonAgregarServicio:hover{
   background-color: #04470a;
 }
 
@@ -70,13 +70,9 @@ td {
   text-align: justify;
 }
 
-#editarServicio{
-  justify-content: center;
-}
-
 button {
   font-size: 0.8em;
-  padding:  0px 0px;
+  padding:  2px 2px;
   align-items: center;
   justify-content: center;
 }
@@ -115,45 +111,3 @@ button {
   }
 }
 
-/* 
-
-@media (max-width: 768px) {
-  .tituloGestion{
-    font-size: 1.8em;
-    width: 100%;
-   
-  }
-  
-  .row {
-  
-    flex-direction: column;
-  }
-  
-  .col-md-4 {
-    width: 50%;
-  }
-  
-  .col-md-8 {
-    width: 100%;
-  }
-}
-
-@media (max-width: 512px) {
-  .row {
-  
-    flex-direction: column;
-  }
-  
-  .col-md-4 {
-    width: 100%;
-    height: min-content;
-  }
-  
-  .col-md-8 {
-    width: 100%;
-  }
-
-  .card{
-    font-size: 0.8em;
-  }
-} */
