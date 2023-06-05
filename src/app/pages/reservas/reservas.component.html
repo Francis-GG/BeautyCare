@@ -1,12 +1,20 @@
-<body>
-  <div class="details-container mt-1">
-    <p> Seleccione una categoría y luego un servicio:  </p>
-  </div>
+<!-- ttulo de la sección -->
+<section class="container-fluid">
+  <h1 class="tituloGestion mb-3 pt-2 pb-2 ps-2">
+    Gestión de Reservas
+  </h1>
+</section>
 
-  <div class="continer">
-    <div class="row">
-      <div class="col dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+<section class="container-fluid">
+  <div class="row">
+    <div class=" details col-md-6 ">
+      <p>1. Seleccione una categoría y luego un servicio:</p>
+    </div>
+
+    <div class="col-md-3">
+      <div class="dropdown">
+        <button id="btnCategoria" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
           {{ selectedCategory?.nombre || 'Categorías' }}
         </button>
         <ul class="dropdown-menu">
@@ -15,10 +23,12 @@
           </li>
         </ul>
       </div>
+    </div>
 
-      <div class="col dropdown mt-0">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-          [disabled]="!selectedCategory">
+    <div class="col-md-3">
+      <div class="dropdown">
+        <button id="btnServicio" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" [disabled]="!selectedCategory">
           {{ selectedService?.nombre || 'Servicios' }}
         </button>
         <ul class="dropdown-menu">
@@ -29,60 +39,65 @@
       </div>
     </div>
   </div>
+</section>
 
 
 
-  <!-- instrucciones para seleccionar una fecha y hora -->
-  <div class="container text-center" id="cards-contacto">
-    <p id="Selecion">Selecciona una fecha y una hora</p>
-  </div>
 
-  <!-- calendario -->
-  <div class="card-group">
-    <div class="card">
-      <div class="card-body" id="first-card">
-        <h3>Calendario</h3>
-        <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
-          [dateFilter]="myFilter" (selectedChange)="selectedDate = $event"></mat-calendar>
-      </div>
-    </div>
+<!-- instrucciones para seleccionar una fecha y hora -->
+<div class="container text-start" id="cards-contacto">
+  <p id="Selecion">2. Selecciona una fecha y una hora</p>
+</div>
 
-    <!-- horario -->
-    <div class="card">
-      <div class="card-body" id="second-card">
-        <h3>Horario</h3>
-        <!-- esta tirando error el formatDate en relación al TS -->
-        <p>{{ selected | date: ' EEEE dd/MMMM/yyyy' | titlecase}}</p>
-        <table class="horarios">
-          <tbody>
-            <tr>
-              <button mat-button *ngFor="let timeSlot of getTimeSlots()"
-                [ngClass]="{'active': timeSlot.isActive, 'is-disabled': timeSlot.isDisabled, 'active-disabled': timeSlot.isActive && timeSlot.isDisabled}"
-                (click)="selectTime(timeSlot)" [disabled]="timeSlot.isDisabled">
-                {{ timeSlot.time }}
-              </button><br><br>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
-    <!-- Detalle de la reserva -->
-    <div class="card">
-      <div class="card-body" id="third-card">
-        <h3>Detalle de reserva</h3>
-        <p>Nombre del Servicio: "{{selectedService?.nombre}}"</p>
-        <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
-        <p>Hora de inicio: {{ selectedStartTime }} </p>
-        <p>Hora de término: {{ selectedEndTime }} </p>
-        <p>Dirección del local: {{dataContacto[0]?.direccion}} </p>
-        <p>Profesional: {{ dataEmpleados[0]?.nombre }} </p>
-
-        <p>Tiempo: {{selectedService?.tiempo}}</p>
-        <p>Precio: {{selectedService?.precio}}</p>
-        <button class="confirmar-reserva" (click)="crearReserva()">Confirmar reserva</button>
-      </div>
+<!-- calendario -->
+<div class="card-group">
+  <div class="card">
+    <div class="card-body" id="first-card">
+      <h3>Calendario</h3>
+      <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
+        [dateFilter]="myFilter" (selectedChange)="selectedDate = $event"></mat-calendar>
     </div>
   </div>
-</body>
+
+  <!-- horario -->
+  <div class="card">
+    <div class="card-body" id="second-card">
+      <h3>Horario</h3>
+      <!-- esta tirando error el formatDate en relación al TS -->
+      <p>{{ selected | date: ' EEEE dd/MMMM/yyyy' | titlecase}}</p>
+      <table class="horarios">
+        <tbody>
+          <tr>
+            <button mat-button *ngFor="let timeSlot of getTimeSlots()"
+              [ngClass]="{'active': timeSlot.isActive, 'is-disabled': timeSlot.isDisabled, 'active-disabled': timeSlot.isActive && timeSlot.isDisabled}"
+              (click)="selectTime(timeSlot)" [disabled]="timeSlot.isDisabled">
+              {{ timeSlot.time }}
+            </button><br><br>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- Detalle de la reserva -->
+  <div class="card">
+    <div class="card-body" id="third-card">
+      <h3>Detalle de reserva</h3>
+      <p>Servicio: "{{selectedService?.nombre}}"</p>
+      <p>Tiempo: {{selectedService?.tiempo}}</p>
+      <p>Precio: {{selectedService?.precio}}</p>
+      <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
+      <p>Hora de inicio: {{ selectedStartTime }} </p>
+      <p>Hora de término: {{ selectedEndTime }} </p>
+      <p>Profesional: {{ dataEmpleados[0]?.nombre }} </p>
+      <p>Dirección del local: {{dataContacto[0]?.direccion}} </p>
+      <div>
+        <button class="confirmar-reserva text-center " (click)="crearReserva()">Confirmar reserva</button>
+      </div>
+      
+    </div>
+
+    
+  </div>
+</div>
