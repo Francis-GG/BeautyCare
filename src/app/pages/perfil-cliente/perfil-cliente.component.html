@@ -39,7 +39,8 @@
             <h4>Reserva #{{ i + 1 }}</h4>
             <p class="service"><strong>Servicio:</strong> {{ reserva.servicio }}</p>
             <p class="date"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
-            <p class="time"><strong>Hora:</strong> {{ reserva.hora }}</p>
+            <p class="time"><strong>Hora Inicio:</strong> {{ reserva.horaInicio }}</p>
+            <p class="time"><strong>Hora Término:</strong> {{ reserva.horaTermino }}</p>
             <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar reserva</button>
           </div>
         </div>

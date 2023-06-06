@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth, User, deleteUser, getAuth, updateEmail, updatePassword } from '@angular/fire/auth';
-import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
+import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc, query, where } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 
@@ -129,23 +129,14 @@ export class PerfilClienteComponent {
   getDataReserva() {
     const user: User | null = this.auth.currentUser;
     if (user) {
-      const userDocRef = doc(this.firestore, 'users', user.uid);
-      const reservasCollectionRef = collection(userDocRef, 'reservas');
-      getDocs(reservasCollectionRef)
+      const queryReservas = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid));
+  
+      getDocs(queryReservas)
         .then((querySnapshot) => {
-          querySnapshot.forEach((docSnapshot) => {
-            const reservaData = { ...docSnapshot.data(), id: docSnapshot.id };
-            this.dataReservas.push(reservaData);
+          this.dataReservas = querySnapshot.docs.map((doc) => {
+            const data = doc.data();
+            return Object.assign({}, data, { id: doc.id });
           });
-
-          // Assuming you want to access the first reservation in the array
-          if (this.dataReservas.length > 0) {
-            this.fechaReserva = this.dataReservas[0].fecha;
-            this.horaReserva = this.dataReservas[0].hora;
-            this.servicioReserva = this.dataReservas[0].servicio;
-            this.precioReserva = this.dataReservas[0].precio;
-            this.tiempoReserva = this.dataReservas[0].tiempo;
-          }
         })
         .catch((error) => {
           console.log('Error al intentar obtener los datos de la reserva:', error);
@@ -154,6 +145,7 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
+  
 
 
 
@@ -253,11 +245,11 @@ export class PerfilClienteComponent {
 
 
 
-  eliminarReserva(reservaId: string) {
+   eliminarReserva(reservaId: string) {
     const user: User | null = this.auth.currentUser;
     if (user) {
       if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
-        const serviceDocRef = doc(this.firestore, `users/${user.uid}/reservas/${reservaId}`);
+        const serviceDocRef = doc(this.firestore, 'reservas', reservaId);
         deleteDoc(serviceDocRef)
           .then(() => {
             console.log('Reserva eliminada correctamente');
@@ -272,6 +264,7 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
+  
 
 
   
