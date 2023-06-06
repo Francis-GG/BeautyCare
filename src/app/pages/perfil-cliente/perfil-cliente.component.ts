@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth, User, deleteUser, getAuth, updateEmail } from '@angular/fire/auth';
+import { Auth, User, deleteUser, getAuth, updateEmail, updatePassword } from '@angular/fire/auth';
 import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Router } from '@angular/router';
@@ -226,6 +226,31 @@ export class PerfilClienteComponent {
       return false;
     }
   }
+
+  async actualizarPassword(password: string) {
+    const user: User | null = this.auth.currentUser;
+    const auth = getAuth();
+    try {
+      await updatePassword(user!, password);
+      alert("Contraseña actualizada.");
+    } catch (error) {
+      alert("Error al intentar actualizar la contraseña.");
+    }
+  }
+  
+
+  handleEditarPassword(formValue: any){
+     const passwordNueva = formValue['password-nuevo'];
+     const passwordConfirmar = formValue['password-confirmar'];
+ 
+     if(passwordNueva === passwordConfirmar){
+       this.actualizarPassword(passwordNueva);
+     }else{
+       
+       alert("Las contraseñas no coinciden.")
+     }  
+   }
+
 
 
   eliminarReserva(reservaId: string) {

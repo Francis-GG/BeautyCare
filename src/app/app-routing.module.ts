@@ -75,7 +75,7 @@ const routes: Routes = [
       { path: 'reservas', component: ReservasComponent, data: { title: 'Reservas' } },
       { path: 'cliente-admin', component: ClienteAdminComponent, data: { title: 'Clientes' } },
       { path: 'mensajes-admin', component: MensajesAdminComponent, data: { title: 'Mensajes' } },
-      { path: 'dashboard-admin', component: DashboardAdminComponent, data: { title: 'Agenda de Trabajo' } }
+      { path: '', component: DashboardAdminComponent, data: { title: 'Agenda de Trabajo' } }
     ]
   },
 ];
