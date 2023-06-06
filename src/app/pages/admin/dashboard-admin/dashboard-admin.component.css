@@ -1,0 +1,100 @@
+.tituloGestion {
+  text-align: start;
+  font-size: 2.1em;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  color: rgb(6, 0, 0);
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(154, 56, 214, 0.322);
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row {
+  padding: 0;
+  margin: 0;
+}
+
+.tituloCalendario {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.col-md-4 {
+  width: 33.33%;
+}
+
+.col-md-8 {
+  width: 66.66%;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.table {
+  width: 100%;
+  text-align: center;
+}
+
+.table-contoured {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .tituloGestion{
+    font-size: 1.8em;
+    width: 100%;
+   
+  }
+  
+  .row {
+  
+    flex-direction: column;
+  }
+  
+  .col-md-4 {
+    width: 50%;
+  }
+  
+  .col-md-8 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 512px) {
+  .row {
+  
+    flex-direction: column;
+  }
+  
+  .col-md-4 {
+    width: 100%;
+    height: min-content;
+  }
+  
+  .col-md-8 {
+    width: 100%;
+  }
+
+  .card{
+    font-size: 0.8em;
+  }
+}

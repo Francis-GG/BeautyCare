@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Times New Roman', Times, serif;
 }
 
 main{
@@ -59,6 +58,7 @@ nav{
     background-color: var(--panel-color);
     border-right: 2px solid var(--border-color);
     transition: var(--tran-05);
+    
 }
 
 nav.close{
@@ -103,10 +103,12 @@ nav .menu-items{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
 }	
 
 .menu-items li{
     list-style: none;
+    
 }
 
 .menu-items li a{
@@ -115,6 +117,7 @@ nav .menu-items{
     text-decoration: none;
     height: 50px;
     position: relative;
+    
 }
 
 .menu-items li a:hover:before{
@@ -135,6 +138,7 @@ nav .menu-items{
     justify-content: center;
     align-items: center;
     color: var(--black-light-color);
+    
 }
 
 .menu-items li a .link-name{
@@ -146,12 +150,14 @@ nav .menu-items{
 
 nav.close li a .link-name{
     opacity: 0;
+    
     pointer-events: none;
 }
 
 .nav-links,
 .logout-mode li a{
     cursor: pointer;
+    
 }
 
 .nav-links li a:hover i,
@@ -237,6 +243,7 @@ nav.close ~ .dashboard{
     background-color: var(--panel-color);
     align-items: center;
     transition: var(--tran-05);
+    font-size: 2em;
 }
 
 nav.close ~ .dashboard .top{

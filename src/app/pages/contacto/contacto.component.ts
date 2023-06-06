@@ -47,9 +47,6 @@
 
       try{
         await this.submitContacto(id, nombre, apellido, email, telefono, texto);
-        console.log('Mensaje guardado con éxito');
-        console.log(nombre)
-        alert('Mensaje enviado con éxito');
       //para limpiar los campos
         this.getNextId();
         this.contactoForm.resetForm();
@@ -70,10 +67,10 @@
        const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
        setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha, hora})
        .then(() => {
-         console.log('Formulario enviado con éxito.')
+         alert('Formulario enviado con éxito.')
        })
        .catch((error) =>{
-         console.log('Error al enviar el formulario.')
+         alert('El formulario no se ha enviado.')
        });
       }
     }

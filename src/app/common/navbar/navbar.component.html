@@ -1,8 +1,12 @@
+<!-- Logo y titulo de la pagina -->
+
 <div class="navbar">
   <div class="logo-container">
     <img class="logo" src="../../../assets/images/logoBeautyCare.png" alt="logo">
     <h1 class="titulonav">BeautyCare</h1>
   </div>
+
+  <!-- opciones de ruta -->
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" routerLink="/">Inicio</a>
@@ -14,42 +18,34 @@
       <a class="nav-link" routerLink="/contacto">Contacto</a>
     </li>
   </ul>
-  <div class="avatar-container">
 
-    <div *ngIf="data.length > 0">
-      <img
-        [src]="loggedIn? (imagePath || '../../../assets/images/login/5-removebg-preview.png') : '../../../assets/images/logoBeautyCare.png'"
-        class="user-pic" (click)="toggleMenu()">
 
-      <div class="user-info" *ngFor="let user of data">
-        <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu dropstart">
-
-            <div class="user-info" *ngFor="let user of data">
-              <!-- foto del submenu -->
-              <img title="imagen-usuario" [src]= "imagePath">
-              <h3> {{user.nombre}} {{user.apellido}}</h3>
-            </div>
-            <hr>
-            <!-- icono de perfil y ruta para editar perfil -->
-            <a href="#" class="sub-menu-link" routerLink="/perfil-cliente">
-              <img title="icono-perfil" src="../../../assets/images/profile.png">
-              <p>Editar Perfil</p>
-            </a>
-            <!-- icono de cerrar sesion y ruta para cerrar sesion -->
-            <a (click)="signOut()" class="sub-menu-link">
-              <img title="icono-cerrar-sesion" src="../../../assets/images/logout.png">
-              <p>Cerrar Sesión</p>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div *ngIf="data.length === 0">
-      <button class="btn-login " routerLink="/login">
-        Iniciar Sesión
-      </button>
+  <!-- foto del avatar e iniciar sesion -->
+  <div class="avatar-dropdown">
+    <img [src]="imagePath" class="user-avatar" (click)="toggleSubMenu()" alt="User Avatar">
+    <div id="sub-menu" class="submenu-container " [style.display]="submenuVisible ? 'block' : 'none'">
+      <a  class="uil uil-user-circle" *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Iniciar Sesion</a>
+      <a *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Registrarse</a>
+      <a *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">Perfil</a>
+      <a *ngIf="loggedIn" (click)="signOut(); toggleSubMenu()">Cerrar Sesión</a>
     </div>
   </div>
+
+
+
+<!-- 
+  <div class="btn-group">
+    <div type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+      Right-aligned, left-aligned lg
+    </div>
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+  </div> -->
+
+
+    <!-- iniciar sesión y redieccionar al login -->
+    
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, deleteUser, user } from '@angular/fire/auth';
 import { Firestore, collection, doc, getDocs, setDoc, deleteDoc, getDoc, where, query } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 
 export interface User {
@@ -34,10 +35,12 @@ export class ClienteAdminComponent {
   public precioReserva: string = '';
   public tiempoReserva: string = '';
   public idClienteReserva: string = '';
+  
 
 constructor (   
   public auth: Auth,
-  public firestore: Firestore){
+  public firestore: Firestore,
+  public router: Router){
     this.getData();
 
   }
@@ -153,54 +156,47 @@ constructor (
 
  
   
-  //
   getDataReserva(idCliente: string) {
+    const reservasCollectionRef = collection(this.firestore, 'reservas');
+    const queryReservas = query(reservasCollectionRef, where('userId', '==', idCliente));
     
-      const userDocRef = doc(this.firestore, 'users', idCliente);
-      const reservasCollectionRef = collection(userDocRef, 'reservas');
-      getDocs(reservasCollectionRef)
-        .then((querySnapshot) => {
-          querySnapshot.forEach((docSnapshot) => {
-            const reservaData = { ...docSnapshot.data(), id: docSnapshot.id };
-            this.dataReservas.push(reservaData);
-          });
+    getDocs(queryReservas)
+      .then((querySnapshot) => {
+        this.dataReservas = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          console.log(data); // Debug line
+          return Object.assign({}, data, { id: doc.id });
+        });
+      })
+      .catch((error) => {
+        console.log('Error al intentar obtener los datos de la reserva:', error);
+      });
+  }
   
-          // Assuming you want to access the first reservation in the array
-          if (this.dataReservas.length > 0) {
-            this.idReserva = this.dataReservas[0].id
-            this.fechaReserva = this.dataReservas[0].fecha;
-            this.horaReserva = this.dataReservas[0].hora;
-            this.servicioReserva = this.dataReservas[0].servicio;
-            this.precioReserva = this.dataReservas[0].precio;
-            this.tiempoReserva = this.dataReservas[0].tiempo;
-            this.idClienteReserva = idCliente;
-          }
+  
+  
+
+  eliminarReserva(reservaId: string) {
+    if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
+      const reservaDocRef = doc(this.firestore, 'reservas', reservaId);
+      deleteDoc(reservaDocRef)
+        .then(() => {
+          console.log('Reserva eliminada correctamente');
+          this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
+          alert('Reserva eliminada correctamente');
         })
         .catch((error) => {
-          console.log('Error al intentar obtener los datos de la reserva:', error);
+          console.log('Error al intentar eliminar la reserva:', error);
         });
-    
+    }
   }
-
-  eliminarReserva( reservaId: string) {
-     
-      if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
-        const serviceDocRef = doc(this.firestore, `users/${this.idClienteReserva}/reservas/${reservaId}`);
-        deleteDoc(serviceDocRef)
-          .then(() => {
-            console.log('Reserva eliminada correctamente');
-            this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
-            alert('Reserva eliminada correctamente');
-          })
-          .catch((error) => {
-            console.log('Error al intentar eliminar la reserva:', error);
-          });
-      }
   
-  }
 
+// agregar reserva desde el admin seleccionando un cliente y enviandlo al calendario
+agregarReserva(idCliente: string, nombreCliente: string) {
+  this.router.navigate(['/admin/reservas'], { state: { data: idCliente, nombre: nombreCliente}} );
 
-
+}
 
 }
 

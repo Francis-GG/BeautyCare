@@ -1,0 +1,56 @@
+<section class="container-fluid">
+  <h1 class="tituloGestion mb-3 pt-2 pb-2 ps-2">
+      Gestión de Citas
+    </h1>
+</section>
+
+
+<section class="container-fluid">
+  <div class="row text-start">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body" id="first-card">
+          <h3 class="tituloCalendario">Calendario</h3>
+          <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
+            [dateFilter]="myFilter" (selectedChange)="selectedDate = $event"></mat-calendar>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-8 pt-2">
+      <section>
+        <div class="table-responsive">
+          <table class="table table-contoured mb-0">
+            <thead >
+              <tr>
+                <th scope="col">Horario</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Servicio</th>
+                <th scope="col" id="botonEstado">ESTADO CLIENTE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bookedAppointment of bookedAppointments">
+                <td>{{ bookedAppointment.horaInicio }} a {{ bookedAppointment.horaTermino }}</td>
+                <td>Nmbre y apellido</td>
+                <td>
+                  telefono<br>
+                  email
+                </td>
+                <td>{{ bookedAppointment.servicio }}</td>
+                <td class="pb-5 m-0">
+                  <select id="botonEstado" class="form-select text-center p-1 pe-1" aria-label="Default select example" >
+                    <option selected>Pendiente</option>
+                    <option value="1">Atendido</option>
+                    <option value="2">Cancelado</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+  </section>

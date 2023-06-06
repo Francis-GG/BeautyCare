@@ -1,77 +1,126 @@
-/* Estilo de la tabla */
-.table-responsive {
-    overflow-x: auto;
-  }
-  
-  .table {
-    width: 100%;
-    margin-bottom: 0;
-    color: #212529;
-    border-collapse: collapse;
-  }
-  
-  .table td,
-  .table th {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-  }
-  
-  .table tbody+tbody {
-    border-top: 2px solid #dee2e6;
-  }
-  
-  table-sm td,
-.table-sm th {
-  padding: 0.3rem;
+.tituloGestion {
+  text-align: start;
+  font-size: 2.1em;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  color: rgb(6, 0, 0);
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(154, 56, 214, 0.322);
+}
+
+.container-fluit {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.row {
+  padding: 0;
+  margin: 0;
 }
 
 
-.listado{
-    text-align: start;
+
+.table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
-.texto{
-    text-align: justify;
+
+
+
+td {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  font-size: 1em;
+  vertical-align: text-top;
+
+}
+
+
+
+.des {
+  font-size: 1em;
+  padding: 7px 4px;
+  text-align: justify;
 }
 
 /* Estilo de los botones */
 
 #boton-eliminar {
-    width: 10%;
-  }
-  .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    border-radius: 0.2rem;
-  }
+  width: 10%;
+}
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
 
-  .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    color: white;
-    cursor: pointer;
-    
-  }
-    .btn-danger:hover {
-        background-color: #691a22;
-        
-    
-    }
-
-  .btn-sm:hover {
-    background-color: #691a22;
-    border: none;
-
-  }
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+  cursor: pointer;
   
+}
+  .btn-danger:hover {
+      background-color: #691a22;
+      
   
+  }
+
+.btn-sm:hover {
+  background-color: #691a22;
+  border: none;
+
+}
 
 
-/*
-.btn {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-  } */
+
+
+
+
+@media (max-width: 617px) {
+  #botonAgregarServicio{
+    font-size: 1.1em;
+    padding: 1px 1px;
+    margin: 0px;
+  }
+
+
+  .tituloGestion{
+    font-size: 1.8em;
+    width: 100%;
+   
+  }
+  table {
+    font-size: 0.8em;
+    overflow-x: auto;
+    justify-content: center center;
+  }
+
+  th {
+    font-size: 1em;
+    text-align: center ;
+    vertical-align:middle;
+    padding: 2px 3px;
+  }
+
+  td {
+    font-size: 1em;
+    padding: 0px 3px;
+    text-align: center;
+    vertical-align:middle;
+  }
+}
+

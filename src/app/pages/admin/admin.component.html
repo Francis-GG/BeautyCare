@@ -7,52 +7,49 @@
             <span class="logo_name">BeautyCare</span>
         </div>
         <div class="menu-items">
-            <ul class="nav-links">
+            <ul class="nav-links ">
                 <li><a>
-                    <i class="uil uil-home"></i>
-                    <span class="link-name">Dashboard</span>
-                </a></li>
+                        <i class="uil uil-clipboard-notes" routerLink="dashboard-admin"></i>
+                        <span class="link-name fs-5" routerLink="dashboard-admin">Agenda de trabajo</span>
+                    </a></li>
                 <li><a>
-                    <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="servicios/depilacion">Depilación</span>
-                </a></li>
+                        <i class="uil uil-edit" routerLink="servicios/depilacion"></i>
+                        <span class="link-name fs-5" routerLink="servicios/depilacion">S. Depilación</span>
+                    </a></li>
                 <li><a>
-                    <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="servicios/peluqueria">Peluquería</span>
-                </a></li>
+                        <i class="uil uil-edit" routerLink="servicios/peluqueria"></i>
+                        <span class="link-name fs-5" routerLink="servicios/peluqueria">S. Peluquería</span>
+                    </a></li>
                 <li><a>
-                    <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="servicios/manicure">Manicure</span>
-                </a></li>
+                        <i class="uil uil-edit" routerLink="servicios/manicure"></i>
+                        <span class="link-name fs-5" routerLink="servicios/manicure">S. Manicure</span>
+                    </a></li>
                 <li><a>
-                    <i class="uil uil-schedule"></i>
-                    <span class="link-name" routerLink="reservas">Reservas</span>
-                </a></li> 
+                        <i class="uil uil-schedule" routerLink="reservas"></i>
+                        <span class="link-name fs-5" routerLink="reservas">Reservas</span>
+                    </a></li>
                 <li><a>
-                    <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="cliente-admin">Clientes</span>
-                </a>
-                
-            </li>
-                <li><a>
-                    <i class="uil uil-server-alt"></i>
-                    <span class="link-name" routerLink="mensajes-admin">Mensajes</span>
-                </a></li>
+                        <i class="uil uil-users-alt" routerLink="cliente-admin"></i> 
+                        <span class="link-name fs-5" routerLink="cliente-admin">Clientes</span>
+                    </a>
 
-                
+                </li>
+                <li><a>
+                        <i class="uil uil-envelope" routerLink="mensajes-admin"></i>
+                        <span class="link-name fs-5" routerLink="mensajes-admin">Mensajes</span>
+                    </a></li>
+
+
             </ul>
             <ul class="logout-mode">
                 <li><a>
-                    <i class="uil uil-signout"></i>
-                    <span  (click)="signOut()" class="link-name">Logout</span>
-                </a></li>
+                        <i class="uil uil-signout"></i>
+                        <span (click)="signOut()" class="link-name fs-4">Logout</span>
+                    </a></li>
                 <li class="mode"><a>
-                    <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
-                <div class="mode-toggle">
-                <span class="switch"></span>
-                </div>
+                    </a>
+                    <div class="mode-toggle">
+                    </div>
                 </li>
             </ul>
         </div>
@@ -60,18 +57,10 @@
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Buscar...">
-            </div>
-            <img src="../../../assets/images/user.png" alt="Profile">
+            <span id="title">{{ titleService.getTitle()}}</span>
         </div>
         <div class="dash-content">
             <div class="overview">
-                <div class="title">
-                    <i class="uil uil-home"></i>
-                    <span class="text">{{ titleService.getTitle()}}</span>
-                </div>
                 <router-outlet></router-outlet>
             </div>
         </div>
