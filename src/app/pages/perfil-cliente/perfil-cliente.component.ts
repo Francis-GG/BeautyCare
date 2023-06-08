@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Auth, User, deleteUser, getAuth, updateEmail, updatePassword } from '@angular/fire/auth';
 import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc, query, where } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
@@ -38,6 +38,8 @@ export class PerfilClienteComponent {
   public tiempoReserva: string = '';
   public imagePath: string = '';
   public emailActual: string = '';
+  public loggedIn= false;
+
 
 
 
@@ -46,10 +48,18 @@ export class PerfilClienteComponent {
     public firestore: Firestore,
     private storage: Storage,
     private router: Router) {
-    this.getDataUser();
-    this.getUserEmail();
-    this.getDataReserva();
+
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.getDataUser();
+        this.getUserEmail();
+        this.getDataReserva();
+      } else {
+        this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
+      }
+    });
   }
+
 
   obtenerDatosPerfil(nombrePerfil: string, apellidoPerfil: string, telefonoPerfil: string, emailPerfil: string) {
     this.nombrePerfil = nombrePerfil;
@@ -69,7 +79,7 @@ export class PerfilClienteComponent {
 
   //Actualizar email
 
-  async actualizarEmail(email: string){
+  async actualizarEmail(email: string) {
     const user: User | null = this.auth.currentUser
     const auth = getAuth()
     updateEmail(user!, email).then(() => {
@@ -78,33 +88,34 @@ export class PerfilClienteComponent {
     }).catch((error) => {
       alert("Error al intentar actualizar el correo.")
     });
-    if(user){
+    if (user) {
       const userDocRef = doc(this.firestore, 'users', user.uid);
-      updateDoc(userDocRef, {email});
+      updateDoc(userDocRef, { email });
       return true;
-    }else{
+    } else {
       return false;
     }
-    
+
   }
 
-  handleEditarCorreo(formValue: any){
+  handleEditarCorreo(formValue: any) {
     const correoActual = formValue['email-actual'];
     const correoNuevo = formValue['email-nuevo'];
     const correoConfirmar = formValue['email-confirmar'];
 
-    if(correoNuevo === correoConfirmar){
+    if (correoNuevo === correoConfirmar) {
       this.actualizarEmail(correoNuevo);
-    }else{
-      
+    } else {
+
       alert("Los correos no coinciden.")
-    }  
+    }
   }
 
   //funcion para obtener datos de la coleccion USERS de firebase
   getDataUser() {
     const user: User | null = this.auth.currentUser;
     if (user) {
+      this.loggedIn = true;
       const userDocRef = doc(this.firestore, 'users', user.uid);
       getDoc(userDocRef)
         .then((docSnapshot) => {
@@ -116,6 +127,7 @@ export class PerfilClienteComponent {
             this.telefonoPerfil = this.dataUser[0].telefono;
             this.imagePath = this.dataUser[0].imagePath || '';
             console.log('nombre de usuario: ' + this.dataUser[0].nombre);
+            this.imagePath = this.dataUser[0].imagePath ? this.dataUser[0].imagePath : this.imagePath;
           }
         })
         .catch((error) => {
@@ -123,6 +135,8 @@ export class PerfilClienteComponent {
         });
     } else {
       console.log('No hay un usuario autenticado actualmente.');
+      this.loggedIn = false;
+      this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
     }
   }
 
@@ -130,7 +144,7 @@ export class PerfilClienteComponent {
     const user: User | null = this.auth.currentUser;
     if (user) {
       const queryReservas = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid));
-  
+
       getDocs(queryReservas)
         .then((querySnapshot) => {
           this.dataReservas = querySnapshot.docs.map((doc) => {
@@ -145,7 +159,7 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
-  
+
 
 
 
@@ -175,7 +189,7 @@ export class PerfilClienteComponent {
     }
   }
 
- 
+
 
   async uploadAvatar(file: File) {
     const user: User | null = this.auth.currentUser;
@@ -229,23 +243,23 @@ export class PerfilClienteComponent {
       alert("Error al intentar actualizar la contraseña.");
     }
   }
-  
-
-  handleEditarPassword(formValue: any){
-     const passwordNueva = formValue['password-nuevo'];
-     const passwordConfirmar = formValue['password-confirmar'];
- 
-     if(passwordNueva === passwordConfirmar){
-       this.actualizarPassword(passwordNueva);
-     }else{
-       
-       alert("Las contraseñas no coinciden.")
-     }  
-   }
 
 
+  handleEditarPassword(formValue: any) {
+    const passwordNueva = formValue['password-nuevo'];
+    const passwordConfirmar = formValue['password-confirmar'];
 
-   eliminarReserva(reservaId: string) {
+    if (passwordNueva === passwordConfirmar) {
+      this.actualizarPassword(passwordNueva);
+    } else {
+
+      alert("Las contraseñas no coinciden.")
+    }
+  }
+
+
+
+  eliminarReserva(reservaId: string) {
     const user: User | null = this.auth.currentUser;
     if (user) {
       if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
@@ -264,10 +278,10 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
-  
 
 
-  
+
+
 
 
   //Para eliminar un cliente determinado     
