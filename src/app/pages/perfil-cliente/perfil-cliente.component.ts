@@ -114,9 +114,12 @@ export class PerfilClienteComponent {
   //funcion para obtener datos de la coleccion USERS de firebase
   getDataUser() {
     const user: User | null = this.auth.currentUser;
+    const placeholderImage = '../../../assets/images/login/5-removebg-preview.png'; // Define the placeholder image path
+  
     if (user) {
       this.loggedIn = true;
       const userDocRef = doc(this.firestore, 'users', user.uid);
+  
       getDoc(userDocRef)
         .then((docSnapshot) => {
           if (docSnapshot.exists()) {
@@ -125,9 +128,9 @@ export class PerfilClienteComponent {
             this.nombrePerfil = this.dataUser[0].nombre;
             this.apellidoPerfil = this.dataUser[0].apellido;
             this.telefonoPerfil = this.dataUser[0].telefono;
-            this.imagePath = this.dataUser[0].imagePath || '';
+            // Use the user's image if it exists, otherwise use the placeholder
+            this.imagePath = this.dataUser[0].imagePath ? this.dataUser[0].imagePath : placeholderImage;
             console.log('nombre de usuario: ' + this.dataUser[0].nombre);
-            this.imagePath = this.dataUser[0].imagePath ? this.dataUser[0].imagePath : this.imagePath;
           }
         })
         .catch((error) => {
@@ -136,7 +139,7 @@ export class PerfilClienteComponent {
     } else {
       console.log('No hay un usuario autenticado actualmente.');
       this.loggedIn = false;
-      this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
+      this.imagePath = placeholderImage;
     }
   }
 
