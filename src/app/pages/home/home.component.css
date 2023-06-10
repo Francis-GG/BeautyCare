@@ -1,29 +1,152 @@
 
-.container {
-  max-width: 1400px;
-  margin: auto;
+#carruselHome .carousel-item{
+  /* object-fit: cover; */
+  object-position: center;
+  width: 60%;
+  height: 68vh;
+  margin-left: 20%;
+ 
+
+}
+
+.carousel-control-next{
+  right: 100px;
+}
+.carousel-control-prev{
+  left: 100px;
+}
+
+@media (max-width: 1400px) {
+  #carruselHome .carousel-item{
+    /* object-fit: cover; */
+    object-position: center;
+    width: 85%;
+    height: 70vh;
+    margin-left: 7%;
+  }
 }
 
 
-.container-carrucel {
-  max-width: 600px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-
-  margin: 0px auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: 50%;
-  
+@media (max-width: 964px) {
+  #carruselHome .carousel-item{
+    /* object-fit: cover; */
+    object-position: center;
+    width: 85%;
+    height: 45vh;
+    margin-left: 5%;
+  }
 }
 
-.carousel-item img {
-  width: 100%;
-  height: auto;
- border-radius: 5px;
+
+@media (max-width: 767px) {
+  #carruselHome .carousel-item{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+ 
+    margin-left: 0%;
+    }
+
+    .carousel-control-next{
+      right: 50px;
+      height: 319px;
+    }
+
+    .carousel-control-prev{
+      left: 50px;
+      height: 319px;
+
+    }
+
+
+
+ 
+
+
+  #card1 img{
+    width: 100%;
+    height: 30vh;
+  }
+  .descrpservicios{
+    padding: 0px 12px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 0.9em;
+  }
   
-  
+  #bienvenida{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    background-size: auto;
+    background-position-y: center;
+    background-repeat: no-repeat;
+  }
+
+  #agenda {
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)), url("../../../assets/images/flores.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
+
+
+@media (max-width: 555px) {
+
+  #carruselHome .carousel-item{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    
+    margin-left: 0%;
+  }
+
+
+
+  #card1 img {
+    width: 50%;
+    height: 30vh;
+  }
+
+  .descrpservicios {
+    padding: 0px 6px;
+    margin-left: 20px ;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: rgba(240, 233, 240, 0.163);
+    font-size: 1em;
+    text-align: justify;
+  }
+
+  #card1 button{
+    margin-left: 20px;
+  }
+
+  #bienvenida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8em;
+    background-size: auto;
+    background-position-y: center;
+    background-repeat: no-repeat;
+  }
+
+}
+
+
 
 #tituloServicios h1 {
   font-family: 'Times New Roman', Times, serif;
@@ -194,11 +317,7 @@
 
 
 @media (max-width: 767px) {
-  .container-carrucel {
-    width: 100%;
-    height: auto;
-    
-  }
+  
 
   #card1 img{
     width: 100%;
@@ -243,10 +362,7 @@
   
 }
 @media (max-width: 575px) {
-  .container-carrucel {
-    width: 100%;
-    height: auto;
-  }
+ 
 
   #card1 img {
     width: 50%;
