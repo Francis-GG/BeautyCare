@@ -1,5 +1,5 @@
 <section class="container-fluid">
-  <div class="row text-start">
+  <div class="row ">
     <div class="col-md-3 pt-4">
       <div class="card">
         <div class="card-body" id="first-card">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-md-9 pt-3">
-      <section>
+      <section class="tabla">
         <h1  class="titulosTabla">MIS RESERVAS</h1>
         <div class="table-responsive">
           <table class="table table-contoured mb-0">
@@ -44,9 +44,9 @@
                 </td>
                 <td>{{ reserva.horaTermino }}</td>
                 <td class="pb-5 m-0">
-                  <button class="btn btn-success" id="botonEstado">Confirmado</button>
+                  <button class="btn-success" id="botonEstado">Confirmado</button>
                 </td>
-                <td> <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar reserva</button>
+                <td> <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar</button>
                 </td>
               </tr>
             </tbody>
@@ -56,10 +56,6 @@
     </div>
   </div>
 </section>
-
-
-
-
 
 
 <!-- historial de reserva  -->
@@ -86,8 +82,9 @@
   </div>
 </section>
 
-<section class="config-section container">
-  <div class="card">
+<section class="config-section">
+  <div class="configuracion">
+
     <h1 >Configuraciones</h1>
     <div class="profile-actions">
 
@@ -106,12 +103,10 @@
     <!-- Para eliminar la cuenta de usuario  -->
     <div class="eliminar-cuenta">
       <h2>Eliminar Cuenta</h2>
-      <button class="delete-btn" (click)="eliminarCliente()">Eliminar Cuenta</button>
+      <button class="delete" (click)="eliminarCliente()">Eliminar Cuenta</button>
     </div>
   </div>
 </section>
-
-
 
 
 <!-- Modals varios -->
