@@ -18,6 +18,7 @@ import { CalendarioComponent } from './pages/calendario/calendario.component';
 import { ClienteAdminComponent } from './pages/admin/cliente-admin/cliente-admin.component';
 import { MensajesAdminComponent } from './pages/admin/mensajes-admin/mensajes-admin.component';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -47,19 +48,23 @@ const routes: Routes = [
   },
   {
     path: 'servicios',
-    component: ServiciosComponent
+    component: ServiciosComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'servicios/depilacion',
-    component: DepilacionComponent
+    component: DepilacionComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'servicios/peluqueria',
-    component: PeluqueriaComponent
+    component: PeluqueriaComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'servicios/manicure',
-    component: ManicureComponent
+    component: ManicureComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'reservas',

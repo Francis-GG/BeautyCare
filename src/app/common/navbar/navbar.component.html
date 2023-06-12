@@ -24,7 +24,7 @@
 
     <!-- Menú desplegable -->
     
-    <div id="sub-menu" class="submenu-container" [style.display]="submenuVisible ? 'block' : 'none'">
+    <div #subMenu class="submenu-container" [style.display]="submenuVisible ? 'block' : 'none'">
 
       <!-- sub menu sin login -->
       <a class="sinLogin" *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Iniciar Sesión</a>

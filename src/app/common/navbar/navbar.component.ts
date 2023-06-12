@@ -1,8 +1,10 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Firestore, collection, getDoc, doc} from '@angular/fire/firestore';
 import { Router, NavigationEnd } from '@angular/router';
 import { User } from 'firebase/auth';
 import { Auth } from '@angular/fire/auth';
+import { AuthService } from 'src/app/services/auth.service'; // Path might vary
+
 
 interface UserData {
   id: string;
@@ -21,31 +23,26 @@ interface UserData {
 })
 export class NavbarComponent implements OnInit {
   public data: any = [];
-  private subMenu!: HTMLElement;
+  @ViewChild('subMenu') subMenu!: ElementRef;
   public loggedIn= false;
   public imagePath: string = '';
-  public dataUser: any = [];
   public submenuVisible = false;
 
 
-  constructor(public auth: Auth, public firestore: Firestore, private router: Router) {
-    this.subMenu = document.getElementById("subMenu")!
-    this.auth.onAuthStateChanged((user) =>{
+  constructor(public authService: AuthService, public firestore: Firestore, private router: Router) {
+    this.authService.auth.onAuthStateChanged((user) =>{
       if(user){
         this.getData();
       } else{
         this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
       }
     });
-    
   }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.getData();
-        // this.changeAvatar();
-
       }
     });
   }
@@ -71,52 +68,54 @@ export class NavbarComponent implements OnInit {
 
   toggleSubMenu() {
     this.submenuVisible = !this.submenuVisible;
-    if (this.submenuVisible) {
-      this.subMenu.classList.add("open-menu");
-    } else {
-      this.subMenu.classList.remove("open-menu");
+    if (this.subMenu.nativeElement) {
+      if (this.submenuVisible) {
+        this.subMenu.nativeElement.classList.add("open-menu");
+      } else {
+        this.subMenu.nativeElement.classList.remove("open-menu");
+      }
     }
   }
 
   onClick(url: string){
     this.router.navigate([url]);
   }
-
   async getData() {
-    const user: User | null = this.auth.currentUser;
-    if (user) {
-      this.loggedIn = true;
-      const userDocRef = doc(this.firestore, 'users', user.uid);
-      try {
-        const docSnapshot = await getDoc(userDocRef);
-        if (docSnapshot.exists()) {
-          const data = docSnapshot.data() as any; // Treat `data` as `any` type to allow accessing any properties
-          const userData: UserData = {
-            id: docSnapshot.id,
-            nombre: data['nombre'] || '', // Access properties using index signature
-            apellido: data['apellido'] || '', // Access properties using index signature
-            email: data['email'] || '', // Access properties using index signature
-            telefono: data['telefono'] || '', // Access properties using index signature
-            imagePath: data['imagePath'], // Access properties using index signature
-          };
-          this.data = [userData];
-          console.log('nombre de usuario: ' + this.data[0].nombre);
-          this.imagePath = userData.imagePath ? userData.imagePath : this.imagePath; // Set imagePath to the user's profile image if it exists
+    if (this.authService.isLoggedIn()) {
+      const user: User | null = this.authService.auth.currentUser;
+      if (user) {
+        this.loggedIn = true;
+        const userDocRef = doc(this.firestore, 'users', user.uid);
+        try {
+          const docSnapshot = await getDoc(userDocRef);
+          if (docSnapshot.exists()) {
+            const data = docSnapshot.data() as any; 
+            const userData: UserData = {
+              id: docSnapshot.id,
+              nombre: data['nombre'] || '', 
+              apellido: data['apellido'] || '',
+              email: data['email'] || '',
+              telefono: data['telefono'] || '',
+              imagePath: data['imagePath'], 
+            };
+            this.data = [userData];
+            console.log('nombre de usuario: ' + this.data[0].nombre);
+            this.imagePath = userData.imagePath ? userData.imagePath : this.imagePath;
+          }
+        } catch (error) {
+          console.log('Error en traer los datos al navbar:', error);
         }
-      } catch (error) {
-        console.log('Error en traer los datos al navbar:', error);
-      }
+      } 
     } else {
       console.log('No authenticated user.');
       this.loggedIn = false;
       this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
-       // Set imagePath to the placeholder image if no user is logged in
     }
   }
  
   // //funcion para cerrar sesion
   async signOut() {
-    this.auth.signOut().then(() => {
+    this.authService.auth.signOut().then(() => {
       this.router.navigate(['/login']);
       console.log('adiosito! con éxito;')
       alert(`Adios!` + this.data[0].nombre); 
@@ -125,7 +124,4 @@ export class NavbarComponent implements OnInit {
       console.log('Error during sign out:', error);
     });
   }
-
-
-
-}  
+}
