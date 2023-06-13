@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { Firestore, collection, getDocs, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
@@ -21,11 +21,12 @@ export class AuthService {
 
   isLoggedIn(): Observable<boolean> {
     return new Observable<boolean>(subscriber => {
-      const loggedIn = !!this.auth.currentUser;
-      subscriber.next(loggedIn);
-      subscriber.complete();
+      onAuthStateChanged(this.auth, user => {
+        subscriber.next(!!user);
+      });
     });
   }
+
   
 
   registerUserData(nombre: string, apellido: string, telefono: string, email: string) {
@@ -40,4 +41,21 @@ export class AuthService {
       return false;
     }
   }
+
+  isAdmin(): Observable<boolean> {
+    return new Observable<boolean>(subscriber => {
+      onAuthStateChanged(this.auth, user => {
+        if (user) {
+          const isAdmin = user.email?.endsWith('@admin.com');
+          subscriber.next(isAdmin);
+        } else {
+          subscriber.next(false);
+        }
+        
+        subscriber.complete();
+      });
+    });
+  }
+  
+
 }

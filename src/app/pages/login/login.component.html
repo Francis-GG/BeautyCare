@@ -1,9 +1,9 @@
 
 <body>
-    <section class="wrapper">
+    <section class="wrapper" #wrapper>
         
         <div class="form signup">
-            <header>Regístrate</header>
+            <header #signupHeader>Regístrate</header>
             <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
               <input id="email-registro" name="email" ngModel placeholder="Email" type="email" required email class="input-field"/>
               <div *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email']?.touched">Por favor ingrese un email válido.</div>
@@ -29,7 +29,7 @@
           
 
         <div class="form login">
-            <header>Iniciar Sesión</header>
+            <header #loginHeader>Iniciar Sesión</header>
             <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
                 <input id="email-login" name="email" ngModel placeholder="Email" id="email" type="email" class="input-field"/>
                 <input id="password-login" name="password" ngModel placeholder="Password" id="password" type="password" class="input-field"/>

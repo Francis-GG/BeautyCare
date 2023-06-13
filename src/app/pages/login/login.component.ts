@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service'; 
@@ -10,13 +10,27 @@ declare var document: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
+
+  @ViewChild('signupHeader', { static: false }) signupHeader!: ElementRef;
+  @ViewChild('loginHeader', { static: false }) loginHeader!: ElementRef;
+  @ViewChild('wrapper', { static: false }) wrapper!: ElementRef;
   
   constructor(
     private router: Router, 
     public firestore: Firestore,
-    private authService: AuthService){
+    private authService: AuthService,
+    private renderer: Renderer2){
 
+  }
+
+  ngAfterViewInit() {
+    this.renderer.listen(this.loginHeader.nativeElement, 'click', () => {
+      this.wrapper.nativeElement.classList.add('active');
+    });
+    this.renderer.listen(this.signupHeader.nativeElement, 'click', () => {
+      this.wrapper.nativeElement.classList.remove('active');
+    });
   }
 
   private authErrorMessages = new Map<string, string>([
@@ -70,21 +84,5 @@ export class LoginComponent {
         const errorMessage = this.authErrorMessages.get(err.code) || 'An error occurred while logging in.';
         alert(errorMessage);
       });
-  }
-  
-
-  ngOnInit() {
-    document.addEventListener('DOMContentLoaded', () => { 
-      const wrapper = document.querySelector(".wrapper") as HTMLElement;
-      const signupHeader = document.querySelector(".signup header") as HTMLElement;
-      const loginHeader = document.querySelector(".login header") as HTMLElement;
-
-      loginHeader.addEventListener("click", () => {
-        wrapper.classList.add("active");
-      });
-      signupHeader.addEventListener("click", () => {
-        wrapper.classList.remove("active");
-     });
-    })
   }
 }

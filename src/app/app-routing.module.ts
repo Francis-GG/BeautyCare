@@ -19,6 +19,7 @@ import { ClienteAdminComponent } from './pages/admin/cliente-admin/cliente-admin
 import { MensajesAdminComponent } from './pages/admin/mensajes-admin/mensajes-admin.component';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
 
   {
     path: 'calendario',
-    component: CalendarioComponent
+    component: CalendarioComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'preguntfrecuent',
@@ -73,6 +75,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivateChild: [adminGuard],
     children: [
       { path: 'servicios/depilacion', component: DepilacionAdminComponent, data: { title: 'Servicio de Depilación' } },
       { path: 'servicios/peluqueria', component: PeluqueriaAdminComponent, data: { title: 'Servicio de Peluquería' } },

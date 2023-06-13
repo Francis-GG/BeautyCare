@@ -1,24 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from "@angular/core";
+import { CanActivateChildFn, Router } from "@angular/router";
+import { AuthService } from "../services/auth.service";
+import { take, tap } from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
+export const adminGuard: CanActivateChildFn = (route, state) => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+
+  return auth.isAdmin().pipe(
+    take(1),
+    tap((isAdmin) =>
+      !isAdmin ? router.navigate(["/"]) : true
+    )
+  );
 }
