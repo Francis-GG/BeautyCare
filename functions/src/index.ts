@@ -24,9 +24,14 @@ export const sendAppointmentReminders = functions.pubsub
       const msg = {
         to: appointment.email, // User's email
         from: 'frai.gonzalez@duocuc.cl', // Your verified sender
-        subject: 'Recordatorio cita',
-        text: `Le recordamos que mañana tiene una cita a las: ${appointment.horaInicio}.`,
-        html: `<strong>Le recordamos que mañana tiene una cita a las: ${appointment.horaInicio}.</strong>`,
+        templateId: 'd-1e8f22833a804faea830b079acfc07d7',
+        dynamic_template_data: {
+            nombre: appointment.nombre,
+            apellido: appointment.apellido,
+            fecha: appointment.fecha,
+            servicio: appointment.servicio,
+            hora: appointment.horaInicio,
+        },
       };
 
       sgMail
