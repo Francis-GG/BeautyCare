@@ -113,43 +113,7 @@ export class NavbarComponent implements OnInit {
        // Set imagePath to the placeholder image if no user is logged in
     }
   }
-  
-  
-
-
-  //funcion para cambiar estado del avatar del navbar
-  // async changeAvatar() {
-  //   const user: User | null = this.auth.currentUser;
-  //   if (user) {
-  //     const userDocRef = doc(this.firestore, 'users', user.uid);
-  //     try {
-  //       const docSnapshot = await getDoc(userDocRef);
-// 
-  //       if (docSnapshot.exists()) {
-  //         const userData = { ...docSnapshot.data(), id: docSnapshot.id };
-  //         this.dataUser = [userData];
-  //         this.loggedIn = true; // asigna el valor de loggedIn a true
-  //         this.imagePath = this.dataUser[0].imagenPath;
-  //         console.log('imagen de usuario: ' + this.dataUser[0].imagenPath);
-  //       } else {
-  //         this.loggedIn = true; // asigna el valor de loggedIn a true
-  //         console.log('El usuario no tiene imagen guardada');
-  //         this.imagePath = '../../../assets/images/login/5-removebg-preview.png';
-  //       }
-  //     } catch (error) {
-  //       console.log('Error en traer los datos al navbar:', error);
-  //     }
-  //   } else {
-  //     this.loggedIn = false;
-  //     console.log('No authenticated user.');
-  //   }
-  // }
-
-
-
-
-
-
+ 
   // //funcion para cerrar sesion
   async signOut() {
     this.auth.signOut().then(() => {

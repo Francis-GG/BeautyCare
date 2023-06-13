@@ -1,40 +1,59 @@
-
 <body>
-    <section class="wrapper">
-        <div class="form signup">
-            <header>Regístrate</header>
-            <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
-              <input id="email-registro" name="email" ngModel placeholder="Email" type="email" required email class="input-field"/>
-              <div *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email']?.touched">Por favor ingrese un email válido.</div>
-            
-              <input id="password-registro" name="password" ngModel placeholder="Contraseña" type="password" minlength="6" maxlength="30" required class="input-field"/>
-              <div *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password']?.touched">La contraseña debe tener entre 6 y 30 caracteres.</div>
-            
-              <div class="input-group">
-                <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" type="text" required pattern="^[A-Za-z]*$" class="form-control"/>
-                <div *ngIf="registerForm.controls['nombre']?.invalid && registerForm.controls['nombre']?.touched">El nombre solo puede contener letras.</div>
-               
-                <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" type="texto" required pattern="^[A-Za-z]*$" class="form-control"/>
-                <div *ngIf="registerForm.controls['apellido']?.invalid && registerForm.controls['apellido']?.touched">El apellido solo puede contener letras.</div>
-              </div>
-            
-              <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " type="text" required pattern="^+569\d{9}$" class="input-field"/>
-              <div *ngIf="registerForm.controls['telefono']?.invalid && registerForm.controls['telefono']?.touched">El número de teléfono debe comenzar con +569 y tener 13 dígitos de largo.</div>
-            
-              <input type="submit" value="Guardar" />
-            </form>
-          </div>
-          
-          
+  <section class="wrapper">
 
-        <div class="form login">
-            <header>Iniciar Sesión</header>
-            <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
-                <input id="email-login" name="email" ngModel placeholder="Email" id="email" type="email" class="input-field"/>
-                <input id="password-login" name="password" ngModel placeholder="Password" id="password" type="password" class="input-field"/>
-                <input type="submit" value="Ingresar" />
-            </form>
+    <div class="form signup">
+      <header>Regístrate</header>
+      <form #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+        <input id="email-registro" name="email" ngModel placeholder="Email" type="email" required email
+          class="input-field" />
+        <div *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email']?.touched">Por favor
+          ingrese un email válido.
+
         </div>
-    </section>
-</body> 
 
+        <input id="password-registro" name="password" ngModel placeholder="Contraseña" type="password" minlength="6"
+          maxlength="30" required class="input-field" />
+        <div class="placContraseña"
+          *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password']?.touched">La contraseña
+          debe tener entre 6 y 30 caracteres.
+        </div>
+
+
+        <input id="nombre-registro" name="nombre" ngModel placeholder="Nombre" type="text" required
+          pattern="^[A-Za-z]*$" class="form-control" />
+        <div class="placNombre"
+          *ngIf="registerForm.controls['nombre']?.invalid && registerForm.controls['nombre']?.touched">El nombre
+          solo puede contener letras.
+        </div>
+
+        <input id="apellido-registro" name="apellido" ngModel placeholder="Apellido" type="texto" required
+          pattern="^[A-Za-z]*$" class="form-control" /> 
+        <div class="placApellido"
+          *ngIf="registerForm.controls['apellido']?.invalid && registerForm.controls['apellido']?.touched">El
+          apellido solo puede contener letras.
+        </div>
+
+
+        <input id="telefono-registro" name="telefono" ngModel placeholder="Teléfono: +569 " type="text" required
+          pattern="^+569\d{9}$" class="input-field" />
+        <div class="placTelefono"
+          *ngIf="registerForm.controls['telefono']?.invalid && registerForm.controls['telefono']?.touched">El número
+          de teléfono debe comenzar con +569 y tener 13 dígitos de largo.</div>
+
+        <input type="submit" value="Guardar" />
+      </form>
+    </div>
+
+
+
+    <div class="form login">
+      <header>Iniciar Sesión</header>
+      <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
+        <input id="email-login" name="email" ngModel placeholder="Email" id="email" type="email" class="input-field" />
+        <input id="password-login" name="password" ngModel placeholder="Password" id="password" type="password"
+          class="input-field" />
+        <input type="submit" value="Ingresar" />
+      </form>
+    </div>
+  </section>
+</body>

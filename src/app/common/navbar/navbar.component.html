@@ -1,12 +1,11 @@
-<!-- Logo y titulo de la pagina -->
-
+<!-- Logo y título de la página -->
 <div class="navbar">
   <div class="logo-container">
-    <img class="logo" src="../../../assets/images/logoBeautyCare.png" alt="logo">
+    <img  class="logo me-2" src="../../../assets/images/logoBeautyCare.png" alt="logo">
     <h1 class="titulonav">BeautyCare</h1>
   </div>
 
-  <!-- opciones de ruta -->
+  <!-- Opciones de ruta -->
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" routerLink="/">Inicio</a>
@@ -19,33 +18,54 @@
     </li>
   </ul>
 
-
-  <!-- foto del avatar e iniciar sesion -->
+  <!-- Foto del avatar e iniciar sesión -->
   <div class="avatar-dropdown">
     <img [src]="imagePath" class="user-avatar" (click)="toggleSubMenu()" alt="User Avatar">
-    <div id="sub-menu" class="submenu-container " [style.display]="submenuVisible ? 'block' : 'none'">
-      <a  class="uil uil-user-circle" *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Iniciar Sesion</a>
-      <a *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Registrarse</a>
-      <a *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">Perfil</a>
-      <a *ngIf="loggedIn" (click)="signOut(); toggleSubMenu()">Cerrar Sesión</a>
+
+    <!-- Menú desplegable -->
+    
+    <div id="sub-menu" class="submenu-container" [style.display]="submenuVisible ? 'block' : 'none'">
+
+      <!-- sub menu sin login -->
+      <a class="sinLogin" *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Iniciar Sesión</a>
+      <a class="sinLogin" *ngIf="!loggedIn" (click)="onClick('/login'); toggleSubMenu()">Registrarse</a>
+
+
+      <!-- submenu con login  -->
+
+      <div class="user-info" *ngFor="let user of data">
+        <img [src]="imagePath" alt="User Avatar">
+        <div>
+          <h3 id="info-cli">{{ user.nombre }} {{ user.apellido }}</h3>
+        </div>
+      </div>
+
+      <!-- Iconos y sus rutas  -->
+      <a class="link-name " *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">
+        <i class="uil uil-edit"></i>
+        <span >Mi
+          Perfil</span>
+      </a>
+
+
+      <a class="link-name" *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">
+        <i id="iconos" class="uil uil-schedule"></i>
+        <span >Mis Reservas</span>
+      </a>
+
+
+      <a  class="link-name"   *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">
+        <i id="iconos" class="uil uil-setting"></i>
+        <span >Configuración</span>
+      </a>
+
+
+      <a class="link-name"   *ngIf="loggedIn" (click)="signOut(); toggleSubMenu()">
+        <i id="iconos" class="uil uil-signout"></i>
+        <span >Cerrar Sesión
+        </span>
+
+      </a>
     </div>
   </div>
-
-
-
-<!-- 
-  <div class="btn-group">
-    <div type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-      Right-aligned, left-aligned lg
-    </div>
-    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-      <li><a class="dropdown-item" href="#">Menu item</a></li>
-      <li><a class="dropdown-item" href="#">Menu item</a></li>
-      <li><a class="dropdown-item" href="#">Menu item</a></li>
-    </ul>
-  </div> -->
-
-
-    <!-- iniciar sesión y redieccionar al login -->
-    
 </div>
