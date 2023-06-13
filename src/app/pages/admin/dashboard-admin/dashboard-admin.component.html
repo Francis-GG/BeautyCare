@@ -33,17 +33,17 @@
             <tbody>
               <tr *ngFor="let bookedAppointment of bookedAppointments">
                 <td>{{ bookedAppointment.horaInicio }} a {{ bookedAppointment.horaTermino }}</td>
-                <td>Nmbre y apellido</td>
+                <td>{{ bookedAppointment.nombre }} {{ bookedAppointment.apellido }}</td>
                 <td>
-                  telefono<br>
-                  email
+                  {{ bookedAppointment.telefono }}<br>
+                  {{ bookedAppointment.email }}
                 </td>
                 <td>{{ bookedAppointment.servicio }}</td>
                 <td class="pb-5 m-0">
-                  <select id="botonEstado" class="form-select text-center p-1 pe-1" aria-label="Default select example" >
-                    <option selected>Pendiente</option>
-                    <option value="1">Atendido</option>
-                    <option value="2">Cancelado</option>
+                  <select [(ngModel)]="bookedAppointment.estado" (change)="changeState(bookedAppointment)" class="form-select text-center p-1 pe-1" aria-label="Default select example" >
+                    <option [value]="'pendiente'">Pendiente</option>
+                    <option [value]="'atendido'">Atendido</option>
+                    <option [value]="'cancelado'">Cancelado</option>
                   </select>
                 </td>
               </tr>

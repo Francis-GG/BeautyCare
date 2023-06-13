@@ -27,6 +27,11 @@ interface Appointment {
   servicio: string;
   tiempo: string;
   userId: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  telefono: string;
+  estado: string;
 }
 
 interface TimeSlot {
@@ -52,6 +57,9 @@ export class ReservasComponent {
   public dataEmpleados: any = [];
   public idUsuario: any;
   public nombreCliente: any;
+  public apellidoCliente: any;
+  public emailCliente: any;
+  public telefonoCliente: any;
   minDate!: Date;
   maxDate!: Date;
   @Input()
@@ -107,6 +115,9 @@ export class ReservasComponent {
     if (navigation?.extras.state) {
       this.idUsuario = navigation?.extras.state["data"];
       this.nombreCliente = navigation?.extras.state["nombre"];
+      this.apellidoCliente = navigation?.extras.state["apellido"];
+      this.emailCliente = navigation?.extras.state["email"];
+      this.telefonoCliente = navigation?.extras.state["telefono"];
       this.getData();
       }
   }
@@ -157,6 +168,11 @@ export class ReservasComponent {
           servicio: data['servicio'],
           tiempo: data['tiempo'],
           userId: data['userId'],
+          nombre: data['nombre'],
+          apellido: data['apellido'],
+          email: data['email'],
+          telefono: data['telefono'],
+          estado: data['estado'],
         } as Appointment;
       });
 
@@ -282,6 +298,10 @@ export class ReservasComponent {
             precio: this.selectedService.precio || '',
             userId: this.idUsuario, // Add the userId field to associate the reservation with the user
             nombre: this.nombreCliente,
+            apellido: this.apellidoCliente,
+            email: this.emailCliente,
+            telefono: this.telefonoCliente,
+            estado: 'pendiente'
           };
           const reservaCollectionRef = collection(this.firestore, 'reservas');
           await addDoc(reservaCollectionRef, reservaData);

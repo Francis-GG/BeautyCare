@@ -39,6 +39,8 @@ export class PerfilClienteComponent {
   public imagePath: string = '';
   public emailActual: string = '';
   public loggedIn= false;
+  public dataReservasPendientes: any = [];
+  public dataReservasHistorial: any = [];
 
 
 
@@ -146,12 +148,25 @@ export class PerfilClienteComponent {
   getDataReserva() {
     const user: User | null = this.auth.currentUser;
     if (user) {
-      const queryReservas = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid));
-
-      getDocs(queryReservas)
+      const queryReservasPendientes = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid), where('estado', '==', 'pendiente'));
+      const queryReservasHistorial = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid), where('estado', '!=', 'pendiente'));
+  
+      getDocs(queryReservasPendientes)
         .then((querySnapshot) => {
-          this.dataReservas = querySnapshot.docs.map((doc) => {
+          this.dataReservasPendientes = querySnapshot.docs.map((doc) => {
             const data = doc.data();
+            return Object.assign({}, data, { id: doc.id });
+          });
+        })
+        .catch((error) => {
+          console.log('Error al intentar obtener los datos de la reserva:', error);
+        });
+  
+      getDocs(queryReservasHistorial)
+        .then((querySnapshot) => {
+          this.dataReservasHistorial = querySnapshot.docs.map((doc) => {
+            const data = doc.data();
+            console.log(this.dataReservasHistorial);
             return Object.assign({}, data, { id: doc.id });
           });
         })
@@ -162,6 +177,7 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
+  
 
 
 

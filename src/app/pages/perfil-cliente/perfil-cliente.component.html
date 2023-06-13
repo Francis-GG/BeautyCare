@@ -36,15 +36,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let reserva of dataReservas; let i = index">
+              <tr *ngFor="let reserva of dataReservasPendientes; let i = index">
                 <td>{{ reserva.servicio }} </td>
                 <td>{{ reserva.fecha }}</td>
-                <td>
-                  {{ reserva.horaInicio }}
-                </td>
+                <td>{{ reserva.horaInicio }}</td>
                 <td>{{ reserva.horaTermino }}</td>
                 <td class="pb-5 m-0">
-                  <button class="btn-success" id="botonEstado">Confirmado</button>
+                  <button class="btn-success" id="botonEstado">{{reserva.estado}}</button>
                 </td>
                 <td> <button class="cancel-btn" (click)="eliminarReserva(reserva.id)">Cancelar</button>
                 </td>
@@ -63,19 +61,14 @@
   <div class="col">
     <div class="profile-card-reserva-historial">
       <h3>Historial de Reservas Realizadas</h3>
-      <div class="reservation">
-        <h4><strong>Reserva #1</strong></h4>
+      <div class="reservation" *ngFor="let reserva of dataReservasHistorial; let i = index">
+        <h4><strong>Reserva #{{i+1}}</strong></h4>
         <div class="details">
-          <p class="service"><strong>Servicio:</strong> Masaje capilar relajante</p>
-          <p class="date"><strong>Fecha:</strong> 28 de Mayo, 2023</p>
-          <p class="time"><strong>Hora:</strong> 3:00 PM</p>
-        </div>
-        <div class="comentarios">
-          <h5>Comentarios:</h5>
-          <div class="comentario">
-            <strong>Usuario:</strong> "Me gustó mucho el servicio, volveré pronto."
-            <span class="fecha">- 25 de Mayo, 2023</span>
-          </div>
+          <p class="service"><strong>Servicio:</strong> {{reserva.servicio}} </p>
+          <p class="date"><strong>Fecha:</strong> {{reserva.fecha}}</p>
+          <p class="starttime"><strong>Hora Inicio:</strong> {{reserva.horaInicio}}</p>
+          <p class="endtime"><strong>Hora Término:</strong> {{reserva.horaTermino}}</p>
+          <p class="state"><strong>Estado:</strong> {{reserva.estado}}</p>
         </div>
       </div>
     </div>
