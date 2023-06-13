@@ -193,8 +193,8 @@ constructor (
   
 
 // agregar reserva desde el admin seleccionando un cliente y enviandlo al calendario
-agregarReserva(idCliente: string, nombreCliente: string) {
-  this.router.navigate(['/admin/reservas'], { state: { data: idCliente, nombre: nombreCliente}} );
+agregarReserva(idCliente: string, nombreCliente: string, apellidoCliente: string, telefonoCliente: string, emailCliente: string) {
+  this.router.navigate(['/admin/reservas'], { state: { data: idCliente, nombre: nombreCliente, apellido: apellidoCliente, telefono: telefonoCliente, email: emailCliente }} );
 
 }
 

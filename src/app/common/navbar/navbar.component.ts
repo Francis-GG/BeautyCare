@@ -100,7 +100,7 @@ export class NavbarComponent implements OnInit {
             };
             this.data = [userData];
             console.log('nombre de usuario: ' + this.data[0].nombre);
-            this.imagePath = userData.imagePath ? userData.imagePath : this.imagePath;
+            this.imagePath = userData.imagePath ? userData.imagePath : '../../../assets/images/login/5-removebg-preview.png';
           }
         } catch (error) {
           console.log('Error en traer los datos al navbar:', error);

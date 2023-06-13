@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Firestore, doc, getDocs, collection, query, where } from '@angular/fire/firestore';
+import { Firestore, doc, getDocs, collection, query, where, getDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
@@ -15,6 +15,11 @@ interface Appointment {
   servicio: string;
   tiempo: string;
   userId: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  telefono: string;
+  estado: string;
 }
 
 interface TimeSlot {
@@ -35,6 +40,10 @@ export class CalendarioComponent {
   public itemSeleccionado: any;
   public dataContacto: any = [];
   public dataEmpleados: any = [];
+  public nombreCliente: string = '';
+  public apellidoCliente: string = '';
+  public emailCliente: string = '';
+  public telefonoCliente: string = '';
   minDate!: Date;
   maxDate!: Date;
   @Input()
@@ -138,6 +147,11 @@ export class CalendarioComponent {
         servicio: data['servicio'],
         tiempo: data['tiempo'],
         userId: data['userId'],
+        nombre: data['nombre'],
+        apellido: data['apellido'],
+        email: data['email'],
+        telefono: data['telefono'],
+        estado: data['estado'],
       } as Appointment;
     });
   
@@ -257,25 +271,42 @@ export class CalendarioComponent {
     try {
       const user = this.auth.currentUser;
       if (user && this.itemSeleccionado) {
-        const reservaData = {
-          servicio: this.itemSeleccionado?.servicio,
-          fecha: this.selectedDate?.toLocaleDateString(),
-          horaInicio: this.selectedStartTime,
-          horaTermino: this.selectedEndTime,
-          profesional: this.dataEmpleados[0]?.nombre || '',
-          tiempo: this.itemSeleccionado.tiempo || '',
-          precio: this.itemSeleccionado.precio || '',
-          userId: user.uid // Add the userId field to associate the reservation with the user
-        };
-        const reservaCollectionRef = collection(this.firestore, 'reservas');
-        await addDoc(reservaCollectionRef, reservaData);
-        alert('Su hora ha sido reservada con éxito!');
-        this.router.navigate(['/']);
+        // Fetch the user data from Firestore
+        const userDocRef = doc(this.firestore, 'users', user.uid);
+        const userDocSnapshot = await getDoc(userDocRef);
+  
+        if (userDocSnapshot.exists()) {
+          const userData = userDocSnapshot.data();
+  
+          const reservaData = {
+            servicio: this.itemSeleccionado?.servicio,
+            fecha: this.selectedDate?.toLocaleDateString(),
+            horaInicio: this.selectedStartTime,
+            horaTermino: this.selectedEndTime,
+            profesional: this.dataEmpleados[0]?.nombre || '',
+            tiempo: this.itemSeleccionado.tiempo || '',
+            precio: this.itemSeleccionado.precio || '',
+            userId: user.uid,
+            nombre: userData['nombre'], // Use the fetched user data
+            apellido: userData['apellido'], // Use the fetched user data
+            email: userData['email'], // Use the fetched user data
+            telefono: userData['telefono'], // Use the fetched user data
+            estado: 'pendiente',
+          };
+  
+          const reservaCollectionRef = collection(this.firestore, 'reservas');
+          await addDoc(reservaCollectionRef, reservaData);
+          alert('Su hora ha sido reservada con éxito!');
+          this.router.navigate(['/']);
+        } else {
+          console.log('No se encontró el usuario en Firestore.');
+        }
       }
     } catch (error) {
       console.error('Error al crear la reserva', error);
     }
   }
+  
   
 
   //Función para obtener los datos de la base de datos para el contacto y empleados  

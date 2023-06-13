@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { DateFilterFn } from '@angular/material/datepicker';
-import { Firestore, getDocs, collection, query, where} from '@angular/fire/firestore';
+import { Firestore, getDocs, collection, query, where, doc, updateDoc} from '@angular/fire/firestore';
 
 interface Appointment {
+  id: string;
   fecha: string;
   horaInicio: string;
   horaTermino: string;
@@ -11,6 +12,11 @@ interface Appointment {
   servicio: string;
   tiempo: string;
   userId: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  telefono: string;
+  estado: string;
 }
 
 @Component({
@@ -80,6 +86,7 @@ async fetchAppointments(date: Date) {
   this.bookedAppointments = snapshotDocs.docs.map(doc => {
     const data = doc.data();
     return {
+      id: doc.id,
       fecha: data['fecha'],
       horaInicio: data['horaInicio'],
       horaTermino: data['horaTermino'],
@@ -88,12 +95,28 @@ async fetchAppointments(date: Date) {
       servicio: data['servicio'],
       tiempo: data['tiempo'],
       userId: data['userId'],
+      nombre: data['nombre'],
+      apellido: data['apellido'],
+      email: data['email'],
+      telefono: data['telefono'],
+      estado: data['estado'],
     } as Appointment;
   });
+}
 
-  console.log('Horas reservadas:', this.bookedAppointments);
+async changeState(appointment: Appointment) {
+  const confirmChange = window.confirm(`Cambiar el estado de la reserva a "${appointment.estado}?"`);
+  if (confirmChange) {
+    // update the state in Firestore
+    const appointmentDoc = doc(this.firestore, 'reservas', appointment.id); // Use appointment.id here
+    await updateDoc(appointmentDoc, { 'estado': appointment.estado });
+  } else {
+    // revert the change
+    if (this.selectedDate) {
+      this.fetchAppointments(this.selectedDate);
+    }
   }
-
+}
 
 
 
