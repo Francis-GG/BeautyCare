@@ -16,6 +16,7 @@ footer {
   margin: auto;
   display: flex;
   justify-content: space-between;
+ 
 
 
 }
@@ -50,10 +51,15 @@ footer h1 {
   margin-left: 10px;
 }
 
+.contacto{
+  padding: 20px;
+}
+
 footer h4 {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
+  padding-left: 10px;
   
 }
 
@@ -93,7 +99,7 @@ footer ul li {
     font-size: 2em;
   }
   footer h4 {
-    font-size: 1.2em;
+    font-size: 1.5em;;
   }
 
   footer img {
@@ -124,8 +130,11 @@ footer ul li {
   footer h1 {
     font-size: 1.8em;
   }
+
+
+  
   footer h4 {
-    font-size: 1em;
+    font-size: 1.5em;
   }
 
   footer img {
@@ -167,7 +176,7 @@ footer ul li {
     font-size: 2.8em;
   }
   footer h4 {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 
   footer img {
