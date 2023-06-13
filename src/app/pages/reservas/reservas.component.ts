@@ -96,6 +96,16 @@ export class ReservasComponent {
     return this.selected;
   }
 
+  //Da formato a la fecha
+  
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+  
+    return `${day}-${month}-${year}`;
+  }
+
   //Establece fecha seleccionada
 
   set selectedDate(date: Date | null) {
@@ -150,7 +160,7 @@ export class ReservasComponent {
 
   async fetchAppointments(date: Date) {
     try {
-      const formattedDate = date.toLocaleDateString();
+      const formattedDate = this.formatDate(date);
       const appointmentCollectionRef = collection(this.firestore, 'reservas');
       const querySnapshot = await query(appointmentCollectionRef, where('fecha', '==', formattedDate));
       const snapshotDocs = await getDocs(querySnapshot);
@@ -290,7 +300,7 @@ export class ReservasComponent {
         if (user && this.selectedService) {
           const reservaData = {
             servicio: this.selectedService?.nombre,
-            fecha: this.selectedDate?.toLocaleDateString(),
+            fecha: this.selectedDate ? this.formatDate(this.selectedDate) : '',
             horaInicio: this.selectedStartTime,
             horaTermino: this.selectedEndTime,
             profesional: this.dataEmpleados[0]?.nombre || '',
@@ -398,4 +408,6 @@ export class ReservasComponent {
       this.setServiceDurationSlots();
       this.getTimeSlots();
     }
+    
+
   }
