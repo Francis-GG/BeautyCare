@@ -46,7 +46,7 @@ export class AuthService {
     return new Observable<boolean>(subscriber => {
       onAuthStateChanged(this.auth, user => {
         if (user) {
-          const isAdmin = user.email?.endsWith('@admin.com');
+          const isAdmin = user.email?.endsWith('@beautycareadmin.com');
           subscriber.next(isAdmin);
         } else {
           subscriber.next(false);

@@ -24,6 +24,7 @@ export class LoginComponent implements AfterViewInit{
 
   }
 
+  // Cambia al estado activo del login, no hay que hacerle doble click o actualizar la página
   ngAfterViewInit() {
     this.renderer.listen(this.loginHeader.nativeElement, 'click', () => {
       this.wrapper.nativeElement.classList.add('active');
@@ -65,7 +66,7 @@ export class LoginComponent implements AfterViewInit{
         const user = response.user;
         const userId = user.uid;
   
-        if (user.email?.includes('@admin.cl')) {
+        if (user.email?.includes('@beautycareadmin.com')) {
           this.router.navigate(['admin']);
         } else {
           this.router.navigate(['']);

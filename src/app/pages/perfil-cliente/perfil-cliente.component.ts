@@ -38,7 +38,7 @@ export class PerfilClienteComponent {
   public tiempoReserva: string = '';
   public imagePath: string = '';
   public emailActual: string = '';
-  public loggedIn= false;
+  public loggedIn = false;
   public dataReservasPendientes: any = [];
   public dataReservasHistorial: any = [];
 
@@ -107,6 +107,7 @@ export class PerfilClienteComponent {
 
     if (correoNuevo === correoConfirmar) {
       this.actualizarEmail(correoNuevo);
+      // this.getUserEmail();
     } else {
 
       alert("Los correos no coinciden.")
@@ -117,11 +118,11 @@ export class PerfilClienteComponent {
   getDataUser() {
     const user: User | null = this.auth.currentUser;
     const placeholderImage = '../../../assets/images/login/5-removebg-preview.png'; // Define the placeholder image path
-  
+
     if (user) {
       this.loggedIn = true;
       const userDocRef = doc(this.firestore, 'users', user.uid);
-  
+
       getDoc(userDocRef)
         .then((docSnapshot) => {
           if (docSnapshot.exists()) {
@@ -150,7 +151,7 @@ export class PerfilClienteComponent {
     if (user) {
       const queryReservasPendientes = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid), where('estado', '==', 'pendiente'));
       const queryReservasHistorial = query(collection(this.firestore, 'reservas'), where('userId', '==', user.uid), where('estado', '!=', 'pendiente'));
-  
+
       getDocs(queryReservasPendientes)
         .then((querySnapshot) => {
           this.dataReservasPendientes = querySnapshot.docs.map((doc) => {
@@ -161,7 +162,7 @@ export class PerfilClienteComponent {
         .catch((error) => {
           console.log('Error al intentar obtener los datos de la reserva:', error);
         });
-  
+
       getDocs(queryReservasHistorial)
         .then((querySnapshot) => {
           this.dataReservasHistorial = querySnapshot.docs.map((doc) => {
@@ -177,7 +178,7 @@ export class PerfilClienteComponent {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
-  
+
 
 
 
@@ -198,10 +199,10 @@ export class PerfilClienteComponent {
       } else {
         await this.editarPerfil(nombre, apellido, telefono); // Update profile data without uploading an image
         alert('Perfil editado correctamente');
+        this.getDataUser();
+        this.getUserEmail();
       }
 
-      this.getDataUser();
-      this.getUserEmail();
     } catch {
       console.log('Error al intentar editar el perfil.')
       alert('Error al intentar editar el perfil.')
@@ -227,7 +228,7 @@ export class PerfilClienteComponent {
 
       const userDocRef = doc(this.firestore, `users/${user.uid}`);
       await updateDoc(userDocRef, { imagePath });
-
+      this.getDataUser();
       return true;
     } catch (error) {
       console.log('Error while retrieving the download URL:', error);
@@ -245,6 +246,7 @@ export class PerfilClienteComponent {
     if (user) {
       const userDocRef = doc(this.firestore, 'users', user.uid);
       updateDoc(userDocRef, { nombre, apellido, telefono, imagePath: this.imagePath });
+      this.getDataUser();
       return true;
     } else {
       console.log('Error al intentar actualizar los datos.')
@@ -288,6 +290,7 @@ export class PerfilClienteComponent {
             console.log('Reserva eliminada correctamente');
             this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
             alert('Reserva eliminada correctamente');
+            this.getDataReserva();
           })
           .catch((error) => {
             console.log('Error al intentar eliminar la reserva:', error);
