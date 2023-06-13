@@ -70,7 +70,8 @@ const routes: Routes = [
   },
   {
     path: 'reservas',
-    component: ReservasComponent
+    component: ReservasComponent,
+    canActivateChild: [adminGuard]
   },
   {
     path: 'admin',
