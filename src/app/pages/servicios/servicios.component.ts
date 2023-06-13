@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 declare var document: any;
 
 @Component({
@@ -10,8 +11,12 @@ declare var document: any;
 export class ServiciosComponent implements OnInit{
   currentRoute!: string;
 
-  constructor(private router: Router){}
+  constructor(private navigationService: NavigationService ,private router: Router){}
 
+  onRedirectClick() {
+    this.navigationService.setRedirectClicked();
+  }
+  
   ngOnInit() {
     this.currentRoute = this.router.url;
     if (this.currentRoute === '/servicios/depilacion') {

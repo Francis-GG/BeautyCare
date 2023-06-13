@@ -31,7 +31,6 @@
     getNextId(){
       const dbInstance = collection(this.firestore, 'formcontact');
       return getDocs(dbInstance).then((response) =>{
-        console.log(response.size + 1);
         return response.size + 1;
       })
     }

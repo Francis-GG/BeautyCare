@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Component, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Firestore, collection, getDocs, doc, setDoc, getDoc} from '@angular/fire/firestore';
-
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/services/auth.service'; 
 
 declare var document: any;
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
+
+  @ViewChild('signupHeader', { static: false }) signupHeader!: ElementRef;
+  @ViewChild('loginHeader', { static: false }) loginHeader!: ElementRef;
+  @ViewChild('wrapper', { static: false }) wrapper!: ElementRef;
   
   constructor(
-    public auth: Auth, 
     private router: Router, 
-    public firestore: Firestore){
+    public firestore: Firestore,
+    private authService: AuthService,
+    private renderer: Renderer2){
 
+  }
+
+  ngAfterViewInit() {
+    this.renderer.listen(this.loginHeader.nativeElement, 'click', () => {
+      this.wrapper.nativeElement.classList.add('active');
+    });
+    this.renderer.listen(this.signupHeader.nativeElement, 'click', () => {
+      this.wrapper.nativeElement.classList.remove('active');
+    });
   }
 
   private authErrorMessages = new Map<string, string>([
@@ -29,18 +41,16 @@ export class LoginComponent {
   ]);
 
   async handleRegister(value: any){
-    createUserWithEmailAndPassword(this.auth, value.email, value.password)
+    this.authService.createUser(value)
     .then((response: any) => {
       console.log(response.user);
-      this.registerUserData( value.nombre, value.apellido, value.telefono, value.email);
+      this.authService.registerUserData(value.nombre, value.apellido, value.telefono, value.email);
       alert(`Registro exitoso! Bienvenido ${value.nombre}!`); 
       if(response.user.email?.includes('@admin.cl')){
         this.router.navigate(['admin']);
       }else{
         this.router.navigate(['']);
       }
-      
-      
     })
     .catch((err) => {
       const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al registrarse.';
@@ -49,7 +59,7 @@ export class LoginComponent {
   }
   // Corresponde a las funciones del Login
   async handleLogin(value: any) {
-    signInWithEmailAndPassword(this.auth, value.email, value.password)
+    this.authService.loginUser(value)
       .then(async (response: any) => {
         console.log(response.user);
         const user = response.user;
@@ -65,9 +75,9 @@ export class LoginComponent {
         const userSnapshot = await getDoc(userDocRef);
         if (userSnapshot.exists()) {
           const userData = userSnapshot.data();
-          const userName = userData[0].nombre;
+          const userName = (userData as any).nombre;
           console.log('Variable userData: ' + userData)
-          alert('Hello, ' + userName + 'Welcome back!');
+          alert('Hola, ' + userName + ' bienvenido de vuelta!');
         }
       })
       .catch((err) => {
@@ -75,36 +85,4 @@ export class LoginComponent {
         alert(errorMessage);
       });
   }
-
-  
-
-   async registerUserData(nombre: string, apellido: string, telefono: string, email: string) {
-	 	try {
-	 		const user = this.auth.currentUser; 
-	 		const userDocRef = doc(this.firestore, `users/${user?.uid}`);
-	 		setDoc(userDocRef, {nombre, apellido, telefono, email});
-	 		return true;
-	 	} catch (error) {
-	 		console.log(error);
-	 		return false;
-	 	}
-	 }
-
-   
-  
-  
-  ngOnInit() {
-    document.addEventListener('DOMContentLoaded', () => { 
-      const wrapper = document.querySelector(".wrapper") as HTMLElement;
-      const signupHeader = document.querySelector(".signup header") as HTMLElement;
-      const loginHeader = document.querySelector(".login header") as HTMLElement;
-
-      loginHeader.addEventListener("click", () => {
-        wrapper.classList.add("active");
-    });
-    signupHeader.addEventListener("click", () => {
-        wrapper.classList.remove("active");
-    });
-  }
-  )};
 }
