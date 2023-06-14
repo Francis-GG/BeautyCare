@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { addDoc } from 'firebase/firestore';
+import sgMail from '@sendgrid/mail';
 
 
 interface Appointment {
