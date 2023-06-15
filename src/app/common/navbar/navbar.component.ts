@@ -114,14 +114,18 @@ export class NavbarComponent implements OnInit {
   }
  
   // //funcion para cerrar sesion
-  async signOut() {
-    this.authService.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
-      console.log('adiosito! con éxito;')
-      alert(`Adios!` + this.data[0].nombre); 
-      this.loggedIn = false;
-    }).catch((error) => {
-      console.log('Error during sign out:', error);
-    });
-  }
+
+
+
+async signOut() {
+  this.authService.auth.signOut().then(() => {
+    this.router.navigate(['/login']);
+    console.log('adiosito! con éxito;')
+    alert(`Hasta pronto! ` + this.data[0].nombre); 
+    this.loggedIn = false;
+    this.getData();
+  }).catch((error) => {
+    console.log('Error during sign out:', error);
+  });
+}
 }
