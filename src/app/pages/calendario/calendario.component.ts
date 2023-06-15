@@ -6,6 +6,7 @@ import { DateFilterFn } from '@angular/material/datepicker';
 import { addDoc } from 'firebase/firestore';
 
 
+
 interface Appointment {
   fecha: string;
   horaInicio: string;
@@ -126,10 +127,21 @@ export class CalendarioComponent {
     return new Date(year, month - 1, day, hours, minutes);
   }
 
+  //Da formato a la fecha
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+  
+    return `${day}-${month}-${year}`;
+  }
+  
+
   //Función para obtener las horas reservadas
 
   async fetchAppointments(date: Date) {
-    const formattedDate = date.toLocaleDateString();
+    const formattedDate = this.formatDate(date);
     const appointmentCollectionRef = collection(this.firestore, 'reservas');
     const querySnapshot = await query(appointmentCollectionRef, where('fecha', '==', formattedDate));
     const snapshotDocs = await getDocs(querySnapshot);
@@ -280,7 +292,7 @@ export class CalendarioComponent {
   
           const reservaData = {
             servicio: this.itemSeleccionado?.servicio,
-            fecha: this.selectedDate?.toLocaleDateString(),
+            fecha: this.selectedDate ? this.formatDate(this.selectedDate) : '',
             horaInicio: this.selectedStartTime,
             horaTermino: this.selectedEndTime,
             profesional: this.dataEmpleados[0]?.nombre || '',

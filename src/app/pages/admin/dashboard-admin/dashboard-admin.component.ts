@@ -65,6 +65,17 @@ set selectedDate(date: Date | null) {
   }
 }
 
+//Da formato a la fecha
+
+formatDate(date: Date): string {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+  const year = date.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
+
+
 isOverlap(start1: Date, end1: Date, start2: Date, end2: Date): boolean {
   return start1 < end2 && start2 < end1;
 }
@@ -76,7 +87,7 @@ stringToDateTime(date: string, time: string): Date {
 }
 
 async fetchAppointments(date: Date) {
-  const formattedDate = date.toLocaleDateString();
+  const formattedDate = this.formatDate(date);
   const appointmentCollectionRef = collection(this.firestore, 'reservas');
   const querySnapshot = await query(appointmentCollectionRef, where('fecha', '==', formattedDate));
   const snapshotDocs = await getDocs(querySnapshot);
@@ -102,7 +113,16 @@ async fetchAppointments(date: Date) {
       estado: data['estado'],
     } as Appointment;
   });
+
+  // Sort appointments by start time
+  this.bookedAppointments.sort((a, b) => {
+    const dateA = this.stringToDateTime(a.fecha, a.horaInicio);
+    const dateB = this.stringToDateTime(b.fecha, b.horaInicio);
+
+    return dateA.getTime() - dateB.getTime();
+  });
 }
+
 
 async changeState(appointment: Appointment) {
   const confirmChange = window.confirm(`Cambiar el estado de la reserva a "${appointment.estado}?"`);

@@ -45,9 +45,10 @@
 
 
 <!-- instrucciones para seleccionar una fecha y hora -->
-<div class="container text-start" id="cards-contacto">
-  <p id="Selecion">2. Selecciona una fecha y una hora</p>
-</div>
+<div *ngIf="selectedCategory && selectedService">
+  <div class="container text-start" id="cards-contacto">
+    <p id="Selecion">2. Selecciona una fecha y una hora</p>
+  </div>
 
 <!-- calendario -->
 <div class="card-group">
@@ -84,9 +85,9 @@
   <div class="card">
     <div class="card-body" id="third-card">
       <h3>Detalle de reserva</h3>
-      <p>Servicio: "{{selectedService?.nombre}}"</p>
-      <p>Tiempo: {{selectedService?.tiempo}}</p>
-      <p>Precio: {{selectedService?.precio}}</p>
+      <p>Servicio: "{{selectedService.nombre}}"</p>
+      <p>Tiempo: {{selectedService.tiempo}}</p>
+      <p>Precio: {{selectedService.precio}}</p>
       <p>Fecha: {{ selected| date:'EEEE dd/MM/yyyy' | titlecase }}</p>
       <p>Hora de inicio: {{ selectedStartTime }} </p>
       <p>Hora de término: {{ selectedEndTime }} </p>
@@ -98,6 +99,6 @@
       
     </div>
 
-    
+    </div>
   </div>
 </div>
