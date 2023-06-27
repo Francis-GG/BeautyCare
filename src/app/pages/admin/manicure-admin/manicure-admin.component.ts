@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Firestore, collection, getDocs, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -68,11 +69,18 @@ export class ManicureAdminComponent {
     const duracion = formValue['duracion-edit-servicio'];
     try{
       await this.editarServicio(nombre, descripcion, precio, duracion);
-      alert('Servicio actualizado correctamente')
-      this.getData();
+      Swal.fire({
+        title: 'Éxito!',
+        text: 'Servicio actualizado correctamente',
+        icon: 'success',
+      });      this.getData();
     }catch(error){
       console.log('Error al intentar actualizar el servicio:', error);
-      alert('Error al intentar actualizar el servicio');
+      Swal.fire({
+        title: 'Error!',
+        text: 'Error al intentar actualizar el servicio',
+        icon: 'error',
+      });
     }
   }
 
@@ -83,17 +91,30 @@ export class ManicureAdminComponent {
 
 
   eliminarServicio(serviceId: string) {
-    if (confirm('¿Está seguro que desea eliminar este servicio?')){
-      const serviceDocRef = doc(this.firestore, `categorias/3/servicios/${serviceId}`);
-      deleteDoc(serviceDocRef)
-        .then(() => {
-          console.log('Servicio eliminado correctamente');
-          this.data = this.data.filter((item: any) => item.id !== serviceId);
-          alert('Servicio eliminado correctamente');
-        })
-        .catch((error) => {
-          console.log('Error al intentar eliminar el servicio:', error);
-        });
-    }
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar este servicio?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const serviceDocRef = doc(this.firestore, `categorias/3/servicios/${serviceId}`);
+        deleteDoc(serviceDocRef)
+          .then(() => {
+            console.log('Servicio eliminado correctamente');
+            this.data = this.data.filter((item: any) => item.id !== serviceId);
+            Swal.fire({
+              title: 'Éxito!',
+              text: 'Servicio eliminado correctamente',
+              icon: 'success',
+            });
+          })
+          .catch((error) => {
+            console.log('Error al intentar eliminar el servicio:', error);
+          });
+      }
+    });
   }
+  
 }

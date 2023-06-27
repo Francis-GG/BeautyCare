@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 declare var document: any;
 
@@ -46,8 +47,11 @@ export class LoginComponent implements AfterViewInit {
   handleRegister() {
     console.log(this.registerForm.valid);
     if (!this.registerForm.valid) {
-      alert('Por favor, rellene todos los campos requeridos correctamente.');
-      return;
+      Swal.fire({
+        title: 'Error!',
+        text: 'Por favor, rellene todos los campos requeridos correctamente.',
+        icon: 'error',
+      });      return;
     }
 
     const value = this.registerForm.value;
@@ -62,7 +66,11 @@ export class LoginComponent implements AfterViewInit {
           value.telefono,
           value.email
         );
-        alert(`Registro exitoso! Bienvenido ${value.nombre}!`);
+        Swal.fire({
+          title: 'Éxito!',
+          text: `Registro exitoso! Bienvenido ${value.nombre}!`,
+          icon: 'success',
+        });
         if (response.user.email?.includes('@admin.cl')) {
           this.router.navigate(['admin']);
         } else {
@@ -73,8 +81,12 @@ export class LoginComponent implements AfterViewInit {
         const errorMessage =
           this.authErrorMessages.get(err.code) ||
           'Ha ocurrido un error al registrarse.';
-        alert(errorMessage);
-      });
+          Swal.fire({
+            title: 'Error!',
+            text: errorMessage,
+            icon: 'error',
+          });
+        });
   }
 
   handleLogin(value: any) {
@@ -97,14 +109,22 @@ export class LoginComponent implements AfterViewInit {
           const userData = userSnapshot.data();
           const userName = (userData as any).nombre;
           console.log('Variable userData: ' + userData);
-          alert('Hola, ' + userName + ' bienvenido de vuelta!');
+          Swal.fire({
+            title: 'Bienvenido!',
+            text: `Hola, ${userName} bienvenido de vuelta!`,
+            icon: 'info',
+          });
         }
       })
       .catch((err) => {
         const errorMessage =
           this.authErrorMessages.get(err.code) ||
           'An error occurred while logging in.';
-        alert(errorMessage);
+          Swal.fire({
+            title: 'Error!',
+            text: errorMessage,
+            icon: 'error',
+          });
       });
   }
 }

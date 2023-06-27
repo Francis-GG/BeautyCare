@@ -33,12 +33,13 @@
 
       <!-- submenu con login  -->
 
-      <div class="user-info" *ngFor="let user of data">
-        <img [src]="imagePath" alt="User Avatar">
-        <div>
-          <h3 id="info-cli">{{ user.nombre }} {{ user.apellido }}</h3>
+      <div *ngIf="loggedIn">
+        <div class="user-info" *ngFor="let user of data">
+          <img [src]="imagePath" alt="User Avatar">
+          <div>
+            <h3 id="info-cli">{{ user.nombre }} {{ user.apellido }}</h3>
+          </div>
         </div>
-      </div>
 
       <!-- Iconos y sus rutas  -->
       <a class="link-name " *ngIf="loggedIn" (click)="onClick('/perfil-cliente'); toggleSubMenu()">
