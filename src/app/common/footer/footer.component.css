@@ -1,12 +1,10 @@
 footer {
-  background-color: #a5b0dd;
-  background-image: linear-gradient(0deg, #2445daa6, rgba(223, 150, 445, 0.1), rgba(325, 451, 441, 0.1), rgba(70, 151, 311, 0.699));
+  background-color: #bac0d9;
   max-width: 100%;
   padding: 5px 15px;
   text-align: center;
   display: flex;
   justify-content: space-between;
-  
 }
 
 
@@ -26,20 +24,12 @@ footer ul li {
   display: inline-block;
   list-style: none;
   margin: 10px 15px;
-  color: black;
-}
 
-footer ul li:hover {
-  color: #383838;
-  font-weight: bold;
-  cursor: pointer;
-
-  
 }
 
 
 #listado{
-  font-size: 2em;
+  font-size: 1.5em;
   /* separacion entre linas */
   line-height: 0.8em;
   /* separacion entre palabras */
@@ -48,7 +38,6 @@ footer ul li:hover {
   vertical-align: text-top;
   justify-content: center;
   padding: 0px;
-  color: rgb(8, 20, 128);
  
 }
 
@@ -103,7 +92,7 @@ footer ul li {
     margin-bottom: 5px;
   }
   footer h1 {
-    font-size: 1.8em;
+    font-size: 2em;
   }
   footer h4 {
     font-size: 1.5em;
@@ -117,7 +106,7 @@ footer ul li {
   }
   footer ul li {
     margin: 1px 5px;
-    font-size: 1.1em;
+    font-size: 1.2em;
   }
 }
 
@@ -135,7 +124,7 @@ footer ul li {
     margin-bottom: 5px;
   }
   footer h1 {
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
   footer h4 {
     font-size: 1.5em;
@@ -149,7 +138,7 @@ footer ul li {
   }
   footer ul li {
     margin: 5px 5px;
-    font-size: 0.9em;
+    font-size: 1em;
   }
 
 
