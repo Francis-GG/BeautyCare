@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { User } from 'firebase/auth';
 import { Auth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service'; // Path might vary
+import Swal from 'sweetalert2';
 
 
 interface UserData {
@@ -121,7 +122,11 @@ async signOut() {
   this.authService.auth.signOut().then(() => {
     this.router.navigate(['/login']);
     console.log('adiosito! con éxito;')
-    alert(`Hasta pronto! ` + this.data[0].nombre); 
+    Swal.fire({
+      title: 'Hasta pronto!',
+      text: this.data[0].nombre,
+      icon: 'success',
+    }); 
     this.loggedIn = false;
     this.getData();
   }).catch((error) => {

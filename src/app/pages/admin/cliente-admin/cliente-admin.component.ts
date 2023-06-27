@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getAuth, deleteUser, user } from '@angular/fire/auth';
 import { Firestore, collection, doc, getDocs, setDoc, deleteDoc, getDoc, where, query } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 
 export interface User {
@@ -58,7 +60,11 @@ constructor (
         })
       .catch((err) => {
         const errorMessage = this.authErrorMessages.get(err.code) || 'Ha ocurrido un error al registrarse.';
-        alert(errorMessage);
+        Swal.fire({
+          title: 'Error!',
+          text: errorMessage,
+          icon: 'error',
+        });
       })
   }
 
@@ -67,7 +73,11 @@ constructor (
       const user = this.auth.currentUser;
       const userDocRef = doc(this.firestore, `users/${user?.uid}`);
       setDoc(userDocRef, { nombre, apellido, telefono, email });
-      alert('usuario registrado: ' + nombre)
+      Swal.fire({
+        title: 'Usuario registrado',
+        text: nombre,
+        icon: 'success',
+      });
       console.log('usuario registrado: ' + nombre);
       return true;
     } catch (error) {
@@ -146,11 +156,19 @@ constructor (
     const email = formValue['email-edit'];
     try{
       await this.editarCliente(nombre, apellido, telefono, email);
-      alert('cliente actualizado correctamente')
+      Swal.fire({
+        title: 'Éxito!',
+        text: 'Cliente actualizado correctamente',
+        icon: 'success',
+      });
       this.getData();
     }catch(error){
       console.log('Error al intentar actualizar el cliente:', error);
-      alert('Error al intentar actualizar el cliente');
+      Swal.fire({
+        title: 'Error!',
+        text: 'Error al intentar actualizar el cliente',
+        icon: 'error',
+      }); 
     }
   }
 
@@ -177,19 +195,36 @@ constructor (
   
 
   eliminarReserva(reservaId: string) {
-    if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
-      const reservaDocRef = doc(this.firestore, 'reservas', reservaId);
-      deleteDoc(reservaDocRef)
-        .then(() => {
-          console.log('Reserva eliminada correctamente');
-          this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
-          alert('Reserva eliminada correctamente');
-        })
-        .catch((error) => {
-          console.log('Error al intentar eliminar la reserva:', error);
-        });
-    }
-  }
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar esta reserva?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const reservaDocRef = doc(this.firestore, 'reservas', reservaId);
+            deleteDoc(reservaDocRef)
+                .then(() => {
+                    console.log('Reserva eliminada correctamente');
+                    this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
+                    Swal.fire({
+                        title: 'Éxito!',
+                        text: 'Reserva eliminada correctamente',
+                        icon: 'success',
+                    });
+                })
+                .catch((error) => {
+                    console.log('Error al intentar eliminar la reserva:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Error al intentar eliminar la reserva',
+                        icon: 'error',
+                    });
+                });
+        }
+    });
+}
   
 
 // agregar reserva desde el admin seleccionando un cliente y enviandlo al calendario
