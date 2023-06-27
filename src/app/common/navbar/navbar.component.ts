@@ -2,8 +2,8 @@ import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angula
 import { Firestore, collection, getDoc, doc} from '@angular/fire/firestore';
 import { Router, NavigationEnd } from '@angular/router';
 import { User } from 'firebase/auth';
-import { Auth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/services/auth.service'; // Path might vary
+import Swal from 'sweetalert2';
 
 
 interface UserData {
@@ -45,6 +45,14 @@ export class NavbarComponent implements OnInit {
         this.getData();
       }
     });
+    
+    document.addEventListener('mousedown', (e) => {
+      const subMenu = this.subMenu.nativeElement;
+      if (subMenu && !subMenu.contains(e.target)) {
+        this.submenuVisible = false;
+        subMenu.classList.remove("open-menu");
+      }
+    });
   }
   
   
@@ -53,17 +61,14 @@ export class NavbarComponent implements OnInit {
   
   //Función que abre y cierra el menú
   toggleMenu() {
-    const subMenu = document.getElementById("subMenu");
-    if (subMenu) {
-      subMenu.classList.toggle("open-menu");
-    }
-    //Función que cierra el menú al hacer click fuera de él
-    document.addEventListener("mousedown", (e) => {
-      if (e.target !== subMenu && subMenu?.classList.contains("open-menu")) {
-        subMenu?.classList.toggle("open-menu");
+    this.submenuVisible = !this.submenuVisible;
+    if (this.subMenu.nativeElement) {
+      if (this.submenuVisible) {
+        this.subMenu.nativeElement.classList.add("open-menu");
+      } else {
+        this.subMenu.nativeElement.classList.remove("open-menu");
       }
-    });
-    
+    }
   }
 
   toggleSubMenu() {
@@ -120,8 +125,11 @@ export class NavbarComponent implements OnInit {
 async signOut() {
   this.authService.auth.signOut().then(() => {
     this.router.navigate(['/login']);
-    console.log('adiosito! con éxito;')
-    alert(`Hasta pronto! ` + this.data[0].nombre); 
+    Swal.fire({
+      title: 'Hasta pronto!',
+      text: this.data[0].nombre,
+      icon: 'success',
+    });
     this.loggedIn = false;
     this.getData();
   }).catch((error) => {

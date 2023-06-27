@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Auth } from '@angular/fire/auth';
+import Swal from 'sweetalert2';
 declare var document: any;
 
 @Component({
@@ -70,7 +71,12 @@ export class AdminComponent {
     this.auth.signOut().then(() => {
       this.router.navigate(['/login']);
       console.log('adiosito! con éxito;')
-      alert(`Adios!` + this.data[0].nombre);
+      Swal.fire({
+        title: 'Hasta pronto!',
+        text: this.data[0].nombre,
+        icon: 'success',
+      });
+      
       this.loggedIn = false;
     }).catch((error) => {
       console.log('Error during sign out:', error);
