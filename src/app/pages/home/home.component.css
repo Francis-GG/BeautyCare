@@ -1,11 +1,50 @@
-#carrucelFotos {
-  background: url('../../../assets/flores/6.png') no-repeat bottom right/650px auto;
+/* #carrucelFotos {
+  background: url('../../../assets/flores/6.png') no-repeat bottom center /750px auto;
   padding: 1px 0;
   background-color: white;
   border-radius: 1%;
+  display: flex;
+  justify-content: center;
 
 
+} */
+
+
+#carrucelFotos {
+  background: url('../../../assets/flores/6.png') no-repeat bottom center /750px auto;
+  padding: 1px 0;
+  background-color: white;
+  border-radius: 1%;
+  display: flex;
+  justify-content: center;
 }
+
+.carousel-item img {
+  object-fit: cover;
+  height: 60vh;
+  width: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.carousel-control-prev {
+  margin-left: -2%;
+}
+
+.carousel-control-next {
+  margin-right: -2%;
+}
+
 
 .text-container {
   font-family: 'Times New Roman', Times, serif;
@@ -40,8 +79,8 @@
   margin-bottom: 20px;
   background: rgba(611, 381, 350, 0.9);
   border-radius: 2%;
-  border: 3px solid rgba(100, 53, 49, 0.3);
-  box-shadow: 18px 21px 7px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(100, 53, 49, 0.3);
+  /* box-shadow: 18px 21px 7px rgba(0, 0, 0, 0.5); */
   margin-left: 3px;
   margin-right: 3px;
   font-style: italic;
@@ -177,10 +216,10 @@
 }
 
 .agendatexto {
-  background-image: linear-gradient(0deg, rgba(225, 73, 292, 0), rgba(225, 25, 151, 0.1)), url("../../../assets/flores/3.png");
-  background-size: 90%;
+  background-image: linear-gradient(0deg, rgba(225, 73, 292, 0), rgba(226, 228, 219, 0.199));
+  /* background-size: 90%;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 
 
 }
@@ -194,9 +233,9 @@
   margin-left: 0;
   margin-right: 20px;
   padding: 25px 11px 72px;
-  background-color: rgba(247, 244, 244, 0.726);
-  border: 2px 2px solid rgba(77, 62, 6, 0.5);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(197, 46, 235, 0.096); */
+  /* border: 2px 2px solid rgba(77, 62, 6, 0.5); */
+  /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); */
   margin-left: 30px;
   margin-right: 30px;
 }
@@ -269,14 +308,16 @@
 
 @media (max-width: 1400px) {
 
-  .carousel-item img {
-    width: 100%;
-    height: 60vh;
+ 
 
-  }
+  /* .carousel-item img {
+    width: 100%;
+    height: auto;
+
+  } */
 
   .text-container h2 {
-    font-size: 3.2em;
+    font-size: 3.1em;
     /* espacio entre lineas */
     line-height: 1em;
     margin: 13px 3px;
@@ -286,6 +327,11 @@
     font-size: 1.5em;
   }
 
+
+
+  #bienvenida .container {
+    max-width: 1300px;
+  }
   .objetivo {
     font-size: 2em;
     margin-top: 10px;
@@ -300,10 +346,14 @@
 
 
 @media (max-width: 992px) {
-  .carousel-item img {
+
+  #carrucelFotos{
+    max-width: 991px;
+  }
+  /* .carousel-item img {
     width: 100%;
     height: 55vh;
-  }
+  } */
 
 
   .text-container h2 {
@@ -322,9 +372,10 @@
   }
 
 
-
-
-
+  
+  #bienvenida .container {
+    max-width: 927px;
+  }
 
   .objetivo {
     font-size: 1.5em;
@@ -338,32 +389,72 @@
     margin-top: 20px px;
     margin-bottom: 20px;
     padding: 19px;
-
-  }
-
-
-}
-
-@media (max-width: 900px) {
-  #card1 img {
-    width: 100%;
-    height: 35vh;
   }
 
 }
 
-/* 
-@media (max-width: 575px) {
 
 
-  #card1 img {
-    width: 60%;
-    height: 30vh;
+@media (max-width: 769px){
+  
+  #carrucelFotos{
+    max-width: 768px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  /* .carousel-item img {
+    width: 100%;
+    height: 30%;
+  } */
 
 
+  #bienvenida .container {
+    max-width: 727px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 9px;
+    padding: 18px 1px 5px;
+
+  }
+  .objetivo{
+    width: 100%;
+    font-size: 1.8em;
+    padding: 15px 6px 5px;
+  }
+
+}
+
+
+
+/* 575 esta listo  */
+@media (max-width: 575px) {
+
+  #carrucelFotos{
+    max-width: 575px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 45vh;
+  }
+
+  #card1 img {
+    width: 60%;
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
 
@@ -377,8 +468,17 @@
     text-align: justify;
   }
 
-  #card1 button {
-    margin-left: 20px;
+  #bienvenida .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
   }
-} */
+  .objetivo{
+    font-size: 1.5em;
+    
+  }
+  
+} 
