@@ -23,7 +23,7 @@ export class LoginComponent implements AfterViewInit {
     private router: Router,
     public firestore: Firestore,
     private authService: AuthService,
-    private renderer: Renderer2){
+    private renderer: Renderer2) {
 
   }
 
@@ -68,8 +68,8 @@ export class LoginComponent implements AfterViewInit {
           value.email
         );
         Swal.fire({
-          title: 'Éxito!',
-          text: `Registro exitoso! Bienvenido ${value.nombre}!`,
+          title: 'Registro exitoso!',
+          text: ` Bienvenido ${value.nombre}!`,
           icon: 'success',
         });
         if (response.user.email?.includes('@admin.cl')) {
@@ -82,11 +82,11 @@ export class LoginComponent implements AfterViewInit {
         const errorMessage =
           this.authErrorMessages.get(err.code) ||
           'Ha ocurrido un error al registrarse.';
-          Swal.fire({
-            title: 'Error!',
-            text: errorMessage,
-            icon: 'error',
-          });
+        Swal.fire({
+          title: 'Error!',
+          text: errorMessage,
+          icon: 'error',
+        });
       });
   }
 
@@ -97,7 +97,7 @@ export class LoginComponent implements AfterViewInit {
         console.log(response.user);
         const user = response.user;
         const userId = user.uid;
-  
+
         if (user.email?.includes('@beautycareadmin.com')) {
           this.router.navigate(['admin']);
         } else {
@@ -111,9 +111,12 @@ export class LoginComponent implements AfterViewInit {
           const userName = (userData as any).nombre;
           console.log('Variable userData: ' + userData);
           Swal.fire({
-            title: 'Bienvenido!',
-            text: `Hola, ${userName} bienvenido de vuelta!`,
-            icon: 'info',
+            position: 'top-end',
+            title: 'BIENVENIDO!',
+            text: `Hola ${userName}, bienvenido de vuelta!`,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
           });
         }
       })
@@ -121,11 +124,11 @@ export class LoginComponent implements AfterViewInit {
         const errorMessage =
           this.authErrorMessages.get(err.code) ||
           'An error occurred while logging in.';
-          Swal.fire({
-            title: 'Error!',
-            text: errorMessage,
-            icon: 'error',
-          });
+        Swal.fire({
+          title: 'Error!',
+          text: errorMessage,
+          icon: 'error',
+        });
       });
   }
 }

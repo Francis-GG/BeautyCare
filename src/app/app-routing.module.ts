@@ -75,14 +75,6 @@ const routes: Routes = [
     canActivateChild: [adminGuard]
   },
   {
-    path: '404',
-    component: P404Component
-  },
-  {
-    path: '**',
-    redirectTo: '404'
-  },
-  {
     path: 'admin',
     component: AdminComponent,
     canActivateChild: [adminGuard],
@@ -96,6 +88,14 @@ const routes: Routes = [
       { path: '', component: DashboardAdminComponent, data: { title: 'Agenda de Trabajo' } }
     ]
   },
+  {
+    path: '404',
+    component: P404Component
+  },
+  {
+    path: '**',
+    redirectTo: '404'
+  }
 ];
 
 @NgModule({

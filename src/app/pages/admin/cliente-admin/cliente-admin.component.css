@@ -85,6 +85,7 @@ table {
 table th,
 table td {
   vertical-align: middle;
+  
 }
 
 table th#boton-editar,
@@ -170,6 +171,7 @@ table th#boton-agregarReserva {
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
+ 
 }
 
 .table tbody+tbody {

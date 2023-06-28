@@ -123,8 +123,8 @@ async signOut() {
     this.router.navigate(['/login']);
     console.log('adiosito! con éxito;')
     Swal.fire({
-      title: 'Hasta pronto!',
-      text: this.data[0].nombre,
+      title: 'Tu sesión ha sido cerrada con éxito ' + this.data[0].nombre,
+      text: 'Esperamos verte pronto!',
       icon: 'success',
     }); 
     this.loggedIn = false;
