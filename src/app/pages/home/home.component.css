@@ -1,30 +1,24 @@
-/* #carrucelFotos {
-  background: url('../../../assets/flores/6.png') no-repeat bottom center /750px auto;
-  padding: 1px 0;
-  background-color: white;
-  border-radius: 1%;
-  display: flex;
-  justify-content: center;
-
-
-} */
-
-
 #carrucelFotos {
   background: url('../../../assets/flores/6.png') no-repeat bottom center /750px auto;
-  padding: 6px 0;
+  padding: 0px 60px;
   background-color: white;
   border-radius: 1%;
+  max-width: 1536px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .carousel-item img {
-  object-fit: cover;
   width: 100%;
-  height: 60vh;
-  
- 
+  max-width: 670px;
+  border-radius: 1%;
+  margin: 3px 50px;
+  padding: 0px 0px;
+
+
 }
 
 .carousel-control-prev,
@@ -50,22 +44,22 @@
 
 .text-container {
   font-family: 'Times New Roman', Times, serif;
-  margin: 2px 8px;
+  margin: 2px 4px;
   padding: 0px 0px;
   text-align: center;
   padding-top: 20px;
-
 }
 
 .text-container h2 {
   text-align: center;
-  font-size: 3.5em;
+  font-size: 3em;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   font-weight: bold;
   color: #000;
   margin-bottom: 53px;
   margin-top: 7px;
+  margin: 21px 12px 35px;
 }
 
 .titulo {
@@ -128,11 +122,13 @@
 
 
 
+
 #card1 img {
-  width: 39vh;
-  height: 36vh;
+  width: 100%;
+  max-width: 170px;
+  padding: 0px 0px 0px;
+  margin: 13px 20px 5px;
   object-position: center;
-  margin: auto;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -164,6 +160,8 @@
 
 
 .image-item {
+  width: 100%;
+  max-width: 1530px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   padding: 0px 25px;
@@ -310,13 +308,44 @@
 
 @media (max-width: 1400px) {
 
- 
+  #carrucelFotos {
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
+  }
 
-  /* .carousel-item img {
-    width: 100%;
-    height: auto;
+  .carousel-item img {
+    max-width: 579px;
+    margin: 2px 0px 1px 80px;
+    padding: 0px 0px 1px 5px;
+  }
 
-  } */
+  #cards-servicios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+
+  #card1 img {
+    width: 90%;
+    max-width: 200px;
+    padding: 0px 0px 0px;
+    margin: 7px 11px 17px;
+  }
+
+  #card1 button {
+    margin: 9px 15px 14px 19px;
+    padding: 9px 9px 9px 13px;
+
+  }
 
   .text-container h2 {
     font-size: 3.1em;
@@ -334,6 +363,7 @@
   #bienvenida .container {
     max-width: 1300px;
   }
+
   .objetivo {
     font-size: 2em;
     margin-top: 10px;
@@ -347,15 +377,81 @@
 }
 
 
+@media (max-width: 1200px) {
+  #carrucelFotos {
+    max-width: 1199px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
+  }
+
+
+  .carousel-item img {
+    width: 100%;
+    max-width: 618px;
+    margin: 1px 26px 2px;
+    padding: 5px 2px 2px;
+  }
+
+  #cards-servicios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+
+  #card1 img {
+    width: 90%;
+    max-width: 250px;
+    padding: 0px 0px 0px;
+    margin: 7px 11px 17px;
+  }
+
+  #card1 button {
+    margin: 9px 15px 14px 19px;
+    padding: 9px 9px 9px 13px;
+
+  }
+
+  .text-container h2 {
+    font-size: 2.6em;
+    margin: 2px 8px 2px 3px;
+    padding: 3px 3px 4px 3px;
+  }
+
+  .text-container p {
+    font-size: 1.2em;
+
+  }
+
+}
+
+
 @media (max-width: 992px) {
 
-  #carrucelFotos{
+  #carrucelFotos {
     max-width: 991px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
   }
-  /* .carousel-item img {
+
+  .carousel-item img {
     width: 100%;
-    height: 55vh;
-  } */
+    max-width: 768px;
+    margin: 0px 0px 0px;
+    padding: 0px 0px 0px;
+  }
 
 
   .text-container h2 {
@@ -370,11 +466,18 @@
 
   #card1 img {
     width: 100%;
-    height: 40vh;
+
+  }
+
+  .descrpservicios {
+    padding: 0px 0px;
+    background-color: rgba(243, 240, 240, 0.562);
+    text-align: center;
+    border-radius: 1%;
   }
 
 
-  
+
   #bienvenida .container {
     max-width: 927px;
   }
@@ -397,19 +500,59 @@
 
 
 
-@media (max-width: 769px){
-  
-  #carrucelFotos{
+@media (max-width: 768px) {
+
+  #carrucelFotos {
     max-width: 768px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
+  }
+
+
+  .carousel-item img {
+    width: 100%;
+    max-width: 768px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .text-container h2 .titulo {
+    font-size: 1.3em;
+  }
+
+  #cards-servicios {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
-  /* .carousel-item img {
-    width: 100%;
-    height: 30%;
-  } */
+
+  #card1 img {
+    width: 90%;
+    max-width: 250px;
+    padding: 0px 0px 0px;
+    margin: 7px 11px 17px;
+  }
+
+  #card1 button {
+    margin: 9px 15px 14px 19px;
+    padding: 9px 9px 9px 13px;
+
+  }
+
+  .descrpservicios {
+    padding: 0px 0px;
+    background-color: rgba(243, 240, 240, 0.562);
+    text-align: center;
+    border-radius: 1%;
+  }
 
 
   #bienvenida .container {
@@ -423,7 +566,8 @@
     padding: 18px 1px 5px;
 
   }
-  .objetivo{
+
+  .objetivo {
     width: 100%;
     font-size: 1.8em;
     padding: 15px 6px 5px;
@@ -433,11 +577,78 @@
 
 
 
-/* 575 esta listo  */
-@media (max-width: 575px) {
+@media (max-width: 639px) {
 
-  #carrucelFotos{
-    max-width: 575px;
+  #carrucelFotos {
+    max-width: 638px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+  }
+
+  #card1 img {
+    width: 50%;
+    max-width: 200px;
+    padding: 0px 0px;
+    margin: 20px 27px;
+  }
+
+}
+
+
+/* 575 esta listo  */
+@media (max-width: 576px) {
+
+  #carrucelFotos {
+    width: 100%;
+    max-width: 888px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 0px;
+  }
+
+
+  .carousel-item img {
+    width: 100%;
+    max-width: 768px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+  .text-container h2 {
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bold;
+    color: #000;
+    margin: 3px 0px 10px;
+  }
+
+  .titulo {
+    font-family: 'Dancing Script';
+    font-weight: bold;
+  }
+
+  #cards-servicios {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -448,15 +659,18 @@
 
   .carousel-item img {
     width: 100%;
-    height: 45vh;
   }
 
   #card1 img {
-    width: 60%;
-    height: 35vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 50%;
+    max-width: 300px;
+
+  }
+
+  #card1 button {
+    margin: 9px 15px 14px 19px;
+    padding: 9px 9px 9px 13px;
+
   }
 
 
@@ -478,9 +692,10 @@
     text-align: center;
 
   }
-  .objetivo{
+
+  .objetivo {
     font-size: 1.5em;
-    
+
   }
-  
-} 
+
+}
