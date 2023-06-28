@@ -20,6 +20,7 @@ import { MensajesAdminComponent } from './pages/admin/mensajes-admin/mensajes-ad
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 import { authGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
+import { P404Component } from './pages/p404/p404.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,14 @@ const routes: Routes = [
     path: 'reservas',
     component: ReservasComponent,
     canActivateChild: [adminGuard]
+  },
+  {
+    path: '404',
+    component: P404Component
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   },
   {
     path: 'admin',
