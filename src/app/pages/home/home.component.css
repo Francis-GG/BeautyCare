@@ -1,14 +1,28 @@
 #carrucelFotos {
   background: url('../../../assets/flores/6.png') no-repeat bottom center /750px auto;
-  padding: 0px 60px;
+  padding: 0px 60px 1px 0px;
   background-color: white;
   border-radius: 1%;
-  max-width: 1536px;
+  max-width: 1920px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  margin: 9px 95px 29px 95px;
+  /* justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: center; */
+
+
+
+/* 
+  background: url('6.png') no-repeat bottom center /750px auto;
+  background-color: rgba(0, 0, 0, 0);
+padding: 5px 98px 7px 39px;
+background-color: white;
+border-radius: 1%;
+max-width: 1920px;
+display: flex;
+flex-direction: row;
+margin: 9px 95px 29px 95px; */
 }
 
 .carousel-item img {

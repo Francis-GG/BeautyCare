@@ -360,36 +360,44 @@ export class PerfilClienteComponent {
 
 
   async eliminarCliente() {
-    if (confirm('¿Está seguro que desea eliminar su cuenta?')) {
-      const user = this.auth.currentUser; // Obtener el usuario actual
-      if (user) {
-        const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
-        try {
-          // Eliminar el documento del usuario en Firestore
-          await deleteDoc(clienteDocRef);
-          //  eliminarla imagen de avatar}
-          const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
-          await deleteObject(storageRef);
-
-          // Eliminar el usuario en Authentication
-          await deleteUser(user);
-          console.log('Cliente eliminado correctamente');
-          Swal.fire({
-            title: 'Éxito!',
-            text: 'Cliente eliminado correctamente.',
-            icon: 'success',
-          });
-          this.router.navigate(['/login']);
-        } catch (error) {
-          console.log('Error al intentar eliminar el cliente:', error);
-          Swal.fire({
-            title: 'Error!',
-            text: 'Error al intentar eliminar el cliente.',
-            icon: 'error',
-          });
+    await Swal.fire({
+      title: '¿Está seguro que desea eliminar su cuenta?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const user = this.auth.currentUser; // Obtener el usuario actual
+        if (user) {
+          const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
+          try {
+            // Eliminar el documento del usuario en Firestore
+            await deleteDoc(clienteDocRef);
+            // Eliminar la imagen de avatar
+            const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
+            await deleteObject(storageRef);
+  
+            // Eliminar el usuario en Authentication
+            await deleteUser(user);
+            console.log('Cliente eliminado correctamente');
+            Swal.fire({
+              title: 'Éxito!',
+              text: 'Cliente eliminado correctamente.',
+              icon: 'success',
+            });
+            this.router.navigate(['/login']);
+          } catch (error) {
+            console.log('Error al intentar eliminar el cliente:', error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'Error al intentar eliminar el cliente.',
+              icon: 'error',
+            });
+          }
         }
       }
-    }
+    });
   }
 }
 
