@@ -12,7 +12,7 @@
         <div class="card-body" id="first-card">
           <h3 class="tituloCalendario">Calendario</h3>
           <mat-calendar id="Calendario" [(selected)]="selected" [minDate]="minDate" [maxDate]="maxDate"
-            [dateFilter]="myFilter" (selectedChange)="selectedDate = $event"></mat-calendar>
+             (selectedChange)="selectedDate = $event"></mat-calendar>
         </div>
       </div>
     </div>

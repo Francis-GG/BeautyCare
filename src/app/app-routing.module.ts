@@ -51,23 +51,19 @@ const routes: Routes = [
   },
   {
     path: 'servicios',
-    component: ServiciosComponent,
-    canActivate: [authGuard]
+    component: ServiciosComponent
   },
   {
     path: 'servicios/depilacion',
-    component: DepilacionComponent,
-    canActivate: [authGuard]
+    component: DepilacionComponent
   },
   {
     path: 'servicios/peluqueria',
-    component: PeluqueriaComponent,
-    canActivate: [authGuard]
+    component: PeluqueriaComponent
   },
   {
     path: 'servicios/manicure',
-    component: ManicureComponent,
-    canActivate: [authGuard]
+    component: ManicureComponent
   },
   {
     path: 'reservas',

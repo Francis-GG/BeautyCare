@@ -152,7 +152,7 @@ async changeState(appointment: Appointment) {
 
 ngOnInit() {
   // Le da formato de fecha con palabras al calendario
-  this.minDate = new Date();
+  
   this.selectedDate = this.minDate;
   const maxDate = new Date();
   maxDate.setMonth(maxDate.getMonth() + 3);

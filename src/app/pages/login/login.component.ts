@@ -72,10 +72,10 @@ export class LoginComponent implements AfterViewInit {
           text: ` Bienvenido ${value.nombre}!`,
           icon: 'success',
         });
-        if (response.user.email?.includes('@admin.cl')) {
+        if (response.user.email?.includes('@beautycareadmin.com')) {
           this.router.navigate(['admin']);
         } else {
-          this.router.navigate(['']);
+          this.router.navigate(['servicios/depilacion']);
         }
       })
       .catch((err) => {
@@ -101,7 +101,7 @@ export class LoginComponent implements AfterViewInit {
         if (user.email?.includes('@beautycareadmin.com')) {
           this.router.navigate(['admin']);
         } else {
-          this.router.navigate(['']);
+          this.router.navigate(['servicios/depilacion']);
         }
 
         const userDocRef = doc(this.firestore, `users/${userId}`);
