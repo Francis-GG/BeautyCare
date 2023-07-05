@@ -69,10 +69,10 @@ export class LoginComponent implements AfterViewInit {
         );
         Swal.fire({
           title: 'Registro exitoso!',
-          text: ` Bienvenido ${value.nombre}!`,
+          text: ` Bienvenida ${value.nombre}!`,
           icon: 'success',
         });
-        if (response.user.email?.includes('@admin.cl')) {
+        if (response.user.email?.includes('@beautycareadmin.com')) {
           this.router.navigate(['admin']);
         } else {
           this.router.navigate(['']);
