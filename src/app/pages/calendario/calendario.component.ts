@@ -4,7 +4,6 @@ import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { addDoc } from 'firebase/firestore';
-import Swal from 'sweetalert2';
 
 
 
@@ -309,11 +308,8 @@ export class CalendarioComponent {
   
           const reservaCollectionRef = collection(this.firestore, 'reservas');
           await addDoc(reservaCollectionRef, reservaData);
-          Swal.fire({
-            title: 'Éxito!',
-            text: 'Su hora ha sido reservada correctamente',
-            icon: 'success',
-          });          this.router.navigate(['/']);
+          alert('Su hora ha sido reservada con éxito!');
+          this.router.navigate(['/']);
         } else {
           console.log('No se encontró el usuario en Firestore.');
         }

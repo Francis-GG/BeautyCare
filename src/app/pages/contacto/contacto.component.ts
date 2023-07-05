@@ -3,7 +3,6 @@
   import { getStorage, ref} from '@angular/fire/storage';
   import { AfterViewInit, Component, ViewChild  } from '@angular/core';
   import { NgForm } from '@angular/forms'
-  import Swal from 'sweetalert2';
 
   
 
@@ -53,46 +52,27 @@
 
       }catch{
         console.log('Ocurrió un error al intentar enviar su mensaje.')
-        Swal.fire({
-          title: 'Error!',
-          text: 'Ocurrió un error al intentar enviar su mensaje.',
-          icon: 'error',
-        });      }
+        alert('Ocurrió un error al intentar enviar su mensaje.')
+      }
     }
 
     async submitContacto(id: string ,nombre: string, apellido: string, email: string, telefono: string, texto: string){
       const currentTime = new Date();
       const fecha = currentTime.toLocaleString();
       const hora = currentTime.toLocaleTimeString();
-    
-      await Swal.fire({
-        title: '¿Está seguro que desea enviar el formulario?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, enviar',
-        cancelButtonText: 'No, cancelar',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
-          setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha, hora})
-            .then(() => {
-              Swal.fire({
-                title: 'Éxito!',
-                text: 'Formulario enviado con éxito.',
-                icon: 'success',
-              });
-            })
-            .catch((error) =>{
-              Swal.fire({
-                title: 'Error!',
-                text: 'El formulario no se ha enviado.',
-                icon: 'error',
-              });
-            });
-        }
-      });
+
+
+      if(confirm('¿Está seguro que desea enviar el formulario?')){
+       const contactoDocRef = doc(this.firestore, `formcontact/${id}`);
+       setDoc(contactoDocRef, {nombre, apellido, email, telefono, texto, fecha, hora})
+       .then(() => {
+         alert('Formulario enviado con éxito.')
+       })
+       .catch((error) =>{
+         alert('El formulario no se ha enviado.')
+       });
+      }
     }
-    
     
     // obtiene la informacion del local 
     getDataSucursal(){

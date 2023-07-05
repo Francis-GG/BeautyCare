@@ -3,7 +3,6 @@ import { Firestore, collection, doc, getDocs, query, where } from '@angular/fire
 import { Router } from '@angular/router';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { addDoc } from 'firebase/firestore';
-import Swal from 'sweetalert2';
 
 interface Categoria {
   id: string;
@@ -316,11 +315,7 @@ export class ReservasComponent {
           };
           const reservaCollectionRef = collection(this.firestore, 'reservas');
           await addDoc(reservaCollectionRef, reservaData);
-          Swal.fire({
-            title: 'Éxito!',
-            text: 'Su hora ha sido reservada con éxito!',
-            icon: 'success',
-          });
+          alert('Su hora ha sido reservada con éxito!');
           this.router.navigate(['/admin/cliente-admin']);
         }
       } catch (error) {

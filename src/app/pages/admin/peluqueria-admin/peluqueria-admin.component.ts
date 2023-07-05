@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Firestore, collection, getDocs, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
-import Swal from 'sweetalert2';
 
 
 @Component({
@@ -36,29 +35,17 @@ export class PeluqueriaAdminComponent {
     })
   }
   eliminarServicio(serviceId: string) {
-    Swal.fire({
-      title: '¿Está seguro que desea eliminar este servicio?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No, cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const serviceDocRef = doc(this.firestore, `categorias/2/servicios/${serviceId}`);
-        deleteDoc(serviceDocRef)
-          .then(() => {
-            console.log('Servicio eliminado correctamente');
-            this.data = this.data.filter((item: any) => item.id !== serviceId);
-            Swal.fire({
-              title: 'Éxito!',
-              text: 'Servicio eliminado correctamente',
-              icon: 'success',
-            });
-          })
-          .catch((error) => {
-            console.log('Error al intentar eliminar el servicio:', error);
-          });
-      }
-    });
-  }  
+    if (confirm('¿Está seguro que desea eliminar este servicio?')){
+      const serviceDocRef = doc(this.firestore, `categorias/2/servicios/${serviceId}`);
+      deleteDoc(serviceDocRef)
+        .then(() => {
+          console.log('Servicio eliminado correctamente');
+          this.data = this.data.filter((item: any) => item.id !== serviceId);
+          alert('Servicio eliminado correctamente');
+        })
+        .catch((error) => {
+          console.log('Error al intentar eliminar el servicio:', error);
+        });
+    }
+  }
 }

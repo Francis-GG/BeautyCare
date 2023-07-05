@@ -3,7 +3,6 @@ import { Auth, User, deleteUser, getAuth, updateEmail, updatePassword } from '@a
 import { Firestore, getDoc, doc, setDoc, deleteDoc, collection, getDocs, updateDoc, query, where } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, deleteObject, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 
 
@@ -86,18 +85,10 @@ export class PerfilClienteComponent {
     const user: User | null = this.auth.currentUser
     const auth = getAuth()
     updateEmail(user!, email).then(() => {
-      Swal.fire({
-        title: 'Éxito!',
-        text: 'Email actualizado.',
-        icon: 'success',
-      });
+      alert("Email actualizado.")
       this.getUserEmail();
     }).catch((error) => {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Error al intentar actualizar el correo.',
-        icon: 'error',
-      });
+      alert("Error al intentar actualizar el correo.")
     });
     if (user) {
       const userDocRef = doc(this.firestore, 'users', user.uid);
@@ -119,11 +110,7 @@ export class PerfilClienteComponent {
       // this.getUserEmail();
     } else {
 
-      Swal.fire({
-        title: 'Error!',
-        text: 'Los correos no coinciden.',
-        icon: 'error',
-      });
+      alert("Los correos no coinciden.")
     }
   }
 
@@ -208,29 +195,17 @@ export class PerfilClienteComponent {
       if (file) {
         await this.uploadAvatar(file); // Upload the new image
         await this.editarPerfil(nombre, apellido, telefono); // Update profile data
-        Swal.fire({
-          title: 'Éxito!',
-          text: 'Perfil editado correctamente.',
-          icon: 'success',
-        });
+        alert('Perfil editado correctamente');
       } else {
         await this.editarPerfil(nombre, apellido, telefono); // Update profile data without uploading an image
-        Swal.fire({
-          title: 'Éxito!',
-          text: 'Perfil editado correctamente.',
-          icon: 'success',
-        });
+        alert('Perfil editado correctamente');
         this.getDataUser();
         this.getUserEmail();
       }
 
     } catch {
       console.log('Error al intentar editar el perfil.')
-      Swal.fire({
-        title: 'Error!',
-        text: 'Error al intentar editar el perfil.',
-        icon: 'error',
-      });
+      alert('Error al intentar editar el perfil.')
     }
   }
 
@@ -284,17 +259,9 @@ export class PerfilClienteComponent {
     const auth = getAuth();
     try {
       await updatePassword(user!, password);
-      Swal.fire({
-        title: 'Éxito!',
-        text: 'Contraseña actualizada.',
-        icon: 'success',
-      });
+      alert("Contraseña actualizada.");
     } catch (error) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Error al intentar actualizar la contraseña.',
-        icon: 'error',
-      });
+      alert("Error al intentar actualizar la contraseña.");
     }
   }
 
@@ -307,12 +274,7 @@ export class PerfilClienteComponent {
       this.actualizarPassword(passwordNueva);
     } else {
 
-      Swal.fire({
-        title: 'Error!',
-        text: 'Las contraseñas no coinciden.',
-        icon: 'error',
-      });
-      
+      alert("Las contraseñas no coinciden.")
     }
   }
 
@@ -321,36 +283,23 @@ export class PerfilClienteComponent {
   eliminarReserva(reservaId: string) {
     const user: User | null = this.auth.currentUser;
     if (user) {
-      Swal.fire({
-        title: '¿Está seguro que desea eliminar esta reserva?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'No, cancelar',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const serviceDocRef = doc(this.firestore, 'reservas', reservaId);
-          deleteDoc(serviceDocRef)
-            .then(() => {
-              console.log('Reserva eliminada correctamente');
-              this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
-              Swal.fire({
-                title: 'Éxito!',
-                text: 'Reserva eliminada correctamente',
-                icon: 'success',
-              });
-              this.getDataReserva();
-            })
-            .catch((error) => {
-              console.log('Error al intentar eliminar la reserva:', error);
-            });
-        }
-      });
+      if (confirm('¿Está seguro que desea eliminar esta reserva?')) {
+        const serviceDocRef = doc(this.firestore, 'reservas', reservaId);
+        deleteDoc(serviceDocRef)
+          .then(() => {
+            console.log('Reserva eliminada correctamente');
+            this.dataReservas = this.dataReservas.filter((reserva: any) => reserva.id !== reservaId);
+            alert('Reserva eliminada correctamente');
+            this.getDataReserva();
+          })
+          .catch((error) => {
+            console.log('Error al intentar eliminar la reserva:', error);
+          });
+      }
     } else {
       console.log('No hay un usuario autenticado actualmente.');
     }
   }
-  
 
 
 
@@ -362,46 +311,30 @@ export class PerfilClienteComponent {
 
 
   async eliminarCliente() {
-    await Swal.fire({
-      title: '¿Está seguro que desea eliminar su cuenta?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'No, cancelar',
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const user = this.auth.currentUser; // Obtener el usuario actual
-        if (user) {
-          const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
-          try {
-            // Eliminar el documento del usuario en Firestore
-            await deleteDoc(clienteDocRef);
-            // Eliminar la imagen de avatar
-            const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
-            await deleteObject(storageRef);
-  
-            // Eliminar el usuario en Authentication
-            await deleteUser(user);
-            console.log('Cliente eliminado correctamente');
-            Swal.fire({
-              title: 'Éxito!',
-              text: 'Cliente eliminado correctamente.',
-              icon: 'success',
-            });
-            this.router.navigate(['/login']);
-          } catch (error) {
-            console.log('Error al intentar eliminar el cliente:', error);
-            Swal.fire({
-              title: 'Error!',
-              text: 'Error al intentar eliminar el cliente.',
-              icon: 'error',
-            });
-          }
+    if (confirm('¿Está seguro que desea eliminar su cuenta?')) {
+      const user = this.auth.currentUser; // Obtener el usuario actual
+      if (user) {
+        const clienteDocRef = doc(this.firestore, `users/${user.uid}`);
+        try {
+          // Eliminar el documento del usuario en Firestore
+          await deleteDoc(clienteDocRef);
+          //  eliminarla imagen de avatar}
+          const storageRef = ref(this.storage, `users/${user.uid}/profile-image`);
+          await deleteObject(storageRef);
+
+          // Eliminar el usuario en Authentication
+          await deleteUser(user);
+          console.log('Cliente eliminado correctamente');
+          alert('Cliente eliminado correctamente');
+          this.router.navigate(['/login']);
+        } catch (error) {
+          console.log('Error al intentar eliminar el cliente:', error);
+          alert('Error al intentar eliminar el cliente');
         }
       }
-    });
+    }
   }
-  
+
 
 
 

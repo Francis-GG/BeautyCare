@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { Firestore, getDocs, collection, query, where, doc, updateDoc} from '@angular/fire/firestore';
-import Swal from 'sweetalert2';
 
 interface Appointment {
   id: string;
@@ -126,26 +125,18 @@ async fetchAppointments(date: Date) {
 
 
 async changeState(appointment: Appointment) {
-  Swal.fire({
-    title: `Cambiar el estado de la reserva a "${appointment.estado}"?`,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Sí',
-    cancelButtonText: 'No',
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      // update the state in Firestore
-      const appointmentDoc = doc(this.firestore, 'reservas', appointment.id); // Use appointment.id here
-      await updateDoc(appointmentDoc, { 'estado': appointment.estado });
-    } else {
-      // revert the change
-      if (this.selectedDate) {
-        this.fetchAppointments(this.selectedDate);
-      }
+  const confirmChange = window.confirm(`Cambiar el estado de la reserva a "${appointment.estado}?"`);
+  if (confirmChange) {
+    // update the state in Firestore
+    const appointmentDoc = doc(this.firestore, 'reservas', appointment.id); // Use appointment.id here
+    await updateDoc(appointmentDoc, { 'estado': appointment.estado });
+  } else {
+    // revert the change
+    if (this.selectedDate) {
+      this.fetchAppointments(this.selectedDate);
     }
-  });
+  }
 }
-
 
 
 
